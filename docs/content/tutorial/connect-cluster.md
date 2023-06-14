@@ -118,8 +118,8 @@ features of IVYO).
 
 For this tutorial, we are going to connect [Keycloak](https://www.keycloak.org/), an open source
 identity management application. Keycloak can be deployed on Kubernetes and is backed by a Ivory
-database. While we provide an [example of deploying Keycloak and a PostgresCluster](https://github.com/Highgo/ivory-operator-examples/tree/main/kustomize/keycloak)
-in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples)
+database. While we provide an [example of deploying Keycloak and a PostgresCluster](https://github.com/ivorysql/ivory-operator-examples/tree/main/kustomize/keycloak)
+in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples)
 repository, the manifest below deploys it using our `hippo` cluster that is already running:
 
 ```

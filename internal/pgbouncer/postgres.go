@@ -21,10 +21,10 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/internal/ivory/password"
-	"github.com/highgo/ivory-operator/internal/logging"
-	"github.com/highgo/ivory-operator/internal/util"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/internal/ivory/password"
+	"github.com/ivorysql/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/util"
 )
 
 const (

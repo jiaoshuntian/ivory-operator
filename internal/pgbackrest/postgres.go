@@ -18,8 +18,8 @@ package pgbackrest
 import (
 	"strings"
 
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 // IvorySQL populates outParameters with any settings needed to run pgBackRest.

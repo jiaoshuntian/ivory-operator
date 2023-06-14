@@ -23,12 +23,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/pgbackrest"
-	"github.com/highgo/ivory-operator/internal/pki"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/pgbackrest"
+	"github.com/ivorysql/ivory-operator/internal/pki"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 // ClusterBootstrapped returns a bool indicating whether or not Patroni has successfully

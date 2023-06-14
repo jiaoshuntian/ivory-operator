@@ -29,10 +29,10 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	"sigs.k8s.io/yaml"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/testing/require"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/testing/require"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 func TestCreatePGBackRestConfigMapIntent(t *testing.T) {

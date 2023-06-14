@@ -41,10 +41,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/yaml"
 
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/testing/require"
-	"github.com/highgo/ivory-operator/internal/util"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/testing/require"
+	"github.com/ivorysql/ivory-operator/internal/util"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 func TestDeleteControlled(t *testing.T) {

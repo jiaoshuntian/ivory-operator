@@ -23,10 +23,10 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/util"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/util"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 func TestDataVolumeMount(t *testing.T) {

@@ -25,7 +25,7 @@ import (
 
 	"gotest.tools/v3/assert"
 
-	"github.com/highgo/ivory-operator/internal/testing/require"
+	"github.com/ivorysql/ivory-operator/internal/testing/require"
 )
 
 func TestStanzaCreateOrUpgrade(t *testing.T) {

@@ -24,15 +24,15 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/highgo/ivory-operator/internal/config"
-	"github.com/highgo/ivory-operator/internal/initialize"
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	pgpassword "github.com/highgo/ivory-operator/internal/ivory/password"
-	"github.com/highgo/ivory-operator/internal/logging"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/pgmonitor"
-	"github.com/highgo/ivory-operator/internal/util"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/config"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	pgpassword "github.com/ivorysql/ivory-operator/internal/ivory/password"
+	"github.com/ivorysql/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/pgmonitor"
+	"github.com/ivorysql/ivory-operator/internal/util"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 const (

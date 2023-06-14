@@ -30,9 +30,9 @@ stack.
 The [IvorySQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
 stack is made up of several open source components:
 
-- [pgMonitor](https://github.com/Highgo/pgmonitor), which provides the core
+- [pgMonitor](https://github.com/ivorysql/pgmonitor), which provides the core
 of the monitoring infrastructure including the following components:
-  - [postgres_exporter](https://github.com/Highgo/pgmonitor/tree/main/postgres_exporter),
+  - [postgres_exporter](https://github.com/ivorysql/pgmonitor/tree/main/postgres_exporter),
   which provides queries used to collect metrics information about a IvorySQL
   instance.
   - [Prometheus](https://github.com/prometheus/prometheus), a time-series
@@ -44,7 +44,7 @@ of the monitoring infrastructure including the following components:
   - [Alertmanager](https://github.com/prometheus/alertmanager), a tool that
   can send alerts when metrics hit a certain threshold that require someone to
   intervene.
-- [pgnodemx](https://github.com/Highgo/pgnodemx), a IvorySQL extension
+- [pgnodemx](https://github.com/ivorysql/pgnodemx), a IvorySQL extension
 that is able to pull container-specific metrics (e.g. CPU utilization, memory
 consumption) from the container itself via SQL queries.
 

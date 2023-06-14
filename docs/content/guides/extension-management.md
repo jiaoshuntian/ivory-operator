@@ -28,7 +28,7 @@ automating installation, using the example of Highgo's own `pgnodemx` extension.
 
 ## `pgnodemx`
 
-[`pgnodemx`](https://github.com/Highgo/pgnodemx) is a IvorySQL extension
+[`pgnodemx`](https://github.com/ivorysql/pgnodemx) is a IvorySQL extension
 that is able to pull container-specific metrics (e.g. CPU utilization, memory
 consumption) from the container itself via SQL queries.
 

@@ -51,12 +51,12 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/pgbackrest"
-	"github.com/highgo/ivory-operator/internal/pki"
-	"github.com/highgo/ivory-operator/internal/testing/require"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/pgbackrest"
+	"github.com/ivorysql/ivory-operator/internal/pki"
+	"github.com/ivorysql/ivory-operator/internal/testing/require"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 var testCronSchedule string = "*/15 * * * *"

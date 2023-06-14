@@ -38,7 +38,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	"github.com/highgo/ivory-operator/internal/testing/require"
+	"github.com/ivorysql/ivory-operator/internal/testing/require"
 )
 
 func TestServerSideApply(t *testing.T) {

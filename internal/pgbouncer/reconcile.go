@@ -22,13 +22,13 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/highgo/ivory-operator/internal/config"
-	"github.com/highgo/ivory-operator/internal/initialize"
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/pki"
-	"github.com/highgo/ivory-operator/internal/util"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/config"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/pki"
+	"github.com/ivorysql/ivory-operator/internal/util"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 // ConfigMap populates the PgBouncer ConfigMap.

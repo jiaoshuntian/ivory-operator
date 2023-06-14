@@ -11,7 +11,7 @@ Let's look at how we can a connection pooler and connect it to our application!
 
 ## Adding a Connection Pooler
 
-Let's look at how we can add a connection pooler using the `kustomize/keycloak` example in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository.
+Let's look at how we can add a connection pooler using the `kustomize/keycloak` example in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository.
 
 Connection poolers are added using the `spec.proxy` section of the custom resource. Currently, the only connection pooler supported is [PgBouncer](https://www.pgbouncer.org/).
 

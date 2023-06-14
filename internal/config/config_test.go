@@ -22,7 +22,7 @@ import (
 	"gotest.tools/v3/assert"
 	"sigs.k8s.io/yaml"
 
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 func saveEnv(t testing.TB, key string) {

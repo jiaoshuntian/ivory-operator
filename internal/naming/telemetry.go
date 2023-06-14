@@ -17,4 +17,4 @@ package naming
 
 import "go.opentelemetry.io/otel"
 
-var tracer = otel.Tracer("github.com/highgo/ivory-operator/naming")
+var tracer = otel.Tracer("github.com/ivorysql/ivory-operator/naming")

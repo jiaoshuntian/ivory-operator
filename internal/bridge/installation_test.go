@@ -29,8 +29,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/yaml"
 
-	"github.com/highgo/ivory-operator/internal/controller/runtime"
-	"github.com/highgo/ivory-operator/internal/testing/cmp"
+	"github.com/ivorysql/ivory-operator/internal/controller/runtime"
+	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 )
 
 func TestExtractSecretContract(t *testing.T) {

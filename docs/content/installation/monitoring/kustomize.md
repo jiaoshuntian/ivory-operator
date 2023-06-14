@@ -11,10 +11,10 @@ This section provides instructions for installing and configuring IVYO Monitorin
 
 ## Prerequisites
 
-First, go to GitHub and [fork the Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork)
+First, go to GitHub and [fork the Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork)
 repository, which contains the IVYO Monitoring Kustomize installer.
 
-[https://github.com/Highgo/ivory-operator-examples/fork](https://github.com/Highgo/ivory-operator-examples/fork)
+[https://github.com/ivorysql/ivory-operator-examples/fork](https://github.com/ivorysql/ivory-operator-examples/fork)
 
 Once you have forked this repo, you can download it to your working environment with a command
 similar to this:

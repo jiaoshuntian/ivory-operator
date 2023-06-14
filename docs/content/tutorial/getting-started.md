@@ -9,7 +9,7 @@ If you have not done so, please install IVYO by following the [quickstart]({{< r
 
 As part of the installation, please be sure that you have done the following:
 
-1. [Forked the Ivory Operator examples repository](https://github.com/Highgo/ivory-operator-examples/fork) and cloned it to your host machine.
+1. [Forked the Ivory Operator examples repository](https://github.com/ivorysql/ivory-operator-examples/fork) and cloned it to your host machine.
 1. Installed IVYO to the `ivory-operator` namespace. If you are inside your `ivory-operator-examples` directory, you can run the `kubectl apply --server-side -k kustomize/install/default` command.
 
 Note if you are using this guide in conjunction with images from the [Highgo Customer Portal](https://access.crunchydata.com), please follow the [private registries]({{< relref "guides/private-registries.md" >}}) guide for additional setup instructions.

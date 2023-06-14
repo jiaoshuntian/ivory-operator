@@ -24,7 +24,7 @@ kubectl delete deployment ivyo-upgrade
 
 Starting with IVYO v5.0.1, both the Deployment and ServiceAccount created when installing IVYO via
 the installers in the
-[Ivory Operator examples repository](https://github.com/Highgo/ivory-operator-examples)
+[Ivory Operator examples repository](https://github.com/ivorysql/ivory-operator-examples)
 have been renamed from `ivory-operator` to `ivyo`.  As a result of this change, if using
 Kustomize to install IVYO and upgrading from IVYO v5.0.0, the following step must be completed prior
 to upgrading.  This will ensure multiple versions of IVYO are not installed and running concurrently

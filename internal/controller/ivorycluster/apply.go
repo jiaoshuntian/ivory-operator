@@ -30,7 +30,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/validation/field"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/highgo/ivory-operator/internal/kubeapi"
+	"github.com/ivorysql/ivory-operator/internal/kubeapi"
 )
 
 // apply sends an apply patch to object's endpoint in the Kubernetes API and

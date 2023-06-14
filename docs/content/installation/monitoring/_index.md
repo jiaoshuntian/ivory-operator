@@ -28,4 +28,4 @@ alongside IVYO.
 
 
 
-[pgMonitor]: https://github.com/Highgo/pgmonitor
+[pgMonitor]: https://github.com/ivorysql/pgmonitor

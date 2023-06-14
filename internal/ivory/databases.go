@@ -20,7 +20,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/highgo/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/logging"
 )
 
 // CreateDatabasesInIvorySQL calls exec to create databases that do not exist

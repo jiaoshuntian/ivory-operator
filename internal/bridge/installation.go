@@ -34,9 +34,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/yaml"
 
-	"github.com/highgo/ivory-operator/internal/controller/runtime"
-	"github.com/highgo/ivory-operator/internal/logging"
-	"github.com/highgo/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/controller/runtime"
+	"github.com/ivorysql/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/naming"
 )
 
 // self is a singleton Installation. See [InstallationReconciler].

@@ -96,7 +96,7 @@ See universal considerations for all uses, above, which also apply.
 You may use the Word Marks and Logos on your webpage to show your Project support if:
 
 - Your own branding or naming is more prominent than any Project Marks;
-- The Logos hyperlink to the Project website: [https://github.com/Highgo/ivory-operator](https://github.com/Highgo/ivory-operator);
+- The Logos hyperlink to the Project website: [https://github.com/ivorysql/ivory-operator](https://github.com/ivorysql/ivory-operator);
 - The site does not mislead customers into thinking your website, service, or product is our website, service, or product; and
 - The site clearly states the Project does not affiliate with or endorse you.
 

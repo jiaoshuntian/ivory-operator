@@ -78,9 +78,9 @@ tools will be set up by default to connect to the Exporter containers on your Iv
 
 Now that we can monitor our cluster, let's explore how [connection pooling]({{< relref "connection-pooling.md" >}}) can be enabled using IVYO and how it is helpful.
 
-[pgMonitor]: https://github.com/Highgo/pgmonitor
+[pgMonitor]: https://github.com/ivorysql/pgmonitor
 [Grafana]: https://grafana.com/
 [Prometheus]: https://prometheus.io/
 [Alertmanager]: https://prometheus.io/docs/alerting/latest/alertmanager/
 [IVYO Monitoring]: {{< relref "installation/monitoring/_index.md" >}}
-[Ivory Operator examples]: https://github.com/Highgo/ivory-operator-examples/fork
+[Ivory Operator examples]: https://github.com/ivorysql/ivory-operator-examples/fork

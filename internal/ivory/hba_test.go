@@ -21,7 +21,7 @@ import (
 
 	"gotest.tools/v3/assert"
 
-	"github.com/highgo/ivory-operator/internal/testing/cmp"
+	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 )
 
 func TestNewHBAs(t *testing.T) {

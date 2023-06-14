@@ -1,4 +1,4 @@
-module github.com/highgo/ivory-operator
+module github.com/ivorysql/ivory-operator
 
 go 1.19
 

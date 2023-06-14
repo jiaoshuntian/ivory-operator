@@ -12,7 +12,7 @@ aliases:
 
 ### What is The IVYO Project?
 
-The IVYO Project is the open source project associated with the development of [IVYO](https://github.com/Highgo/ivory-operator), the [Ivory Operator](https://github.com/Highgo/ivory-operator) for Kubernetes from [Highgo](https://www.crunchydata.com).
+The IVYO Project is the open source project associated with the development of [IVYO](https://github.com/ivorysql/ivory-operator), the [Ivory Operator](https://github.com/ivorysql/ivory-operator) for Kubernetes from [Highgo](https://www.crunchydata.com).
 
 IVYO is a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), providing a declarative solution for managing your IvorySQL clusters.  Within a few moments, you can have a Ivory cluster complete with high availability, disaster recovery, and monitoring, all over secure TLS communications.
 
@@ -34,7 +34,7 @@ For additional information regarding commercial support and Highgo IvorySQL for 
 
 ### Under which open source license is IVYO source code available?
 
-The IVYO source code is available under the [Apache License 2.0](https://github.com/Highgo/ivory-operator/blob/master/LICENSE.md).
+The IVYO source code is available under the [Apache License 2.0](https://github.com/ivorysql/ivory-operator/blob/master/LICENSE.md).
 
 ### Where are the release tags for IVYO v5?
 
@@ -57,17 +57,17 @@ specifically.
 
 IVYO is developed by the IVYO Project. The IVYO Project that welcomes community engagement and contribution.
 
-The IVYO source code and community issue trackers are hosted at [GitHub](https://github.com/Highgo/ivory-operator).
+The IVYO source code and community issue trackers are hosted at [GitHub](https://github.com/ivorysql/ivory-operator).
 
 For community questions and support, please sign up for the [IVYO mailing list](https://groups.google.com/a/crunchydata.com/forum/#!forum/ivory-operator/join).
 
-For information regarding contribution, please review the contributor guide [here](https://github.com/Highgo/ivory-operator/blob/master/CONTRIBUTING.md).
+For information regarding contribution, please review the contributor guide [here](https://github.com/ivorysql/ivory-operator/blob/master/CONTRIBUTING.md).
 
 Please register for the [Highgo Developer Portal mailing list](https://www.crunchydata.com/developers/newsletter) to receive updates regarding Highgo IvorySQL for Kubernetes releases and the [Highgo newsletter](https://www.crunchydata.com/newsletter/) for general updates from Highgo.
 
 ### Where do I report a IVYO bug?
 
-The IVYO Project uses GitHub for its [issue tracking](https://github.com/Highgo/ivory-operator/issues/new/choose). You can file your issue [here](https://github.com/Highgo/ivory-operator/issues/new/choose).
+The IVYO Project uses GitHub for its [issue tracking](https://github.com/ivorysql/ivory-operator/issues/new/choose). You can file your issue [here](https://github.com/ivorysql/ivory-operator/issues/new/choose).
 
 ### How often is IVYO released?
 

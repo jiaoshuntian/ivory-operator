@@ -20,8 +20,8 @@ import (
 
 	"gotest.tools/v3/assert"
 
-	"github.com/highgo/ivory-operator/internal/testing/cmp"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 func isUniqueAndSorted(slice []string) bool {

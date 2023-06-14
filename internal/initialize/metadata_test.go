@@ -21,7 +21,7 @@ import (
 	"gotest.tools/v3/assert"
 	corev1 "k8s.io/api/core/v1"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
 )
 
 func TestAnnotations(t *testing.T) {

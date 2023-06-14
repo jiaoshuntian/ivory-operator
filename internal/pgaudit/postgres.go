@@ -19,8 +19,8 @@ import (
 	"context"
 	"strings"
 
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/internal/logging"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/internal/logging"
 )
 
 // When the pgAudit shared library is not loaded, the extension cannot be

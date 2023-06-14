@@ -42,14 +42,14 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/controller-runtime/pkg/source"
 
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/internal/logging"
-	"github.com/highgo/ivory-operator/internal/pgaudit"
-	"github.com/highgo/ivory-operator/internal/pgbackrest"
-	"github.com/highgo/ivory-operator/internal/pgbouncer"
-	"github.com/highgo/ivory-operator/internal/pgmonitor"
-	"github.com/highgo/ivory-operator/internal/pki"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/pgaudit"
+	"github.com/ivorysql/ivory-operator/internal/pgbackrest"
+	"github.com/ivorysql/ivory-operator/internal/pgbouncer"
+	"github.com/ivorysql/ivory-operator/internal/pgmonitor"
+	"github.com/ivorysql/ivory-operator/internal/pki"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 const (

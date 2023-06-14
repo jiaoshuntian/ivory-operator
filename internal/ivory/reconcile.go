@@ -21,11 +21,11 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/highgo/ivory-operator/internal/config"
-	"github.com/highgo/ivory-operator/internal/initialize"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/internal/util"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/config"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/util"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 var (
@@ -116,7 +116,7 @@ func InstancePod(ctx context.Context,
 				// The paths defined in Items (cpu_limit, cpu_request, etc.)
 				// are hard coded in the pgnodemx queries defined by
 				// pgMonitor configuration (queries_nodemx.yml)
-				// https://github.com/Highgo/pgmonitor/blob/master/postgres_exporter/common/queries_nodemx.yml
+				// https://github.com/ivorysql/pgmonitor/blob/master/postgres_exporter/common/queries_nodemx.yml
 				Items: []corev1.DownwardAPIVolumeFile{{
 					Path: "cpu_limit",
 					ResourceFieldRef: &corev1.ResourceFieldSelector{

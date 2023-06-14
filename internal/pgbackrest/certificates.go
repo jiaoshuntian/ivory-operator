@@ -21,7 +21,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
 )
 
 const (

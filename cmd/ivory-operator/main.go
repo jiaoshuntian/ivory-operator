@@ -27,11 +27,11 @@ import (
 	cruntime "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
-	"github.com/highgo/ivory-operator/internal/bridge"
-	ivorycluster "github.com/highgo/ivory-operator/internal/controller/ivorycluster"
-	"github.com/highgo/ivory-operator/internal/controller/runtime"
-	"github.com/highgo/ivory-operator/internal/logging"
-	"github.com/highgo/ivory-operator/internal/util"
+	"github.com/ivorysql/ivory-operator/internal/bridge"
+	ivorycluster "github.com/ivorysql/ivory-operator/internal/controller/ivorycluster"
+	"github.com/ivorysql/ivory-operator/internal/controller/runtime"
+	"github.com/ivorysql/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/util"
 )
 
 var versionString string

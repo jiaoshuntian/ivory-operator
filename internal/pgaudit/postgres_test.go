@@ -24,7 +24,7 @@ import (
 
 	"gotest.tools/v3/assert"
 
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
 )
 
 func TestEnableInIvorySQL(t *testing.T) {

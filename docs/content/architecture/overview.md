@@ -53,7 +53,7 @@ built-in metrics and connection pooling, similar to:
 
 ![IvorySQL Cluster Architecture](/images/postgresql-cluster-architecture.png)
 
-This can be accomplished with a relatively simple manifest. Please refer to the [tutorial]({{< relref "tutorial/_index.md" >}}) for how to accomplish this, or see the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repo.
+This can be accomplished with a relatively simple manifest. Please refer to the [tutorial]({{< relref "tutorial/_index.md" >}}) for how to accomplish this, or see the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repo.
 
 The Ivory Operator handles setting up all of the various StatefulSets, Deployments, Services and other Kubernetes objects.
 

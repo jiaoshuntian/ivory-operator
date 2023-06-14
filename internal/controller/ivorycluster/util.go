@@ -26,8 +26,8 @@ import (
 	"k8s.io/apimachinery/pkg/util/rand"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
-	"github.com/highgo/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/naming"
 )
 
 var tmpDirSizeLimit = resource.MustParse("16Mi")
@@ -50,7 +50,7 @@ const (
 	// guidance for supporting arbitrary user ID's is the script for the configuration
 	// and startup of the pgAdmin service.
 	// It is based on the nss_wrapper.sh script from the Highgo Containers Project.
-	// - https://github.com/Highgo/highgo-containers/blob/master/bin/common/nss_wrapper.sh
+	// - https://github.com/ivorysql/highgo-containers/blob/master/bin/common/nss_wrapper.sh
 	nssWrapperScript = `
 # Define nss_wrapper directory and passwd & group files that will be utilized by nss_wrapper.  The
 # nss_wrapper_env.sh script (which also sets these vars) isn't sourced here since the nss_wrapper

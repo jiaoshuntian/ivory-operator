@@ -16,7 +16,7 @@
 package ivory
 
 import (
-	"github.com/highgo/ivory-operator/internal/testing/cmp"
+	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 )
 
 func marshalMatches(actual interface{}, expected string) cmp.Comparison {

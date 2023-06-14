@@ -16,7 +16,7 @@
 package pgbackrest
 
 import (
-	"github.com/highgo/ivory-operator/internal/testing/cmp"
+	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 )
 
 // marshalMatches converts actual to YAML and compares that to expected.

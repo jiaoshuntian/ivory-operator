@@ -5,7 +5,7 @@ draft: false
 weight: 10
 ---
 
-Can't wait to try out the [IVYO](https://github.com/Highgo/ivory-operator), the [Ivory Operator](https://github.com/Highgo/ivory-operator) from [Highgo](https://www.crunchydata.com)? Let us show you the quickest possible path to getting up and running.
+Can't wait to try out the [IVYO](https://github.com/ivorysql/ivory-operator), the [Ivory Operator](https://github.com/ivorysql/ivory-operator) from [Highgo](https://www.crunchydata.com)? Let us show you the quickest possible path to getting up and running.
 
 ## Prerequisites
 
@@ -18,9 +18,9 @@ Please be sure you have the following utilities installed on your host machine:
 
 ### Step 1: Download the Examples
 
-First, go to GitHub and [fork the Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository:
+First, go to GitHub and [fork the Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository:
 
-[https://github.com/Highgo/ivory-operator-examples/fork](https://github.com/Highgo/ivory-operator-examples/fork)
+[https://github.com/ivorysql/ivory-operator-examples/fork](https://github.com/ivorysql/ivory-operator-examples/fork)
 
 Once you have forked this repo, you can download it to your working environment with a command similar to this:
 

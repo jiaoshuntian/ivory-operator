@@ -58,7 +58,7 @@ spec:
 
 3\. If you customized other Ivory parameters, you will need to ensure they match in the IVYO v5 cluster. For more information, please review the tutorial on [customizing a Ivory cluster]({{< relref "tutorial/customize-cluster.md" >}}).
 
-4\. Once the `PostgresCluster` spec is populated according to these guidelines, you can create the `PostgresCluster` custom resource.  For example, if the `PostgresCluster` you're creating is a modified version of the [`postgres` example](https://github.com/Highgo/ivory-operator-examples/tree/main/kustomize/postgres) in the [IVYO examples repo](https://github.com/Highgo/ivory-operator-examples), you can run the following command:
+4\. Once the `PostgresCluster` spec is populated according to these guidelines, you can create the `PostgresCluster` custom resource.  For example, if the `PostgresCluster` you're creating is a modified version of the [`postgres` example](https://github.com/ivorysql/ivory-operator-examples/tree/main/kustomize/postgres) in the [IVYO examples repo](https://github.com/ivorysql/ivory-operator-examples), you can run the following command:
 
 ```
 kubectl apply -k examples/postgrescluster

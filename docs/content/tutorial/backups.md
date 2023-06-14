@@ -89,7 +89,7 @@ and either
 
 ### Using S3 Credentials
 
-There is an example for creating a Ivory cluster that uses S3 for backups in the `kustomize/s3` directory in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository. In this directory, there is a file called `s3.conf.example`. Copy this example file to `s3.conf`:
+There is an example for creating a Ivory cluster that uses S3 for backups in the `kustomize/s3` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In this directory, there is a file called `s3.conf.example`. Copy this example file to `s3.conf`:
 
 ```
 cp s3.conf.example s3.conf
@@ -157,7 +157,7 @@ The third step is to associate that IAM role with a ServiceAccount, but there's 
 do that manually, as IVYO does that for you. First, make a note of the IAM role's `ARN`.
 
 You can then make the following changes to the files in the `kustomize/s3` directory in the
-[Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository:
+[Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository:
 
 1\. Add the `s3` section to the spec in `kustomize/s3/postgres.yaml` as discussed in the
 [Using S3 Credentials](#using-s3-credentials) section above. In addition to that, add the required `eks.amazonaws.com/role-arn`
@@ -204,7 +204,7 @@ And watch as it spins up and backs up to S3 using pgBackRest's IAM integration.
 
 Similar to S3, setting up backups in Google Cloud Storage (GCS) requires a few additional modifications to your custom resource spec and the use of a Secret to protect your GCS credentials.
 
-There is an example for creating a Ivory cluster that uses GCS for backups in the `kustomize/gcs` directory in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository. In order to configure this example to use GCS for backups, you will need do two things.
+There is an example for creating a Ivory cluster that uses GCS for backups in the `kustomize/gcs` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In order to configure this example to use GCS for backups, you will need do two things.
 
 First, copy your GCS key secret (which is a JSON file) into `kustomize/gcs/gcs-key.json`. Note that a `.gitignore` directive prevents you from committing this file.
 
@@ -222,7 +222,7 @@ Watch your cluster: you will see that your backups and archives are now being st
 
 Similar to the above, setting up backups in Azure Blob Storage requires a few additional modifications to your custom resource spec and the use of a Secret to protect your Azure Storage credentials.
 
-There is an example for creating a Ivory cluster that uses Azure for backups in the `kustomize/azure` directory in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository. In this directory, there is a file called `azure.conf.example`. Copy this example file to `azure.conf`:
+There is an example for creating a Ivory cluster that uses Azure for backups in the `kustomize/azure` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In this directory, there is a file called `azure.conf.example`. Copy this example file to `azure.conf`:
 
 ```
 cp azure.conf.example azure.conf
@@ -269,7 +269,7 @@ and more.
 
 IVYO lets you store your backups in up to four locations simultaneously. You can mix and match: for example, you can store backups both locally and in GCS, or store your backups in two different GCS repositories. It's up to you!
 
-There is an example in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository in the `kustomize/multi-backup-repo` folder that sets up backups in four different locations using each storage type. You can modify this example to match your desired backup topology.
+There is an example in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository in the `kustomize/multi-backup-repo` folder that sets up backups in four different locations using each storage type. You can modify this example to match your desired backup topology.
 
 ### Additional Notes
 

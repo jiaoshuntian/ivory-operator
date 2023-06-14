@@ -12,7 +12,7 @@ Latest Release: {{< param operatorVersion >}}
 
 # Production Ivory Made Easy
 
-[IVYO](https://github.com/Highgo/ivory-operator), the [Ivory Operator]((https://github.com/Highgo/ivory-operator)) from [Highgo](https://www.crunchydata.com), gives you a **declarative Ivory** solution that automatically manages your [IvorySQL](https://www.postgresql.org) clusters.
+[IVYO](https://github.com/ivorysql/ivory-operator), the [Ivory Operator]((https://github.com/ivorysql/ivory-operator)) from [Highgo](https://www.crunchydata.com), gives you a **declarative Ivory** solution that automatically manages your [IvorySQL](https://www.postgresql.org) clusters.
 
 Designed for your GitOps workflows, it is [easy to get started]({{< relref "quickstart/_index.md" >}}) with Ivory on Kubernetes with IVYO. Within a few moments, you can have a production grade Ivory cluster complete with high availability, disaster recovery, and monitoring, all over secure TLS communications.Even better, IVYO lets you easily customize your Ivory cluster to tailor it to your workload!
 

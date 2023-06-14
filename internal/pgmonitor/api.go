@@ -22,7 +22,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/highgo/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/logging"
 )
 
 type Executor func(

@@ -23,7 +23,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/highgo/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/internal/logging"
 )
 
 // API defines a general interface for interacting with the Patroni API.

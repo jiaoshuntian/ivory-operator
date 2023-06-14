@@ -23,17 +23,17 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/util/intstr"
 
-	"github.com/highgo/ivory-operator/internal/config"
-	"github.com/highgo/ivory-operator/internal/initialize"
-	"github.com/highgo/ivory-operator/internal/naming"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/internal/config"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/naming"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 // startupScript is the script for the configuration and startup of the pgAdmin service.
 // It is based on the start-pgadmin4.sh script from the Highgo Containers Project.
 // Any required functions from common_lib.sh are added as required.
-// - https://github.com/Highgo/highgo-containers/blob/master/bin/pgadmin4/start-pgadmin4.sh
-// - https://github.com/Highgo/highgo-containers/blob/master/bin/common/common_lib.sh
+// - https://github.com/ivorysql/highgo-containers/blob/master/bin/pgadmin4/start-pgadmin4.sh
+// - https://github.com/ivorysql/highgo-containers/blob/master/bin/common/common_lib.sh
 const startupScript = `HIGHGO_DIR=${HIGHGO_DIR:-'/opt/highgo'}
 PGADMIN_DIR=/usr/lib/python3.6/site-packages/pgadmin4-web
 APACHE_PIDFILE='/tmp/httpd.pid'

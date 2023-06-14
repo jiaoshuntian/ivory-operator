@@ -21,7 +21,7 @@ import (
 
 	"gotest.tools/v3/assert"
 
-	"github.com/highgo/ivory-operator/internal/initialize"
+	"github.com/ivorysql/ivory-operator/internal/initialize"
 )
 
 func TestPodSecurityContext(t *testing.T) {

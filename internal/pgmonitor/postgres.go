@@ -21,9 +21,9 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	ivory "github.com/highgo/ivory-operator/internal/ivory"
-	"github.com/highgo/ivory-operator/internal/logging"
-	"github.com/highgo/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
+	"github.com/ivorysql/ivory-operator/internal/logging"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
 )
 
 const (
@@ -49,7 +49,7 @@ func IvorySQLParameters(inCluster *v1beta1.IvoryCluster, outParameters *ivory.Pa
 	if ExporterEnabled(inCluster) {
 		// Exporter expects that shared_preload_libraries are installed
 		// pg_stat_statements: https://access.highgo.com/documentation/pgmonitor/latest/exporter/
-		// pgnodemx: https://github.com/Highgo/pgnodemx
+		// pgnodemx: https://github.com/ivorysql/pgnodemx
 		libraries := []string{"pg_stat_statements", "pgnodemx"}
 
 		defined, found := outParameters.Mandatory.Get("shared_preload_libraries")
@@ -125,10 +125,10 @@ func EnableExporterInIvorySQL(ctx context.Context, exec ivory.Executor,
 				// to the IvorySQL version
 				setup,
 
-				// pgnodemx: https://github.com/Highgo/pgnodemx
+				// pgnodemx: https://github.com/ivorysql/pgnodemx
 				// The `monitor` schema is hard-coded in the setup SQL files
 				// from pgMonitor configuration
-				// https://github.com/Highgo/pgmonitor/blob/master/postgres_exporter/common/queries_nodemx.yml
+				// https://github.com/ivorysql/pgmonitor/blob/master/postgres_exporter/common/queries_nodemx.yml
 				"CREATE EXTENSION IF NOT EXISTS pgnodemx WITH SCHEMA monitor;",
 
 				// Run idempotent update
