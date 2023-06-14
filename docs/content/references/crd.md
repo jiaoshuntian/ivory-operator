@@ -6,9 +6,9 @@ weight: 100
 
 Packages:
 
-- [postgres-operator.crunchydata.com/v1beta1](#postgres-operatorcrunchydatacomv1beta1)
+- [ivory-operator.crunchydata.com/v1beta1](#postgres-operatorcrunchydatacomv1beta1)
 
-<h1 id="postgres-operatorcrunchydatacomv1beta1">postgres-operator.crunchydata.com/v1beta1</h1>
+<h1 id="postgres-operatorcrunchydatacomv1beta1">ivory-operator.crunchydata.com/v1beta1</h1>
 
 Resource Types:
 
@@ -40,7 +40,7 @@ PGUpgrade is the Schema for the pgupgrades API
     <tbody><tr>
       <td><b>apiVersion</b></td>
       <td>string</td>
-      <td>postgres-operator.crunchydata.com/v1beta1</td>
+      <td>ivory-operator.crunchydata.com/v1beta1</td>
       <td>true</td>
       </tr>
       <tr>
@@ -89,7 +89,7 @@ PGUpgradeSpec defines the desired state of PGUpgrade
     <tbody><tr>
         <td><b>fromPostgresVersion</b></td>
         <td>integer</td>
-        <td>The major version of PostgreSQL before the upgrade.</td>
+        <td>The major version of IvorySQL before the upgrade.</td>
         <td>true</td>
       </tr><tr>
         <td><b>postgresClusterName</b></td>
@@ -99,7 +99,7 @@ PGUpgradeSpec defines the desired state of PGUpgrade
       </tr><tr>
         <td><b>toPostgresVersion</b></td>
         <td>integer</td>
-        <td>The major version of PostgreSQL to be upgraded to.</td>
+        <td>The major version of IvorySQL to be upgraded to.</td>
         <td>true</td>
       </tr><tr>
         <td><b><a href="#pgupgradespecaffinity">affinity</a></b></td>
@@ -109,7 +109,7 @@ PGUpgradeSpec defines the desired state of PGUpgrade
       </tr><tr>
         <td><b>image</b></td>
         <td>string</td>
-        <td>The image name to use for major PostgreSQL upgrades.</td>
+        <td>The image name to use for major IvorySQL upgrades.</td>
         <td>false</td>
       </tr><tr>
         <td><b>imagePullPolicy</b></td>
@@ -139,7 +139,7 @@ PGUpgradeSpec defines the desired state of PGUpgrade
       </tr><tr>
         <td><b>toPostgresImage</b></td>
         <td>string</td>
-        <td>The image name to use for PostgreSQL containers after upgrade. When omitted, the value comes from an operator environment variable.</td>
+        <td>The image name to use for IvorySQL containers after upgrade. When omitted, the value comes from an operator environment variable.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#pgupgradespectolerationsindex">tolerations</a></b></td>
@@ -1581,7 +1581,7 @@ PostgresCluster is the Schema for the postgresclusters API
     <tbody><tr>
       <td><b>apiVersion</b></td>
       <td>string</td>
-      <td>postgres-operator.crunchydata.com/v1beta1</td>
+      <td>ivory-operator.crunchydata.com/v1beta1</td>
       <td>true</td>
       </tr>
       <tr>
@@ -1630,17 +1630,17 @@ PostgresClusterSpec defines the desired state of PostgresCluster
     <tbody><tr>
         <td><b><a href="#postgresclusterspecbackups">backups</a></b></td>
         <td>object</td>
-        <td>PostgreSQL backup configuration</td>
+        <td>IvorySQL backup configuration</td>
         <td>true</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindex">instances</a></b></td>
         <td>[]object</td>
-        <td>Specifies one or more sets of PostgreSQL pods that replicate data for this cluster.</td>
+        <td>Specifies one or more sets of IvorySQL pods that replicate data for this cluster.</td>
         <td>true</td>
       </tr><tr>
         <td><b>postgresVersion</b></td>
         <td>integer</td>
-        <td>The major version of PostgreSQL installed in the PostgreSQL image</td>
+        <td>The major version of IvorySQL installed in the IvorySQL image</td>
         <td>true</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecconfig">config</a></b></td>
@@ -1650,17 +1650,17 @@ PostgresClusterSpec defines the desired state of PostgresCluster
       </tr><tr>
         <td><b><a href="#postgresclusterspeccustomreplicationtlssecret">customReplicationTLSSecret</a></b></td>
         <td>object</td>
-        <td>The secret containing the replication client certificates and keys for secure connections to the PostgreSQL server. It will need to contain the client TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecret MUST be provided and the ca.crt provided must be the same.</td>
+        <td>The secret containing the replication client certificates and keys for secure connections to the IvorySQL server. It will need to contain the client TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecret MUST be provided and the ca.crt provided must be the same.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspeccustomtlssecret">customTLSSecret</a></b></td>
         <td>object</td>
-        <td>The secret containing the Certificates and Keys to encrypt PostgreSQL traffic will need to contain the server TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. It will then be mounted as a volume projection to the '/pgconf/tls' directory. For more information on Kubernetes secret projections, please see https://k8s.io/docs/concepts/configuration/secret/#projection-of-secret-keys-to-specific-paths NOTE: If CustomTLSSecret is provided, CustomReplicationClientTLSSecret MUST be provided and the ca.crt provided must be the same.</td>
+        <td>The secret containing the Certificates and Keys to encrypt IvorySQL traffic will need to contain the server TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. It will then be mounted as a volume projection to the '/pgconf/tls' directory. For more information on Kubernetes secret projections, please see https://k8s.io/docs/concepts/configuration/secret/#projection-of-secret-keys-to-specific-paths NOTE: If CustomTLSSecret is provided, CustomReplicationClientTLSSecret MUST be provided and the ca.crt provided must be the same.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatasource">dataSource</a></b></td>
         <td>object</td>
-        <td>Specifies a data source for bootstrapping the PostgreSQL cluster.</td>
+        <td>Specifies a data source for bootstrapping the IvorySQL cluster.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatabaseinitsql">databaseInitSQL</a></b></td>
@@ -1670,12 +1670,12 @@ PostgresClusterSpec defines the desired state of PostgresCluster
       </tr><tr>
         <td><b>disableDefaultPodScheduling</b></td>
         <td>boolean</td>
-        <td>Whether or not the PostgreSQL cluster should use the defined default scheduling constraints. If the field is unset or false, the default scheduling constraints will be used in addition to any custom constraints provided.</td>
+        <td>Whether or not the IvorySQL cluster should use the defined default scheduling constraints. If the field is unset or false, the default scheduling constraints will be used in addition to any custom constraints provided.</td>
         <td>false</td>
       </tr><tr>
         <td><b>image</b></td>
         <td>string</td>
-        <td>The image name to use for PostgreSQL containers. When omitted, the value comes from an operator environment variable. For standard PostgreSQL images, the format is RELATED_IMAGE_POSTGRES_{postgresVersion}, e.g. RELATED_IMAGE_POSTGRES_13. For PostGIS enabled PostgreSQL images, the format is RELATED_IMAGE_POSTGRES_{postgresVersion}_GIS_{postGISVersion}, e.g. RELATED_IMAGE_POSTGRES_13_GIS_3.1.</td>
+        <td>The image name to use for IvorySQL containers. When omitted, the value comes from an operator environment variable. For standard IvorySQL images, the format is RELATED_IMAGE_POSTGRES_{postgresVersion}, e.g. RELATED_IMAGE_POSTGRES_13. For PostGIS enabled IvorySQL images, the format is RELATED_IMAGE_POSTGRES_{postgresVersion}_GIS_{postGISVersion}, e.g. RELATED_IMAGE_POSTGRES_13_GIS_3.1.</td>
         <td>false</td>
       </tr><tr>
         <td><b>imagePullPolicy</b></td>
@@ -1695,12 +1695,12 @@ PostgresClusterSpec defines the desired state of PostgresCluster
       </tr><tr>
         <td><b><a href="#postgresclusterspecmonitoring">monitoring</a></b></td>
         <td>object</td>
-        <td>The specification of monitoring tools that connect to PostgreSQL</td>
+        <td>The specification of monitoring tools that connect to IvorySQL</td>
         <td>false</td>
       </tr><tr>
         <td><b>openshift</b></td>
         <td>boolean</td>
-        <td>Whether or not the PostgreSQL cluster is being deployed to an OpenShift environment. If the field is unset, the operator will automatically detect the environment.</td>
+        <td>Whether or not the IvorySQL cluster is being deployed to an OpenShift environment. If the field is unset, the operator will automatically detect the environment.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecpatroni">patroni</a></b></td>
@@ -1715,27 +1715,27 @@ PostgresClusterSpec defines the desired state of PostgresCluster
       </tr><tr>
         <td><b>port</b></td>
         <td>integer</td>
-        <td>The port on which PostgreSQL should listen.</td>
+        <td>The port on which IvorySQL should listen.</td>
         <td>false</td>
       </tr><tr>
         <td><b>postGISVersion</b></td>
         <td>string</td>
-        <td>The PostGIS extension version installed in the PostgreSQL image. When image is not set, indicates a PostGIS enabled image will be used.</td>
+        <td>The PostGIS extension version installed in the IvorySQL image. When image is not set, indicates a PostGIS enabled image will be used.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecproxy">proxy</a></b></td>
         <td>object</td>
-        <td>The specification of a proxy that connects to PostgreSQL.</td>
+        <td>The specification of a proxy that connects to IvorySQL.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecservice">service</a></b></td>
         <td>object</td>
-        <td>Specification of the service that exposes the PostgreSQL primary instance.</td>
+        <td>Specification of the service that exposes the IvorySQL primary instance.</td>
         <td>false</td>
       </tr><tr>
         <td><b>shutdown</b></td>
         <td>boolean</td>
-        <td>Whether or not the PostgreSQL cluster should be stopped. When this is true, workloads are scaled to zero and CronJobs are suspended. Other resources, such as Services and Volumes, remain in place.</td>
+        <td>Whether or not the IvorySQL cluster should be stopped. When this is true, workloads are scaled to zero and CronJobs are suspended. Other resources, such as Services and Volumes, remain in place.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecstandby">standby</a></b></td>
@@ -1750,12 +1750,12 @@ PostgresClusterSpec defines the desired state of PostgresCluster
       </tr><tr>
         <td><b><a href="#postgresclusterspecuserinterface">userInterface</a></b></td>
         <td>object</td>
-        <td>The specification of a user interface that connects to PostgreSQL.</td>
+        <td>The specification of a user interface that connects to IvorySQL.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecusersindex">users</a></b></td>
         <td>[]object</td>
-        <td>Users to create inside PostgreSQL and the databases they should access. The default creates one user that can access one database matching the PostgresCluster name. An empty list creates no users. Removing a user from this list does NOT drop the user nor revoke their access.</td>
+        <td>Users to create inside IvorySQL and the databases they should access. The default creates one user that can access one database matching the PostgresCluster name. An empty list creates no users. Removing a user from this list does NOT drop the user nor revoke their access.</td>
         <td>false</td>
       </tr></tbody>
 </table>
@@ -1768,7 +1768,7 @@ PostgresClusterSpec defines the desired state of PostgresCluster
 
 
 
-PostgreSQL backup configuration
+IvorySQL backup configuration
 
 <table>
     <thead>
@@ -1814,12 +1814,12 @@ pgBackRest archive configuration
       </tr><tr>
         <td><b><a href="#postgresclusterspecbackupspgbackrestconfigurationindex">configuration</a></b></td>
         <td>[]object</td>
-        <td>Projected volumes containing custom pgBackRest configuration.  These files are mounted under "/etc/pgbackrest/conf.d" alongside any pgBackRest configuration generated by the PostgreSQL Operator: https://pgbackrest.org/configuration.html</td>
+        <td>Projected volumes containing custom pgBackRest configuration.  These files are mounted under "/etc/pgbackrest/conf.d" alongside any pgBackRest configuration generated by the IvorySQL Operator: https://pgbackrest.org/configuration.html</td>
         <td>false</td>
       </tr><tr>
         <td><b>global</b></td>
         <td>map[string]string</td>
-        <td>Global pgBackRest configuration settings.  These settings are included in the "global" section of the pgBackRest configuration generated by the PostgreSQL Operator, and then mounted under "/etc/pgbackrest/conf.d": https://pgbackrest.org/configuration.html</td>
+        <td>Global pgBackRest configuration settings.  These settings are included in the "global" section of the pgBackRest configuration generated by the IvorySQL Operator, and then mounted under "/etc/pgbackrest/conf.d": https://pgbackrest.org/configuration.html</td>
         <td>false</td>
       </tr><tr>
         <td><b>image</b></td>
@@ -4073,7 +4073,7 @@ Defines configuration for a pgBackRest dedicated repository host.  This section 
       </tr><tr>
         <td><b>priorityClassName</b></td>
         <td>string</td>
-        <td>Priority class name for the pgBackRest repo host pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
+        <td>Priority class name for the pgBackRest repo host pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecbackupspgbackrestrepohostresources">resources</a></b></td>
@@ -5688,7 +5688,7 @@ Defines details for performing an in-place restore using pgBackRest
       </tr><tr>
         <td><b>priorityClassName</b></td>
         <td>string</td>
-        <td>Priority class name for the pgBackRest restore Job pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
+        <td>Priority class name for the pgBackRest restore Job pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecbackupspgbackrestrestoreresources">resources</a></b></td>
@@ -7142,17 +7142,17 @@ Resource requirements for a sidecar container
     <tbody><tr>
         <td><b><a href="#postgresclusterspecinstancesindexdatavolumeclaimspec">dataVolumeClaimSpec</a></b></td>
         <td>object</td>
-        <td>Defines a PersistentVolumeClaim for PostgreSQL data. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes</td>
+        <td>Defines a PersistentVolumeClaim for IvorySQL data. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes</td>
         <td>true</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindexaffinity">affinity</a></b></td>
         <td>object</td>
-        <td>Scheduling constraints of a PostgreSQL pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node</td>
+        <td>Scheduling constraints of a IvorySQL pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindexcontainersindex">containers</a></b></td>
         <td>[]object</td>
-        <td>Custom sidecars for PostgreSQL instance pods. Changing this value causes PostgreSQL to restart.</td>
+        <td>Custom sidecars for IvorySQL instance pods. Changing this value causes IvorySQL to restart.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindexmetadata">metadata</a></b></td>
@@ -7167,22 +7167,22 @@ Resource requirements for a sidecar container
       </tr><tr>
         <td><b>name</b></td>
         <td>string</td>
-        <td>Name that associates this set of PostgreSQL pods. This field is optional when only one instance set is defined. Each instance set in a cluster must have a unique name. The combined length of this and the cluster name must be 46 characters or less.</td>
+        <td>Name that associates this set of IvorySQL pods. This field is optional when only one instance set is defined. Each instance set in a cluster must have a unique name. The combined length of this and the cluster name must be 46 characters or less.</td>
         <td>false</td>
       </tr><tr>
         <td><b>priorityClassName</b></td>
         <td>string</td>
-        <td>Priority class name for the PostgreSQL pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
+        <td>Priority class name for the IvorySQL pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
         <td>false</td>
       </tr><tr>
         <td><b>replicas</b></td>
         <td>integer</td>
-        <td>Number of desired PostgreSQL pods.</td>
+        <td>Number of desired IvorySQL pods.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindexresources">resources</a></b></td>
         <td>object</td>
-        <td>Compute resources of a PostgreSQL container.</td>
+        <td>Compute resources of a IvorySQL container.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindexsidecars">sidecars</a></b></td>
@@ -7197,17 +7197,17 @@ Resource requirements for a sidecar container
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindextolerationsindex">tolerations</a></b></td>
         <td>[]object</td>
-        <td>Tolerations of a PostgreSQL pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration</td>
+        <td>Tolerations of a IvorySQL pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindextopologyspreadconstraintsindex">topologySpreadConstraints</a></b></td>
         <td>[]object</td>
-        <td>Topology spread constraints of a PostgreSQL pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/</td>
+        <td>Topology spread constraints of a IvorySQL pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecinstancesindexwalvolumeclaimspec">walVolumeClaimSpec</a></b></td>
         <td>object</td>
-        <td>Defines a separate PersistentVolumeClaim for PostgreSQL's write-ahead log. More info: https://www.postgresql.org/docs/current/wal.html</td>
+        <td>Defines a separate PersistentVolumeClaim for IvorySQL's write-ahead log. More info: https://www.postgresql.org/docs/current/wal.html</td>
         <td>false</td>
       </tr></tbody>
 </table>
@@ -7220,7 +7220,7 @@ Resource requirements for a sidecar container
 
 
 
-Defines a PersistentVolumeClaim for PostgreSQL data. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes
+Defines a PersistentVolumeClaim for IvorySQL data. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes
 
 <table>
     <thead>
@@ -7457,7 +7457,7 @@ A label selector requirement is a selector that contains values, a key, and an o
 
 
 
-Scheduling constraints of a PostgreSQL pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node
+Scheduling constraints of a IvorySQL pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node
 
 <table>
     <thead>
@@ -10631,7 +10631,7 @@ Metadata contains metadata for custom resources
 
 
 
-Compute resources of a PostgreSQL container.
+Compute resources of a IvorySQL container.
 
 <table>
     <thead>
@@ -11183,7 +11183,7 @@ A label selector requirement is a selector that contains values, a key, and an o
 
 
 
-Defines a separate PersistentVolumeClaim for PostgreSQL's write-ahead log. More info: https://www.postgresql.org/docs/current/wal.html
+Defines a separate PersistentVolumeClaim for IvorySQL's write-ahead log. More info: https://www.postgresql.org/docs/current/wal.html
 
 <table>
     <thead>
@@ -11812,7 +11812,7 @@ serviceAccountToken is information about the serviceAccountToken data to project
 
 
 
-The secret containing the replication client certificates and keys for secure connections to the PostgreSQL server. It will need to contain the client TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecret MUST be provided and the ca.crt provided must be the same.
+The secret containing the replication client certificates and keys for secure connections to the IvorySQL server. It will need to contain the client TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecret MUST be provided and the ca.crt provided must be the same.
 
 <table>
     <thead>
@@ -11886,7 +11886,7 @@ Maps a string key to a path within a volume.
 
 
 
-The secret containing the Certificates and Keys to encrypt PostgreSQL traffic will need to contain the server TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. It will then be mounted as a volume projection to the '/pgconf/tls' directory. For more information on Kubernetes secret projections, please see https://k8s.io/docs/concepts/configuration/secret/#projection-of-secret-keys-to-specific-paths NOTE: If CustomTLSSecret is provided, CustomReplicationClientTLSSecret MUST be provided and the ca.crt provided must be the same.
+The secret containing the Certificates and Keys to encrypt IvorySQL traffic will need to contain the server TLS certificate, TLS key and the Certificate Authority certificate with the data keys set to tls.crt, tls.key and ca.crt, respectively. It will then be mounted as a volume projection to the '/pgconf/tls' directory. For more information on Kubernetes secret projections, please see https://k8s.io/docs/concepts/configuration/secret/#projection-of-secret-keys-to-specific-paths NOTE: If CustomTLSSecret is provided, CustomReplicationClientTLSSecret MUST be provided and the ca.crt provided must be the same.
 
 <table>
     <thead>
@@ -11960,7 +11960,7 @@ Maps a string key to a path within a volume.
 
 
 
-Specifies a data source for bootstrapping the PostgreSQL cluster.
+Specifies a data source for bootstrapping the IvorySQL cluster.
 
 <table>
     <thead>
@@ -11974,12 +11974,12 @@ Specifies a data source for bootstrapping the PostgreSQL cluster.
     <tbody><tr>
         <td><b><a href="#postgresclusterspecdatasourcepgbackrest">pgbackrest</a></b></td>
         <td>object</td>
-        <td>Defines a pgBackRest cloud-based data source that can be used to pre-populate the the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster</td>
+        <td>Defines a pgBackRest cloud-based data source that can be used to pre-populate the the IvorySQL data directory for a new IvorySQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new IvorySQL cluster</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatasourcepostgrescluster">postgresCluster</a></b></td>
         <td>object</td>
-        <td>Defines a pgBackRest data source that can be used to pre-populate the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster</td>
+        <td>Defines a pgBackRest data source that can be used to pre-populate the IvorySQL data directory for a new IvorySQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new IvorySQL cluster</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatasourcevolumes">volumes</a></b></td>
@@ -11997,7 +11997,7 @@ Specifies a data source for bootstrapping the PostgreSQL cluster.
 
 
 
-Defines a pgBackRest cloud-based data source that can be used to pre-populate the the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster
+Defines a pgBackRest cloud-based data source that can be used to pre-populate the the IvorySQL data directory for a new IvorySQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new IvorySQL cluster
 
 <table>
     <thead>
@@ -12026,12 +12026,12 @@ Defines a pgBackRest cloud-based data source that can be used to pre-populate th
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatasourcepgbackrestconfigurationindex">configuration</a></b></td>
         <td>[]object</td>
-        <td>Projected volumes containing custom pgBackRest configuration.  These files are mounted under "/etc/pgbackrest/conf.d" alongside any pgBackRest configuration generated by the PostgreSQL Operator: https://pgbackrest.org/configuration.html</td>
+        <td>Projected volumes containing custom pgBackRest configuration.  These files are mounted under "/etc/pgbackrest/conf.d" alongside any pgBackRest configuration generated by the IvorySQL Operator: https://pgbackrest.org/configuration.html</td>
         <td>false</td>
       </tr><tr>
         <td><b>global</b></td>
         <td>map[string]string</td>
-        <td>Global pgBackRest configuration settings.  These settings are included in the "global" section of the pgBackRest configuration generated by the PostgreSQL Operator, and then mounted under "/etc/pgbackrest/conf.d": https://pgbackrest.org/configuration.html</td>
+        <td>Global pgBackRest configuration settings.  These settings are included in the "global" section of the pgBackRest configuration generated by the IvorySQL Operator, and then mounted under "/etc/pgbackrest/conf.d": https://pgbackrest.org/configuration.html</td>
         <td>false</td>
       </tr><tr>
         <td><b>options</b></td>
@@ -12041,7 +12041,7 @@ Defines a pgBackRest cloud-based data source that can be used to pre-populate th
       </tr><tr>
         <td><b>priorityClassName</b></td>
         <td>string</td>
-        <td>Priority class name for the pgBackRest restore Job pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
+        <td>Priority class name for the pgBackRest restore Job pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatasourcepgbackrestresources">resources</a></b></td>
@@ -14140,7 +14140,7 @@ The pod this Toleration is attached to tolerates any taint that matches the trip
 
 
 
-Defines a pgBackRest data source that can be used to pre-populate the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster
+Defines a pgBackRest data source that can be used to pre-populate the IvorySQL data directory for a new IvorySQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new IvorySQL cluster
 
 <table>
     <thead>
@@ -14179,7 +14179,7 @@ Defines a pgBackRest data source that can be used to pre-populate the PostgreSQL
       </tr><tr>
         <td><b>priorityClassName</b></td>
         <td>string</td>
-        <td>Priority class name for the pgBackRest restore Job pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
+        <td>Priority class name for the pgBackRest restore Job pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecdatasourcepostgresclusterresources">resources</a></b></td>
@@ -15693,7 +15693,7 @@ Metadata contains metadata for custom resources
 
 
 
-The specification of monitoring tools that connect to PostgreSQL
+The specification of monitoring tools that connect to IvorySQL
 
 <table>
     <thead>
@@ -15761,7 +15761,7 @@ PGMonitorSpec defines the desired state of the pgMonitor tool suite
     <tbody><tr>
         <td><b><a href="#postgresclusterspecmonitoringpgmonitorexporterconfigurationindex">configuration</a></b></td>
         <td>[]object</td>
-        <td>Projected volumes containing custom PostgreSQL Exporter configuration.  Currently supports the customization of PostgreSQL Exporter queries. If a "queries.yml" file is detected in any volume projected using this field, it will be loaded using the "extend.query-path" flag: https://github.com/prometheus-community/postgres_exporter#flags Changing the values of field causes PostgreSQL and the exporter to restart.</td>
+        <td>Projected volumes containing custom IvorySQL Exporter configuration.  Currently supports the customization of IvorySQL Exporter queries. If a "queries.yml" file is detected in any volume projected using this field, it will be loaded using the "extend.query-path" flag: https://github.com/prometheus-community/postgres_exporter#flags Changing the values of field causes IvorySQL and the exporter to restart.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecmonitoringpgmonitorexportercustomtlssecret">customTLSSecret</a></b></td>
@@ -15771,12 +15771,12 @@ PGMonitorSpec defines the desired state of the pgMonitor tool suite
       </tr><tr>
         <td><b>image</b></td>
         <td>string</td>
-        <td>The image name to use for crunchy-postgres-exporter containers. The image may also be set using the RELATED_IMAGE_PGEXPORTER environment variable.</td>
+        <td>The image name to use for highgo-ivory-exporter containers. The image may also be set using the RELATED_IMAGE_PGEXPORTER environment variable.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecmonitoringpgmonitorexporterresources">resources</a></b></td>
         <td>object</td>
-        <td>Changing this value causes PostgreSQL and the exporter to restart. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers</td>
+        <td>Changing this value causes IvorySQL and the exporter to restart. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers</td>
         <td>false</td>
       </tr></tbody>
 </table>
@@ -16228,7 +16228,7 @@ Maps a string key to a path within a volume.
 
 
 
-Changing this value causes PostgreSQL and the exporter to restart. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers
+Changing this value causes IvorySQL and the exporter to restart. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers
 
 <table>
     <thead>
@@ -16274,17 +16274,17 @@ Changing this value causes PostgreSQL and the exporter to restart. More info: ht
     <tbody><tr>
         <td><b>dynamicConfiguration</b></td>
         <td>object</td>
-        <td>Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html</td>
+        <td>Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain IvorySQL parameters cause IvorySQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html</td>
         <td>false</td>
       </tr><tr>
         <td><b>leaderLeaseDurationSeconds</b></td>
         <td>integer</td>
-        <td>TTL of the cluster leader lock. "Think of it as the length of time before initiation of the automatic failover process." Changing this value causes PostgreSQL to restart.</td>
+        <td>TTL of the cluster leader lock. "Think of it as the length of time before initiation of the automatic failover process." Changing this value causes IvorySQL to restart.</td>
         <td>false</td>
       </tr><tr>
         <td><b>port</b></td>
         <td>integer</td>
-        <td>The port on which Patroni should listen. Changing this value causes PostgreSQL to restart.</td>
+        <td>The port on which Patroni should listen. Changing this value causes IvorySQL to restart.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecpatroniswitchover">switchover</a></b></td>
@@ -16294,7 +16294,7 @@ Changing this value causes PostgreSQL and the exporter to restart. More info: ht
       </tr><tr>
         <td><b>syncPeriodSeconds</b></td>
         <td>integer</td>
-        <td>The interval for refreshing the leader lock and applying dynamicConfiguration. Must be less than leaderLeaseDurationSeconds. Changing this value causes PostgreSQL to restart.</td>
+        <td>The interval for refreshing the leader lock and applying dynamicConfiguration. Must be less than leaderLeaseDurationSeconds. Changing this value causes IvorySQL to restart.</td>
         <td>false</td>
       </tr></tbody>
 </table>
@@ -16344,7 +16344,7 @@ Switchover gives options to perform ad hoc switchovers in a PostgresCluster.
 
 
 
-The specification of a proxy that connects to PostgreSQL.
+The specification of a proxy that connects to IvorySQL.
 
 <table>
     <thead>
@@ -16425,7 +16425,7 @@ Defines a PgBouncer proxy and connection pooler.
       </tr><tr>
         <td><b>priorityClassName</b></td>
         <td>string</td>
-        <td>Priority class name for the pgBouncer pod. Changing this value causes PostgreSQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
+        <td>Priority class name for the pgBouncer pod. Changing this value causes IvorySQL to restart. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/</td>
         <td>false</td>
       </tr><tr>
         <td><b>replicas</b></td>
@@ -17670,7 +17670,7 @@ Configuration settings for the PgBouncer process. Changes to any of these values
     <tbody><tr>
         <td><b>databases</b></td>
         <td>map[string]string</td>
-        <td>PgBouncer database definitions. The key is the database requested by a client while the value is a libpq-styled connection string. The special key "*" acts as a fallback. When this field is empty, PgBouncer is configured with a single "*" entry that connects to the primary PostgreSQL instance. More info: https://www.pgbouncer.org/config.html#section-databases</td>
+        <td>PgBouncer database definitions. The key is the database requested by a client while the value is a libpq-styled connection string. The special key "*" acts as a fallback. When this field is empty, PgBouncer is configured with a single "*" entry that connects to the primary IvorySQL instance. More info: https://www.pgbouncer.org/config.html#section-databases</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterspecproxypgbouncerconfigfilesindex">files</a></b></td>
@@ -20475,7 +20475,7 @@ A label selector requirement is a selector that contains values, a key, and an o
 
 
 
-Specification of the service that exposes the PostgreSQL primary instance.
+Specification of the service that exposes the IvorySQL primary instance.
 
 <table>
     <thead>
@@ -20558,17 +20558,17 @@ Run this cluster as a read-only copy of an existing cluster or archive.
     <tbody><tr>
         <td><b>enabled</b></td>
         <td>boolean</td>
-        <td>Whether or not the PostgreSQL cluster should be read-only. When this is true, WAL files are applied from a pgBackRest repository or another PostgreSQL server.</td>
+        <td>Whether or not the IvorySQL cluster should be read-only. When this is true, WAL files are applied from a pgBackRest repository or another IvorySQL server.</td>
         <td>false</td>
       </tr><tr>
         <td><b>host</b></td>
         <td>string</td>
-        <td>Network address of the PostgreSQL server to follow via streaming replication.</td>
+        <td>Network address of the IvorySQL server to follow via streaming replication.</td>
         <td>false</td>
       </tr><tr>
         <td><b>port</b></td>
         <td>integer</td>
-        <td>Network port of the PostgreSQL server to follow via streaming replication.</td>
+        <td>Network port of the IvorySQL server to follow via streaming replication.</td>
         <td>false</td>
       </tr><tr>
         <td><b>repoName</b></td>
@@ -20586,7 +20586,7 @@ Run this cluster as a read-only copy of an existing cluster or archive.
 
 
 
-The specification of a user interface that connects to PostgreSQL.
+The specification of a user interface that connects to IvorySQL.
 
 <table>
     <thead>
@@ -22866,7 +22866,7 @@ A label selector requirement is a selector that contains values, a key, and an o
     <tbody><tr>
         <td><b>name</b></td>
         <td>string</td>
-        <td>The name of this PostgreSQL user. The value may contain only lowercase letters, numbers, and hyphen so that it fits into Kubernetes metadata.</td>
+        <td>The name of this IvorySQL user. The value may contain only lowercase letters, numbers, and hyphen so that it fits into Kubernetes metadata.</td>
         <td>true</td>
       </tr><tr>
         <td><b>databases</b></td>
@@ -22945,17 +22945,17 @@ PostgresClusterStatus defines the observed state of PostgresCluster
       </tr><tr>
         <td><b>databaseRevision</b></td>
         <td>string</td>
-        <td>Identifies the databases that have been installed into PostgreSQL.</td>
+        <td>Identifies the databases that have been installed into IvorySQL.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterstatusinstancesindex">instances</a></b></td>
         <td>[]object</td>
-        <td>Current state of PostgreSQL instances.</td>
+        <td>Current state of IvorySQL instances.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterstatusmonitoring">monitoring</a></b></td>
         <td>object</td>
-        <td>Current state of PostgreSQL cluster monitoring tool configuration</td>
+        <td>Current state of IvorySQL cluster monitoring tool configuration</td>
         <td>false</td>
       </tr><tr>
         <td><b>observedGeneration</b></td>
@@ -22975,12 +22975,12 @@ PostgresClusterStatus defines the observed state of PostgresCluster
       </tr><tr>
         <td><b>postgresVersion</b></td>
         <td>integer</td>
-        <td>Stores the current PostgreSQL major version following a successful major PostgreSQL upgrade.</td>
+        <td>Stores the current IvorySQL major version following a successful major IvorySQL upgrade.</td>
         <td>false</td>
       </tr><tr>
         <td><b><a href="#postgresclusterstatusproxy">proxy</a></b></td>
         <td>object</td>
-        <td>Current state of the PostgreSQL proxy.</td>
+        <td>Current state of the IvorySQL proxy.</td>
         <td>false</td>
       </tr><tr>
         <td><b>startupInstance</b></td>
@@ -22995,12 +22995,12 @@ PostgresClusterStatus defines the observed state of PostgresCluster
       </tr><tr>
         <td><b><a href="#postgresclusterstatususerinterface">userInterface</a></b></td>
         <td>object</td>
-        <td>Current state of the PostgreSQL user interface.</td>
+        <td>Current state of the IvorySQL user interface.</td>
         <td>false</td>
       </tr><tr>
         <td><b>usersRevision</b></td>
         <td>string</td>
-        <td>Identifies the users that have been installed into PostgreSQL.</td>
+        <td>Identifies the users that have been installed into IvorySQL.</td>
         <td>false</td>
       </tr></tbody>
 </table>
@@ -23107,7 +23107,7 @@ Condition contains details for one aspect of the current state of this API Resou
 
 
 
-Current state of PostgreSQL cluster monitoring tool configuration
+Current state of IvorySQL cluster monitoring tool configuration
 
 <table>
     <thead>
@@ -23158,7 +23158,7 @@ Current state of PostgreSQL cluster monitoring tool configuration
       </tr><tr>
         <td><b>systemIdentifier</b></td>
         <td>string</td>
-        <td>The PostgreSQL system identifier reported by Patroni.</td>
+        <td>The IvorySQL system identifier reported by Patroni.</td>
         <td>false</td>
       </tr></tbody>
 </table>
@@ -23483,7 +23483,7 @@ Status information for in-place restores
 
 
 
-Current state of the PostgreSQL proxy.
+Current state of the IvorySQL proxy.
 
 <table>
     <thead>
@@ -23524,7 +23524,7 @@ Current state of the PostgreSQL proxy.
     <tbody><tr>
         <td><b>postgresRevision</b></td>
         <td>string</td>
-        <td>Identifies the revision of PgBouncer assets that have been installed into PostgreSQL.</td>
+        <td>Identifies the revision of PgBouncer assets that have been installed into IvorySQL.</td>
         <td>false</td>
       </tr><tr>
         <td><b>readyReplicas</b></td>
@@ -23547,7 +23547,7 @@ Current state of the PostgreSQL proxy.
 
 
 
-Current state of the PostgreSQL user interface.
+Current state of the IvorySQL user interface.
 
 <table>
     <thead>

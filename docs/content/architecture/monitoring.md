@@ -5,35 +5,35 @@ draft: false
 weight: 130
 ---
 
-![PostgreSQL Operator Monitoring](/images/postgresql-monitoring.png)
+![IvorySQL Operator Monitoring](/images/postgresql-monitoring.png)
 
 While having [high availability]({{< relref "architecture/high-availability.md" >}}),
 [backups]({{< relref "architecture/backups.md" >}}), and disaster recovery systems in place helps in the event of something going wrong with your
-PostgreSQL cluster, monitoring helps you anticipate problems before they happen.
+IvorySQL cluster, monitoring helps you anticipate problems before they happen.
 Additionally, monitoring can help you diagnose and resolve additional issues
 that may not result in downtime, but cause degraded performance.
 
 There are many different ways to monitor systems within Kubernetes, including
 tools that come with Kubernetes itself. This is by no means to be a
 comprehensive on how to monitor everything in Kubernetes, but rather what the
-PostgreSQL Operator provides to give you an
+IvorySQL Operator provides to give you an
 [out-of-the-box monitoring solution]({{< relref "installation/monitoring/_index.md" >}}).
 
 ## Getting Started
 
 If you want to install the metrics stack, please visit the [installation]({{< relref "installation/monitoring/_index.md" >}})
-instructions for the [PostgreSQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
+instructions for the [IvorySQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
 stack.
 
 ## Components
 
-The [PostgreSQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
+The [IvorySQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
 stack is made up of several open source components:
 
-- [pgMonitor](https://github.com/CrunchyData/pgmonitor), which provides the core
+- [pgMonitor](https://github.com/Highgo/pgmonitor), which provides the core
 of the monitoring infrastructure including the following components:
-  - [postgres_exporter](https://github.com/CrunchyData/pgmonitor/tree/main/postgres_exporter),
-  which provides queries used to collect metrics information about a PostgreSQL
+  - [postgres_exporter](https://github.com/Highgo/pgmonitor/tree/main/postgres_exporter),
+  which provides queries used to collect metrics information about a IvorySQL
   instance.
   - [Prometheus](https://github.com/prometheus/prometheus), a time-series
   database that scrapes and stores the collected metrics so they can be consumed
@@ -44,7 +44,7 @@ of the monitoring infrastructure including the following components:
   - [Alertmanager](https://github.com/prometheus/alertmanager), a tool that
   can send alerts when metrics hit a certain threshold that require someone to
   intervene.
-- [pgnodemx](https://github.com/CrunchyData/pgnodemx), a PostgreSQL extension
+- [pgnodemx](https://github.com/Highgo/pgnodemx), a IvorySQL extension
 that is able to pull container-specific metrics (e.g. CPU utilization, memory
 consumption) from the container itself via SQL queries.
 
@@ -59,39 +59,39 @@ path.
 ## Visualizations
 
 Below is a brief description of all the visualizations provided by the
-[PostgreSQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
+[IvorySQL Operator Monitoring]({{< relref "installation/monitoring/_index.md" >}})
 stack. Some of the descriptions may include some directional guidance on how to
 interpret the charts, though this is only to provide a starting point: actual
 causes and effects of issues can vary between systems.
 
 Many of the visualizations can be broken down based on the following groupings:
 
-- Cluster: which PostgreSQL cluster should be viewed
-- Pod: the specific Pod or PostgreSQL instance
+- Cluster: which IvorySQL cluster should be viewed
+- Pod: the specific Pod or IvorySQL instance
 
 ### Overview
 
-![PostgreSQL Operator Monitoring - Overview](/images/postgresql-monitoring-overview.png)
+![IvorySQL Operator Monitoring - Overview](/images/postgresql-monitoring-overview.png)
 
-The overview provides an overview of all of the PostgreSQL clusters that are
-being monitoring by the PostgreSQL Operator Monitoring stack. This includes the
+The overview provides an overview of all of the IvorySQL clusters that are
+being monitoring by the IvorySQL Operator Monitoring stack. This includes the
 following information:
 
-- The name of the PostgreSQL cluster and the namespace that it is in
-- The type of PostgreSQL cluster (HA [high availability] or standalone)
+- The name of the IvorySQL cluster and the namespace that it is in
+- The type of IvorySQL cluster (HA [high availability] or standalone)
 - The status of the cluster, as indicate by color. Green indicates the cluster
 is available, red indicates that it is not.
 
 Each entry is clickable to provide additional cluster details.
 
-### PostgreSQL Details
+### IvorySQL Details
 
-![PostgreSQL Operator Monitoring - Cluster Cluster Details](/images/postgresql-monitoring.png)
+![IvorySQL Operator Monitoring - Cluster Cluster Details](/images/postgresql-monitoring.png)
 
-The PostgreSQL Details view provides more information about a specific
-PostgreSQL cluster that is being managed and monitored by the PostgreSQL
-Operator. These include many key PostgreSQL-specific metrics that help make
-decisions around managing a PostgreSQL cluster. These include:
+The IvorySQL Details view provides more information about a specific
+IvorySQL cluster that is being managed and monitored by the IvorySQL
+Operator. These include many key IvorySQL-specific metrics that help make
+decisions around managing a IvorySQL cluster. These include:
 
 - Backup Status: The last time a backup was taken of the cluster. Green is good.
 Orange means that a backup has not been taken in more than a day and may warrant
@@ -108,7 +108,7 @@ to be combined with another metric to help with analysis. "Higher is better"
 when performing benchmarking.
 - Connections: An aggregated view of active, idle, and idle in transaction
 connections.
-- Database Size: How large databases are within a PostgreSQL cluster. Typically
+- Database Size: How large databases are within a IvorySQL cluster. Typically
 combined with another metric for analysis. Helps keep track of overall disk
 usage and if any triage steps need to occur around PVC size.
 - WAL Size: How much space write-ahead logs (WAL) are taking up on disk. This
@@ -116,27 +116,27 @@ can contribute to extra space being used on your data disk, or can give you an
 indication of how much space is being utilized on a separate WAL PVC. If you
 are using replication slots, this can help indicate if a slot is not being
 acknowledged if the numbers are much larger than the `max_wal_size` setting (the
-PostgreSQL Operator does not use slots by default).
+IvorySQL Operator does not use slots by default).
 - Row Activity: The number of rows that are selected, inserted, updated, and
 deleted. This can help you determine what percentage of your workload is read
 vs. write, and help make database tuning decisions based on that, in conjunction
 with other metrics.
 - Replication Status: Provides guidance information on how much replication lag
-there is between primary and replica PostgreSQL instances, both in bytes and
+there is between primary and replica IvorySQL instances, both in bytes and
 time. This can provide an indication of how much data could be lost in the event
 of a failover.
 
-![PostgreSQL Operator Monitoring - Cluster Cluster Details 2](/images/postgresql-monitoring-cluster.png)
+![IvorySQL Operator Monitoring - Cluster Cluster Details 2](/images/postgresql-monitoring-cluster.png)
 
-- Conflicts / Deadlocks: These occur when PostgreSQL is unable to complete
+- Conflicts / Deadlocks: These occur when IvorySQL is unable to complete
 operations, which can result in transaction loss. The goal is for these numbers
 to be `0`. If these are occurring, check your data access and writing patterns.
 - Cache Hit Ratio: A measure of how much of the "working data", e.g. data that
 is being accessed and manipulated, resides in memory. This is used to understand
-how much PostgreSQL is having to utilize the disk. The target number of this
+how much IvorySQL is having to utilize the disk. The target number of this
 should be as high as possible. How to achieve this is the subject of books, but
-certain takes efforts on your applications use PostgreSQL.
-- Buffers: The buffer usage of various parts of the PostgreSQL system. This can
+certain takes efforts on your applications use IvorySQL.
+- Buffers: The buffer usage of various parts of the IvorySQL system. This can
 be used to help understand the overall throughput between various parts of the
 system.
 - Commit & Rollback: How many transactions are committed and rolled back.
@@ -144,10 +144,10 @@ system.
 
 ### Pod Details
 
-![PostgreSQL Operator Monitoring - Pod Details](/images/postgresql-monitoring-pod.png)
+![IvorySQL Operator Monitoring - Pod Details](/images/postgresql-monitoring-pod.png)
 
 Pod details provide information about a given Pod or Pods that are being used
-by a PostgreSQL cluster. These are similar to "operating system" or "node"
+by a IvorySQL cluster. These are similar to "operating system" or "node"
 metrics, with the differences that these are looking at resource utilization by
 a container, not the entire node.
 
@@ -165,12 +165,12 @@ device.
 
 ### Backups
 
-![PostgreSQL Operator - Monitoring - Backup Health](/images/postgresql-monitoring-backups.png)
+![IvorySQL Operator - Monitoring - Backup Health](/images/postgresql-monitoring-backups.png)
 
 There are a variety of reasons why you need to monitoring your backups, starting
 from answering the fundamental question of "do I have backups available?"
 Backups can be used for a variety of situations, from cloning new clusters to
-restoring clusters after a disaster. Additionally, Postgres can run into issues
+restoring clusters after a disaster. Additionally, Ivory can run into issues
 if your backup repository is not healthy, e.g. if it cannot push WAL archives.
 If your backups are set up properly and healthy, you will be set up to mitigate
 the risk of data loss!
@@ -194,19 +194,19 @@ differential).
 - WAL Stats: Shows the metrics around WAL archive pushes. If you have failing
 pushes, you should to see if there is a transient or permanent error that is
 preventing WAL archives from being pushed. If left untreated, this could end up
-causing issues for your Postgres cluster.
+causing issues for your Ivory cluster.
 
-### PostgreSQL Service Health Overview
+### IvorySQL Service Health Overview
 
-![PostgreSQL Operator Monitoring - Service Health Overview](/images/postgresql-monitoring-service.png)
+![IvorySQL Operator Monitoring - Service Health Overview](/images/postgresql-monitoring-service.png)
 
 The Service Health Overview provides information about the Kubernetes Services
-that sit in front of the PostgreSQL Pods. This provides information about the
+that sit in front of the IvorySQL Pods. This provides information about the
 status of the network.
 
 - Saturation: How much of the available network to the Service is being
 consumed. High saturation may cause degraded performance to clients or create
-an inability to connect to the PostgreSQL cluster.
+an inability to connect to the IvorySQL cluster.
 - Traffic: Displays the number of transactions per minute that the Service is
 handling.
 - Errors: Displays the total number of errors occurring at a particular Service.
@@ -215,13 +215,13 @@ Service.
 
 ### Query Runtime
 
-![PostgreSQL Operator Monitoring - Query Performance](/images/postgresql-monitoring-query-total.png)
+![IvorySQL Operator Monitoring - Query Performance](/images/postgresql-monitoring-query-total.png)
 
-Looking at the overall performance of queries can help optimize a Postgres
+Looking at the overall performance of queries can help optimize a Ivory
 deployment, both from [providing resources]({{< relref "tutorial/customize-cluster.md" >}}) to query tuning in the application
 itself.
 
-You can get a sense of the overall activity of a PostgreSQL cluster from the
+You can get a sense of the overall activity of a IvorySQL cluster from the
 chart that is visualized above:
 
 - Queries Executed: The total number of queries executed on a system during the
@@ -233,11 +233,11 @@ system in the given period.
 - Rows retrieved or affected: The total number of rows in a database that were
 either retrieved or had modifications made to them.
 
-PostgreSQL Operator Monitoring also further breaks down the queries so you can
+IvorySQL Operator Monitoring also further breaks down the queries so you can
 identify queries that are being executed too frequently or are taking up too
 much time.
 
-![PostgreSQL Operator Monitoring - Query Analysis](/images/postgresql-monitoring-query-topn.png)
+![IvorySQL Operator Monitoring - Query Analysis](/images/postgresql-monitoring-query-topn.png)
 
 - Query Mean Runtime (Top N): This highlights the N number of slowest queries by
 average runtime on the system. This might indicate you are missing an index
@@ -252,7 +252,7 @@ query.
 
 ### Alerts
 
-![PostgreSQL Operator Monitoring - Alerts](/images/postgresql-monitoring-alerts.png)
+![IvorySQL Operator Monitoring - Alerts](/images/postgresql-monitoring-alerts.png)
 
 Alerting lets one view and receive alerts about actions that require
 intervention, for example, a HA cluster that cannot self-heal. The alerting
@@ -260,16 +260,16 @@ system is powered by [Alertmanager](https://github.com/prometheus/alertmanager).
 
 The alerts that come installed by default include:
 
-- `PGExporterScrapeError`: The Crunchy PostgreSQL Exporter is having issues
+- `PGExporterScrapeError`: The Highgo IvorySQL Exporter is having issues
 scraping statistics used as part of the monitoring stack.
-- `PGIsUp`: A PostgreSQL instance is down.
+- `PGIsUp`: A IvorySQL instance is down.
 - `PGIdleTxn`: There are too many connections that are in the
 "idle in transaction" state.
-- `PGQueryTime`: A single PostgreSQL query is taking too long to run. Issues a
+- `PGQueryTime`: A single IvorySQL query is taking too long to run. Issues a
 warning at 12 hours and goes critical after 24.
 - `PGConnPerc`: Indicates that there are too many connection slots being used.
 Issues a warning at 75% and goes critical above 90%.
-- `PGDiskSize`: Indicates that a PostgreSQL database is too large and could be in
+- `PGDiskSize`: Indicates that a IvorySQL database is too large and could be in
 danger of running out of disk space. Issues a warning at 75% and goes critical
 at 90%.
 - `PGReplicationByteLag`: Indicates that a replica is too far behind a primary
@@ -277,7 +277,7 @@ instance, which could risk data loss in a failover scenario. Issues a warning at
 50MB an goes critical at 100MB.
 - `PGReplicationSlotsInactive`: Indicates that a replication slot is inactive.
 Not attending to this can lead to out-of-disk errors.
-- `PGXIDWraparound`: Indicates that a PostgreSQL instance is nearing transaction
+- `PGXIDWraparound`: Indicates that a IvorySQL instance is nearing transaction
 ID wraparound. Issues a warning at 50% and goes critical at 75%. It's important
 that you [vacuum your database](https://info.crunchydata.com/blog/managing-transaction-id-wraparound-in-postgresql)
 to prevent this.
@@ -288,20 +288,20 @@ up with ongoing changes, i.e. it's past its "freeze" age.  Issues a warning at
 to ship WAL archives to pgBackRest, is failing.
 - `PGSequenceExhaustion`: Indicates that a sequence is over 75% used.
 - `PGSettingsPendingRestart`: Indicates that there are settings changed on a
-PostgreSQL instance that requires a restart.
+IvorySQL instance that requires a restart.
 
 Optional alerts that can be enabled:
 
-- `PGMinimumVersion`: Indicates if PostgreSQL is below a desired version.
+- `PGMinimumVersion`: Indicates if IvorySQL is below a desired version.
 - `PGRecoveryStatusSwitch_Replica`: Indicates that a replica has been promoted
 to a primary.
 - `PGConnectionAbsent_Prod`: Indicates that metrics collection is absent from a
 PostgresQL instance.
-- `PGSettingsChecksum`: Indicates that PostgreSQL settings have changed from a
+- `PGSettingsChecksum`: Indicates that IvorySQL settings have changed from a
 previous state.
 - `PGDataChecksum`: Indicates that there are data checksum failures on a
-PostgreSQL instance. This could be a sign of data corruption.
+IvorySQL instance. This could be a sign of data corruption.
 
 You can modify these alerts as you see fit, and add your own alerts as well!
 Please see the [installation instructions]({{< relref "installation/monitoring/_index.md" >}})
-for general setup of the PostgreSQL Operator Monitoring stack.
+for general setup of the IvorySQL Operator Monitoring stack.

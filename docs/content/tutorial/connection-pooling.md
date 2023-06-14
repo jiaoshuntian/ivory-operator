@@ -5,13 +5,13 @@ draft: false
 weight: 100
 ---
 
-Connection pooling can be helpful for scaling and maintaining overall availability between your application and the database. PGO helps facilitate this by supporting the [PgBouncer](https://www.pgbouncer.org/) connection pooler and state manager.
+Connection pooling can be helpful for scaling and maintaining overall availability between your application and the database. IVYO helps facilitate this by supporting the [PgBouncer](https://www.pgbouncer.org/) connection pooler and state manager.
 
 Let's look at how we can a connection pooler and connect it to our application!
 
 ## Adding a Connection Pooler
 
-Let's look at how we can add a connection pooler using the `kustomize/keycloak` example in the [Postgres Operator examples](https://github.com/CrunchyData/postgres-operator-examples/fork) repository.
+Let's look at how we can add a connection pooler using the `kustomize/keycloak` example in the [Ivory Operator examples](https://github.com/Highgo/ivory-operator-examples/fork) repository.
 
 Connection poolers are added using the `spec.proxy` section of the custom resource. Currently, the only connection pooler supported is [PgBouncer](https://www.pgbouncer.org/).
 
@@ -31,27 +31,27 @@ Save your changes and run:
 kubectl apply -k kustomize/keycloak
 ```
 
-PGO will detect the change and create a new PgBouncer Deployment!
+IVYO will detect the change and create a new PgBouncer Deployment!
 
 That was fairly easy to set up, so now let's look at how we can connect our application to the connection pooler.
 
 ## Connecting to a Connection Pooler
 
-When a connection pooler is deployed to the cluster, PGO adds additional information to the user Secrets to allow for applications to connect directly to the connection pooler. Recall that in this example, our user Secret is called `keycloakdb-pguser-keycloakdb`. Describe the user Secret:
+When a connection pooler is deployed to the cluster, IVYO adds additional information to the user Secrets to allow for applications to connect directly to the connection pooler. Recall that in this example, our user Secret is called `keycloakdb-pguser-keycloakdb`. Describe the user Secret:
 
 ```
-kubectl -n postgres-operator describe secrets keycloakdb-pguser-keycloakdb
+kubectl -n ivory-operator describe secrets keycloakdb-pguser-keycloakdb
 ```
 
-You should see that there are several new attributes included in this Secret that allow for you to connect to your Postgres instance via the connection pooler:
+You should see that there are several new attributes included in this Secret that allow for you to connect to your Ivory instance via the connection pooler:
 
 - `pgbouncer-host`: The name of the host of the PgBouncer connection pooler.
   This references the [Service](https://kubernetes.io/docs/concepts/services-networking/service/) of the PgBouncer connection pooler.
 - `pgbouncer-port`: The port that the PgBouncer connection pooler is listening on.
-- `pgbouncer-uri`: A [PostgreSQL connection URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
-  that provides all the information for logging into the Postgres database via the PgBouncer connection pooler.
-- `pgbouncer-jdbc-uri`: A [PostgreSQL JDBC connection URI](https://jdbc.postgresql.org/documentation/use/) that provides
-  all the information for logging into the Postgres database via the PgBouncer connection pooler using the JDBC driver.
+- `pgbouncer-uri`: A [IvorySQL connection URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
+  that provides all the information for logging into the Ivory database via the PgBouncer connection pooler.
+- `pgbouncer-jdbc-uri`: A [IvorySQL JDBC connection URI](https://jdbc.postgresql.org/documentation/use/) that provides
+  all the information for logging into the Ivory database via the PgBouncer connection pooler using the JDBC driver.
   Note that by default, the connection string disable JDBC managing prepared transactions for
   [optimal use with PgBouncer](https://www.pgbouncer.org/faq.html#how-to-use-prepared-statements-with-transaction-pooling).
 
@@ -72,15 +72,15 @@ Apply the changes:
 kubectl apply -k kustomize/keycloak
 ```
 
-Kubernetes will detect the changes and begin to deploy a new Keycloak Pod. When it is completed, Keycloak will now be connected to Postgres via the PgBouncer connection pooler!
+Kubernetes will detect the changes and begin to deploy a new Keycloak Pod. When it is completed, Keycloak will now be connected to Ivory via the PgBouncer connection pooler!
 
 ## TLS
 
-PGO deploys every cluster and component over TLS. This includes the PgBouncer connection pooler. If you are using your own [custom TLS setup]({{< relref "./customize-cluster.md" >}}#customize-tls), you will need to provide a Secret reference for a TLS key / certificate pair for PgBouncer in `spec.proxy.pgBouncer.customTLSSecret`.
+IVYO deploys every cluster and component over TLS. This includes the PgBouncer connection pooler. If you are using your own [custom TLS setup]({{< relref "./customize-cluster.md" >}}#customize-tls), you will need to provide a Secret reference for a TLS key / certificate pair for PgBouncer in `spec.proxy.pgBouncer.customTLSSecret`.
 
 Your TLS certificate for PgBouncer should have a Common Name (CN) setting that matches the PgBouncer Service name. This is the name of the cluster suffixed with `-pgbouncer`. For example, for our `hippo` cluster this would be `hippo-pgbouncer`. For the `keycloakdb` example, it would be `keycloakdb-pgbouncer`.
 
-To customize the TLS for PgBouncer, you will need to create a Secret in the Namespace of your Postgres cluster that contains the TLS key (`tls.key`), TLS certificate (`tls.crt`) and the CA certificate (`ca.crt`) to use. The Secret should contain the following values:
+To customize the TLS for PgBouncer, you will need to create a Secret in the Namespace of your Ivory cluster that contains the TLS key (`tls.key`), TLS certificate (`tls.crt`) and the CA certificate (`ca.crt`) to use. The Secret should contain the following values:
 
 ```
 data:
@@ -92,13 +92,13 @@ data:
 For example, if you have files named `ca.crt`, `keycloakdb-pgbouncer.key`, and `keycloakdb-pgbouncer.crt` stored on your local machine, you could run the following command:
 
 ```
-kubectl create secret generic -n postgres-operator keycloakdb-pgbouncer.tls \
+kubectl create secret generic -n ivory-operator keycloakdb-pgbouncer.tls \
   --from-file=ca.crt=ca.crt \
   --from-file=tls.key=keycloakdb-pgbouncer.key \
   --from-file=tls.crt=keycloakdb-pgbouncer.crt
 ```
 
-You can specify the custom TLS Secret in the `spec.proxy.pgBouncer.customTLSSecret.name` field in your `postgrescluster.postgres-operator.crunchydata.com` custom resource, e.g.:
+You can specify the custom TLS Secret in the `spec.proxy.pgBouncer.customTLSSecret.name` field in your `postgrescluster.ivory-operator.crunchydata.com` custom resource, e.g.:
 
 ```
 spec:
@@ -114,7 +114,7 @@ The PgBouncer connection pooler is highly customizable, both from a configuratio
 
 ### Configuration
 
-[PgBouncer configuration](https://www.pgbouncer.org/config.html) can be customized through `spec.proxy.pgBouncer.config`. After making configuration changes, PGO will roll them out to any PgBouncer instance and automatically issue a "reload".
+[PgBouncer configuration](https://www.pgbouncer.org/config.html) can be customized through `spec.proxy.pgBouncer.config`. After making configuration changes, IVYO will roll them out to any PgBouncer instance and automatically issue a "reload".
 
 There are several ways you can customize the configuration:
 
@@ -140,7 +140,7 @@ For a reference on [PgBouncer configuration](https://www.pgbouncer.org/config.ht
 
 ### Replicas
 
-PGO deploys one PgBouncer instance by default. You may want to run multiple PgBouncer instances to have some level of redundancy, though you still want to be mindful of how many connections are going to your Postgres database!
+IVYO deploys one PgBouncer instance by default. You may want to run multiple PgBouncer instances to have some level of redundancy, though you still want to be mindful of how many connections are going to your Ivory database!
 
 You can manage the number of PgBouncer instances that are deployed through the `spec.proxy.pgBouncer.replicas` attribute.
 
@@ -160,7 +160,7 @@ spec:
           memory: 128Mi
 ```
 
-As PGO deploys the PgBouncer instances using a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) these changes are rolled out using a rolling update to minimize disruption between your application and Postgres instances!
+As IVYO deploys the PgBouncer instances using a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) these changes are rolled out using a rolling update to minimize disruption between your application and Ivory instances!
 
 ### Annotations / Labels
 
@@ -189,8 +189,8 @@ spec:
             podAffinityTerm:
               labelSelector:
                 matchLabels:
-                  postgres-operator.crunchydata.com/cluster: keycloakdb
-                  postgres-operator.crunchydata.com/role: pgbouncer
+                  ivory-operator.crunchydata.com/cluster: keycloakdb
+                  ivory-operator.crunchydata.com/role: pgbouncer
               topologyKey: kubernetes.io/hostname
 ```
 
@@ -217,7 +217,7 @@ Note that setting a toleration does not necessarily mean that the PgBouncer inst
 
 Besides using affinity, anti-affinity and tolerations, you can also set [Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) through `spec.proxy.pgBouncer.topologySpreadConstraints`. This attribute follows the Kubernetes standard topology spread contraint layout.
 
-For example, since each of of our pgBouncer Pods will have the standard `postgres-operator.crunchydata.com/role: pgbouncer` Label set, we can use this Label when determining the `maxSkew`. In the example below, since we have 3 nodes with a `maxSkew` of 1 and we've set `whenUnsatisfiable` to `ScheduleAnyway`, we should ideally see 1 Pod on each of the nodes, but our Pods can be distributed less evenly if other constraints keep this from happening.
+For example, since each of of our pgBouncer Pods will have the standard `ivory-operator.crunchydata.com/role: pgbouncer` Label set, we can use this Label when determining the `maxSkew`. In the example below, since we have 3 nodes with a `maxSkew` of 1 and we've set `whenUnsatisfiable` to `ScheduleAnyway`, we should ideally see 1 Pod on each of the nodes, but our Pods can be distributed less evenly if other constraints keep this from happening.
 
 ```
   proxy:
@@ -229,11 +229,11 @@ For example, since each of of our pgBouncer Pods will have the standard `postgre
           whenUnsatisfiable: ScheduleAnyway
           labelSelector:
             matchLabels:
-              postgres-operator.crunchydata.com/role: pgbouncer
+              ivory-operator.crunchydata.com/role: pgbouncer
 ```
 
 If you want to ensure that your PgBouncer instances are deployed more evenly (or not deployed at all), you need to update `whenUnsatisfiable` to `DoNotSchedule`.
 
 ## Next Steps
 
-Now that we can enable connection pooling in a cluster, let’s explore some [administrative tasks]({{< relref "administrative-tasks.md" >}}) such as manually restarting PostgreSQL using PGO. How do we do that?
+Now that we can enable connection pooling in a cluster, let’s explore some [administrative tasks]({{< relref "administrative-tasks.md" >}}) such as manually restarting IvorySQL using IVYO. How do we do that?

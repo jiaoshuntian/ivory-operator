@@ -7,7 +7,7 @@ weight: 110
 
 ## Kubernetes Compatibility
 
-PGO, the Postgres Operator from Crunchy Data, is tested on the following platforms:
+IVYO, the Ivory Operator from Highgo, is tested on the following platforms:
 
 - Kubernetes 1.22-1.25
 - OpenShift 4.8-4.11
@@ -19,14 +19,14 @@ PGO, the Postgres Operator from Crunchy Data, is tested on the following platfor
 
 ## Components Compatibility
 
-The following table defines the compatibility between PGO and the various component containers
-needed to deploy PostgreSQL clusters using PGO.
+The following table defines the compatibility between IVYO and the various component containers
+needed to deploy IvorySQL clusters using IVYO.
 
-The listed versions of Postgres show the latest minor release (e.g. {{< param postgresVersion13 >}}) of each major version (e.g. {{< param postgresVersion >}}). Older minor releases may still be compatible with PGO. We generally recommend to run the latest minor release for the [same reasons that the PostgreSQL community provides](https://www.postgresql.org/support/versioning/).
+The listed versions of Ivory show the latest minor release (e.g. {{< param postgresVersion13 >}}) of each major version (e.g. {{< param postgresVersion >}}). Older minor releases may still be compatible with IVYO. We generally recommend to run the latest minor release for the [same reasons that the IvorySQL community provides](https://www.postgresql.org/support/versioning/).
 
-Note that for the 5.0.3 release and beyond, the Postgres containers were renamed to `crunchy-postgres` and `crunchy-postgres-gis`.
+Note that for the 5.0.3 release and beyond, the Ivory containers were renamed to `highgo-ivory` and `highgo-ivory-gis`.
 
-| PGO | pgAdmin* | pgBackRest | PgBouncer | Postgres | PostGIS |
+| IVYO | pgAdmin* | pgBackRest | PgBouncer | Ivory | PostGIS |
 |-----|---------|------------|-----------|----------|---------|
 | `5.3.0` | `4.30` | `2.41` | `1.17` | `15,14,13,12,11` | `3.3,3.2,3.1,3.0,2.5,2.4` |
 | `5.2.1` | `4.30` | `2.41` | `1.17` | `14,13,12,11,10` | `3.2,3.1,3.0,2.5,2.4,2.3` |
@@ -44,26 +44,26 @@ Note that for the 5.0.3 release and beyond, the Postgres containers were renamed
 | `5.0.4` | `n/a` | `2.36` | `1.16` | `14,13,12,11,10` | `3.1,3.0,2.5,2.4,2.3` |
 | `5.0.3` | `n/a` | `2.35` | `1.15` | `14,13,12,11,10` | `3.1,3.0,2.5,2.4,2.3` |
 
-_*pgAdmin 4.30 does not currently support Postgres 15._
+_*pgAdmin 4.30 does not currently support Ivory 15._
 
-The latest Postgres containers include Patroni 2.1.3.
+The latest Ivory containers include Patroni 2.1.3.
 
-The following are the Postgres containers available for version 5.0.2 of PGO and older:
+The following are the Ivory containers available for version 5.0.2 of IVYO and older:
 
-| Component | Version | PGO Version Min. | PGO Version Max. |
+| Component | Version | IVYO Version Min. | IVYO Version Max. |
 |-----------|---------|------------------|------------------|
-| `crunchy-postgres-ha` | 13.4 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-ha` | 12.8 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-ha` | 11.13 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-ha` | 10.18 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 13.4-3.1 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 13.4-3.0 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 12.8-3.0 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 12.8-2.5 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 11.13-2.5 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 11.13-2.4 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 10.18-2.4 | 5.0.0 | 5.0.2 |
-| `crunchy-postgres-gis-ha` | 10.18-2.3 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-ha` | 13.4 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-ha` | 12.8 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-ha` | 11.13 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-ha` | 10.18 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 13.4-3.1 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 13.4-3.0 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 12.8-3.0 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 12.8-2.5 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 11.13-2.5 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 11.13-2.4 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 10.18-2.4 | 5.0.0 | 5.0.2 |
+| `highgo-ivory-gis-ha` | 10.18-2.3 | 5.0.0 | 5.0.2 |
 
 ### Container Tags
 
@@ -81,18 +81,18 @@ On the [developer portal](https://www.crunchydata.com/developers/download-postgr
 
 - `{{< param PGBouncerComponentTagUbi8 >}}`
 
-PostGIS enabled containers have both the Postgres and PostGIS software versions included. For example, Postgres 14 with PostGIS 3.2 would use the following tags:
+PostGIS enabled containers have both the Ivory and PostGIS software versions included. For example, Ivory 14 with PostGIS 3.2 would use the following tags:
 
 - `{{< param postgres14GIS32ComponentTagUbi8 >}}`
 - `{{< param postgres14GIS32TagUbi8 >}}`
 
 ## Extensions Compatibility
 
-The following table defines the compatibility between Postgres extensions and versions of Postgres they are available in. The "Postgres version" corresponds with the major version of a Postgres container.
+The following table defines the compatibility between Ivory extensions and versions of Ivory they are available in. The "Ivory version" corresponds with the major version of a Ivory container.
 
-The table also lists the initial PGO version that the version of the extension is available in.
+The table also lists the initial IVYO version that the version of the extension is available in.
 
-| Extension | Version | Postgres Versions | Initial PGO Version |
+| Extension | Version | Ivory Versions | Initial IVYO Version |
 |-----------|---------|-------------------|---------------------|
 | `orafce` | 3.25.1 | 15, 14, 13, 12, 11  | 5.3.0 |
 | `orafce` | 3.25.1 | 14, 13, 12, 11, 10  | 5.2.1 |
@@ -150,9 +150,9 @@ The table also lists the initial PGO version that the version of the extension i
 
 ### Geospatial Extensions
 
-The following extensions are available in the geospatially aware containers (`crunchy-postgres-gis`):
+The following extensions are available in the geospatially aware containers (`highgo-ivory-gis`):
 
-| Extension | Version | Postgres Versions | Initial PGO Version |
+| Extension | Version | Ivory Versions | Initial IVYO Version |
 |-----------|---------|-------------------|---------------------|
 | `PostGIS` | 3.2 | 14  | 5.1.1 |
 | `PostGIS` | 3.2 | 14  | 5.0.6 |
