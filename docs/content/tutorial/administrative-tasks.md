@@ -5,14 +5,14 @@ draft: false
 weight: 105
 ---
 
-## Manually Restarting PostgreSQL
+## Manually Restarting IvorySQL
 
-There are times when you might need to manually restart PostgreSQL. This can be done by adding or updating a custom annotation to the cluster's `spec.metadata.annotations` section. PGO will notice the change and perform a [rolling restart]({{< relref "/architecture/high-availability.md" >}}#rolling-update).
+There are times when you might need to manually restart IvorySQL. This can be done by adding or updating a custom annotation to the cluster's `spec.metadata.annotations` section. IVYO will notice the change and perform a [rolling restart]({{< relref "/architecture/high-availability.md" >}}#rolling-update).
 
-For example, if you have a cluster named `hippo` in the namespace `postgres-operator`, all you need to do is patch the hippo PostgresCluster with the following:
+For example, if you have a cluster named `hippo` in the namespace `ivory-operator`, all you need to do is patch the hippo PostgresCluster with the following:
 
 ```shell
-kubectl patch postgrescluster/hippo -n postgres-operator --type merge \
+kubectl patch postgrescluster/hippo -n ivory-operator --type merge \
   --patch '{"spec":{"metadata":{"annotations":{"restarted":"'"$(date)"'"}}}}'
 ```
 
@@ -20,10 +20,10 @@ Watch your hippo cluster: you will see the rolling update has been triggered and
 
 ## Shutdown
 
-You can shut down a Postgres cluster by setting the `spec.shutdown` attribute to `true`. You can do this by editing the manifest, or, in the case of the `hippo` cluster, executing a command like the below:
+You can shut down a Ivory cluster by setting the `spec.shutdown` attribute to `true`. You can do this by editing the manifest, or, in the case of the `hippo` cluster, executing a command like the below:
 
 ```
-kubectl patch postgrescluster/hippo -n postgres-operator --type merge \
+kubectl patch postgrescluster/hippo -n ivory-operator --type merge \
   --patch '{"spec":{"shutdown": true}}'
 ```
 
@@ -31,7 +31,7 @@ The effect of this is that all the Kubernetes workloads for this cluster are
 scaled to 0. You can verify this with the following command:
 
 ```
-kubectl get deploy,sts,cronjob --selector=postgres-operator.crunchydata.com/cluster=hippo
+kubectl get deploy,sts,cronjob --selector=ivory-operator.crunchydata.com/cluster=hippo
 
 NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/hippo-pgbouncer   0/0     0            0           1h
@@ -43,25 +43,25 @@ NAME                             SCHEDULE   SUSPEND   ACTIVE
 cronjob.batch/hippo-repo1-full   @daily     True      0
 ```
 
-To turn a Postgres cluster that is shut down back on, you can set `spec.shutdown` to `false`.
+To turn a Ivory cluster that is shut down back on, you can set `spec.shutdown` to `false`.
 
 ## Pausing Reconciliation and Rollout
 
-You can pause the Postgres cluster reconciliation process by setting the
+You can pause the Ivory cluster reconciliation process by setting the
 `spec.paused` attribute to `true`. You can do this by editing the manifest, or,
 in the case of the `hippo` cluster, executing a command like the below:
 
 ```
-kubectl patch postgrescluster/hippo -n postgres-operator --type merge \
+kubectl patch postgrescluster/hippo -n ivory-operator --type merge \
   --patch '{"spec":{"paused": true}}'
 ```
 
 Pausing a cluster will suspend any changes to the cluster’s current state until
 reconciliation is resumed. This allows you to fully control when changes to
-the PostgresCluster spec are rolled out to the Postgres cluster. While paused,
+the PostgresCluster spec are rolled out to the Ivory cluster. While paused,
 no statuses are updated other than the "Progressing" condition.
 
-To resume reconciliation of a Postgres cluster, you can either set `spec.paused`
+To resume reconciliation of a Ivory cluster, you can either set `spec.paused`
 to `false` or remove the setting from your manifest.
 
 ## Rotating TLS Certificates
@@ -70,10 +70,10 @@ Credentials should be invalidated and replaced (rotated) as often as possible
 to minimize the risk of their misuse. Unlike passwords, every TLS certificate
 has an expiration, so replacing them is inevitable.
 
-In fact, PGO automatically rotates the client certificates that it manages *before*
+In fact, IVYO automatically rotates the client certificates that it manages *before*
 the expiration date on the certificate. A new client certificate will be generated
-after 2/3rds of its working duration; so, for instance, a PGO-created certificate
-with an expiration date 12 months in the future will be replaced by PGO around the
+after 2/3rds of its working duration; so, for instance, a IVYO-created certificate
+with an expiration date 12 months in the future will be replaced by IVYO around the
 eight month mark. This is done so that you do not have to worry about running into
 problems or interruptions of service with an expired certificate.
 
@@ -82,40 +82,40 @@ problems or interruptions of service with an expired certificate.
 If you want to rotate a single client certificate, you can regenerate the certificate
 of an existing cluster by deleting the `tls.key` field from its certificate Secret.
 
-Is it time to rotate your PGO root certificate? All you need to do is delete the `pgo-root-cacert` secret. PGO will regenerate it and roll it out seamlessly, ensuring your apps continue communicating with the Postgres cluster without having to update any configuration or deal with any downtime.
+Is it time to rotate your IVYO root certificate? All you need to do is delete the `ivyo-root-cacert` secret. IVYO will regenerate it and roll it out seamlessly, ensuring your apps continue communicating with the Ivory cluster without having to update any configuration or deal with any downtime.
 
 ```bash
-kubectl delete secret pgo-root-cacert
+kubectl delete secret ivyo-root-cacert
 ```
 
 {{% notice note %}}
-PGO only updates secrets containing the generated root certificate. It does not touch custom certificates.
+IVYO only updates secrets containing the generated root certificate. It does not touch custom certificates.
 {{% /notice %}}
 
 ### Rotating Custom TLS Certificates
 
-When you use your own TLS certificates with PGO, you are responsible for replacing them appropriately.
+When you use your own TLS certificates with IVYO, you are responsible for replacing them appropriately.
 Here's how.
 
-PGO automatically detects and loads changes to the contents of PostgreSQL server
+IVYO automatically detects and loads changes to the contents of IvorySQL server
 and replication Secrets without downtime. You or your certificate manager need
 only replace the values in the Secret referenced by `spec.customTLSSecret`.
 
 If instead you change `spec.customTLSSecret` to refer to a new Secret or new fields,
-PGO will perform a [rolling restart]({{< relref "/architecture/high-availability.md" >}}#rolling-update).
+IVYO will perform a [rolling restart]({{< relref "/architecture/high-availability.md" >}}#rolling-update).
 
 {{% notice info %}}
-When changing the PostgreSQL certificate authority, make sure to update
+When changing the IvorySQL certificate authority, make sure to update
 [`customReplicationTLSSecret`]({{< relref "/tutorial/customize-cluster.md" >}}#customize-tls) as well.
 {{% /notice %}}
 
-PGO automatically notifies PgBouncer when there are changes to the contents of
+IVYO automatically notifies PgBouncer when there are changes to the contents of
 PgBouncer certificate Secrets. Recent PgBouncer versions load those changes
 without downtime, but versions prior to 1.16.0 need to be restarted manually.
 There are a few ways to restart an older version PgBouncer to reload Secrets:
 
 1. Store the new certificates in a new Secret. Edit the PostgresCluster object
-   to refer to the new Secret, and PGO will perform a rolling restart of PgBouncer.
+   to refer to the new Secret, and IVYO will perform a rolling restart of PgBouncer.
    ```yaml
    spec:
      proxy:
@@ -126,7 +126,7 @@ There are a few ways to restart an older version PgBouncer to reload Secrets:
 
    _or_
 
-2. Replace the old certificates in the current Secret. PGO doesn't notice when
+2. Replace the old certificates in the current Secret. IVYO doesn't notice when
    the contents of your Secret change, so you need to trigger a rolling restart
    of PgBouncer. Edit the PostgresCluster object to add a unique annotation.
    The name and value are up to you, so long as the value differs from the
@@ -166,28 +166,28 @@ spec:
       enabled: true
 ```
 
-After you apply this change, PGO will be looking for the trigger to perform a switchover in your
-cluster. You will trigger the switchover by adding the `postgres-operator.crunchydata.com/trigger-switchover`
+After you apply this change, IVYO will be looking for the trigger to perform a switchover in your
+cluster. You will trigger the switchover by adding the `ivory-operator.crunchydata.com/trigger-switchover`
 annotation to your custom resource. The best way to set this annotation is
 with a timestamp, so you know when you initiated the change.
 
 For example, for our `hippo` cluster, we can run the following command to trigger the switchover:
 
 ```shell
-kubectl annotate -n postgres-operator postgrescluster hippo \
-  postgres-operator.crunchydata.com/trigger-switchover="$(date)"
+kubectl annotate -n ivory-operator postgrescluster hippo \
+  ivory-operator.crunchydata.com/trigger-switchover="$(date)"
 ```
 
 {{% notice tip %}}
 If you want to perform another switchover you can re-run the annotation command and add the `--overwrite` flag:
 
 ```shell
-kubectl annotate -n postgres-operator postgrescluster hippo --overwrite \
-  postgres-operator.crunchydata.com/trigger-switchover="$(date)"
+kubectl annotate -n ivory-operator postgrescluster hippo --overwrite \
+  ivory-operator.crunchydata.com/trigger-switchover="$(date)"
 ```
 {{% /notice %}}
 
-PGO will detect this annotation and use the Patroni API to request a change to the current primary!
+IVYO will detect this annotation and use the Patroni API to request a change to the current primary!
 
 The roles on your database instance Pods will start changing as Patroni works. The new primary
 will have the `master` role label, and the old primary will be updated to `replica`.
@@ -213,14 +213,14 @@ primary. This target instance will be used as the candidate when performing the 
 The `spec.patroni.switchover.targetInstance` field takes the name of the instance that you are switching to.
 
 This name can be found in a couple different places; one is as the name of the StatefulSet and
-another is on the database Pod as the `postgres-operator.crunchydata.com/instance` label. The
+another is on the database Pod as the `ivory-operator.crunchydata.com/instance` label. The
 following commands can help you determine who is the current primary and what name to use as the
 `targetInstance`:
 
 ```shell-session
-$ kubectl get pods -l postgres-operator.crunchydata.com/cluster=hippo \
-    -L postgres-operator.crunchydata.com/instance \
-    -L postgres-operator.crunchydata.com/role
+$ kubectl get pods -l ivory-operator.crunchydata.com/cluster=hippo \
+    -L ivory-operator.crunchydata.com/instance \
+    -L ivory-operator.crunchydata.com/role
 
 NAME                      READY   STATUS      RESTARTS   AGE     INSTANCE               ROLE
 hippo-instance1-jdb5-0    3/3     Running     0          2m47s   hippo-instance1-jdb5   master
@@ -267,10 +267,10 @@ and verify that the Pod role labels and `status.patroni.switchover` are updated 
 {{% notice warning %}}
 Errors encountered in the switchover process can leave your cluster in a bad
 state. If you encounter issues, found in the operator logs, you can update the spec to fix the
-issues and apply the change. Once the change has been applied, PGO will attempt to perform the
+issues and apply the change. Once the change has been applied, IVYO will attempt to perform the
 switchover again.
 {{% /notice %}}
 
 ## Next Steps
 
-We've covered a lot in terms of building, maintaining, scaling, customizing, restarting, and expanding our Postgres cluster. However, there may come a time where we need to [delete our Postgres cluster]({{< relref "delete-cluster.md" >}}). How do we do that?
+We've covered a lot in terms of building, maintaining, scaling, customizing, restarting, and expanding our Ivory cluster. However, there may come a time where we need to [delete our Ivory cluster]({{< relref "delete-cluster.md" >}}). How do we do that?

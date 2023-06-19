@@ -5,7 +5,7 @@ draft: false
 weight: 80
 ---
 
-An important part of a healthy Postgres cluster is maintaining backups. PGO optimizes its use of open source [pgBackRest](https://pgbackrest.org/) to be able to support terabyte size databases. What's more, PGO makes it convenient to perform many common and advanced actions that can occur during the lifecycle of a database, including:
+An important part of a healthy Ivory cluster is maintaining backups. IVYO optimizes its use of open source [pgBackRest](https://pgbackrest.org/) to be able to support terabyte size databases. What's more, IVYO makes it convenient to perform many common and advanced actions that can occur during the lifecycle of a database, including:
 
 - Setting automatic backup schedules and retention policies
 - Backing data up to multiple locations
@@ -16,14 +16,14 @@ An important part of a healthy Postgres cluster is maintaining backups. PGO opti
 
 and more.
 
-Let's explore the various disaster recovery features in PGO by first looking at how to set up backups.
+Let's explore the various disaster recovery features in IVYO by first looking at how to set up backups.
 
 ## Understanding Backup Configuration and Basic Operations
 
-The backup configuration for a PGO managed Postgres cluster resides in the
+The backup configuration for a IVYO managed Ivory cluster resides in the
 `spec.backups.pgbackrest` section of a custom resource. In addition to indicating which
 version of pgBackRest to use, this section allows you to configure the fundamental
-backup settings for your Postgres cluster, including:
+backup settings for your Ivory cluster, including:
 
 - `spec.backups.pgbackrest.configuration` - allows to add additional configuration and references to Secrets that are needed for configuration your backups. For example, this may reference a Secret that contains your S3 credentials.
 - `spec.backups.pgbackrest.global` - a convenience to apply global [pgBackRest configuration](https://pgbackrest.org/configuration.html). An example of this may be setting the global pgBackRest logging level (e.g. `log-level-console: info`), or provide configuration to optimize performance.
@@ -43,14 +43,14 @@ You can configure the `repos` section based on the backup storage system you are
 
 Regardless of the backup storage system you select, you **must** assign a name to `spec.backups.pgbackrest.repos.name`, e.g. `repo1`. pgBackRest follows the convention of assigning configuration to a specific repository using a `repoN` format, e.g. `repo1`, `repo2`, etc. You can customize your configuration based upon the name that you assign in the spec. We will cover this topic further in the multi-repository example.
 
-By default, backups are stored in a directory that follows the pattern `pgbackrest/repoN` where `N` is the number of the repo. This typically does not present issues when storing your backup information in a Kubernetes volume, but it can present complications if you are storing all of your backups in the same backup in a blob storage system like S3/GCS/Azure. You can avoid conflicts by setting the `repoN-path` variable in `spec.backups.pgbackrest.global`. The convention we recommend for setting this variable is `/pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN`. For example, if I have a cluster named `hippo` in the namespace `postgres-operator`, I would set the following:
+By default, backups are stored in a directory that follows the pattern `pgbackrest/repoN` where `N` is the number of the repo. This typically does not present issues when storing your backup information in a Kubernetes volume, but it can present complications if you are storing all of your backups in the same backup in a blob storage system like S3/GCS/Azure. You can avoid conflicts by setting the `repoN-path` variable in `spec.backups.pgbackrest.global`. The convention we recommend for setting this variable is `/pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN`. For example, if I have a cluster named `hippo` in the namespace `ivory-operator`, I would set the following:
 
 ```
 spec:
   backups:
     pgbackrest:
       global:
-        repo1-path: /pgbackrest/postgres-operator/hippo/repo1
+        repo1-path: /pgbackrest/ivory-operator/hippo/repo1
 ```
 
 As mentioned earlier, you can store backups in up to four different repositories. You can also mix and match, e.g. you could store your backups in two different S3 repositories. Each storage type does have its own required attributes that you need to set. We will cover that later in this section.
@@ -59,11 +59,11 @@ Now that we've covered the basics, let's learn how to set up our backup reposito
 
 ## Setting Up a Backup Repository
 
-As mentioned above, PGO, the Postgres Operator from Crunchy Data, supports multiple ways to store backups. Let's look into each method and see how you can ensure your backups and archives are being safely stored!
+As mentioned above, IVYO, the Ivory Operator from Highgo, supports multiple ways to store backups. Let's look into each method and see how you can ensure your backups and archives are being safely stored!
 
 ## Using Kubernetes Volumes
 
-The simplest way to get started storing backups is to use a Kubernetes Volume. This was already configure as part of the [create a Postgres cluster]({{< relref "./create-cluster.md">}}) example. Let's take a closer look at some of that configuration:
+The simplest way to get started storing backups is to use a Kubernetes Volume. This was already configure as part of the [create a Ivory cluster]({{< relref "./create-cluster.md">}}) example. Let's take a closer look at some of that configuration:
 
 ```
 - name: repo1
@@ -76,7 +76,7 @@ The simplest way to get started storing backups is to use a Kubernetes Volume. T
           storage: 1Gi
 ```
 
-The one requirement of volume is that you need to fill out the `volumeClaimSpec` attribute. This attribute uses the same format as a [persistent volume claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) spec! In fact, we performed a similar set up when we [created a Postgres cluster]({{< relref "./create-cluster.md">}}).
+The one requirement of volume is that you need to fill out the `volumeClaimSpec` attribute. This attribute uses the same format as a [persistent volume claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) spec! In fact, we performed a similar set up when we [created a Ivory cluster]({{< relref "./create-cluster.md">}}).
 
 In the above example, we assume that the Kubernetes cluster is using a default storage class. If your cluster does not have a default storage class, or you wish to use a different storage class, you will have to set `spec.backups.pgbackrest.repos.volume.volumeClaimSpec.storageClassName`.
 
@@ -89,7 +89,7 @@ and either
 
 ### Using S3 Credentials
 
-There is an example for creating a Postgres cluster that uses S3 for backups in the `kustomize/s3` directory in the [Postgres Operator examples](https://github.com/CrunchyData/postgres-operator-examples/fork) repository. In this directory, there is a file called `s3.conf.example`. Copy this example file to `s3.conf`:
+There is an example for creating a Ivory cluster that uses S3 for backups in the `kustomize/s3` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In this directory, there is a file called `s3.conf.example`. Copy this example file to `s3.conf`:
 
 ```
 cp s3.conf.example s3.conf
@@ -154,10 +154,10 @@ Use the procedure in the linked documentation for the first two steps described 
 OIDC provider in step 1.
 
 The third step is to associate that IAM role with a ServiceAccount, but there's no need to
-do that manually, as PGO does that for you. First, make a note of the IAM role's `ARN`.
+do that manually, as IVYO does that for you. First, make a note of the IAM role's `ARN`.
 
 You can then make the following changes to the files in the `kustomize/s3` directory in the
-[Postgres Operator examples](https://github.com/CrunchyData/postgres-operator-examples/fork) repository:
+[Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository:
 
 1\. Add the `s3` section to the spec in `kustomize/s3/postgres.yaml` as discussed in the
 [Using S3 Credentials](#using-s3-credentials) section above. In addition to that, add the required `eks.amazonaws.com/role-arn`
@@ -204,7 +204,7 @@ And watch as it spins up and backs up to S3 using pgBackRest's IAM integration.
 
 Similar to S3, setting up backups in Google Cloud Storage (GCS) requires a few additional modifications to your custom resource spec and the use of a Secret to protect your GCS credentials.
 
-There is an example for creating a Postgres cluster that uses GCS for backups in the `kustomize/gcs` directory in the [Postgres Operator examples](https://github.com/CrunchyData/postgres-operator-examples/fork) repository. In order to configure this example to use GCS for backups, you will need do two things.
+There is an example for creating a Ivory cluster that uses GCS for backups in the `kustomize/gcs` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In order to configure this example to use GCS for backups, you will need do two things.
 
 First, copy your GCS key secret (which is a JSON file) into `kustomize/gcs/gcs-key.json`. Note that a `.gitignore` directive prevents you from committing this file.
 
@@ -222,7 +222,7 @@ Watch your cluster: you will see that your backups and archives are now being st
 
 Similar to the above, setting up backups in Azure Blob Storage requires a few additional modifications to your custom resource spec and the use of a Secret to protect your Azure Storage credentials.
 
-There is an example for creating a Postgres cluster that uses Azure for backups in the `kustomize/azure` directory in the [Postgres Operator examples](https://github.com/CrunchyData/postgres-operator-examples/fork) repository. In this directory, there is a file called `azure.conf.example`. Copy this example file to `azure.conf`:
+There is an example for creating a Ivory cluster that uses Azure for backups in the `kustomize/azure` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In this directory, there is a file called `azure.conf.example`. Copy this example file to `azure.conf`:
 
 ```
 cp azure.conf.example azure.conf
@@ -261,19 +261,19 @@ Watch your cluster: you will see that your backups and archives are now being st
 
 It is possible to store backups in multiple locations! For example, you may want to keep your backups both within your Kubernetes cluster and S3. There are many reasons for doing this:
 
-- It is typically faster to heal Postgres instances when your backups are closer
+- It is typically faster to heal Ivory instances when your backups are closer
 - You can set different backup retention policies based upon your available storage
 - You want to ensure that your backups are distributed geographically
 
 and more.
 
-PGO lets you store your backups in up to four locations simultaneously. You can mix and match: for example, you can store backups both locally and in GCS, or store your backups in two different GCS repositories. It's up to you!
+IVYO lets you store your backups in up to four locations simultaneously. You can mix and match: for example, you can store backups both locally and in GCS, or store your backups in two different GCS repositories. It's up to you!
 
-There is an example in the [Postgres Operator examples](https://github.com/CrunchyData/postgres-operator-examples/fork) repository in the `kustomize/multi-backup-repo` folder that sets up backups in four different locations using each storage type. You can modify this example to match your desired backup topology.
+There is an example in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository in the `kustomize/multi-backup-repo` folder that sets up backups in four different locations using each storage type. You can modify this example to match your desired backup topology.
 
 ### Additional Notes
 
-While storing Postgres archives (write-ahead log [WAL] files) occurs in parallel when saving data to multiple pgBackRest repos, you cannot take parallel backups to different repos at the same time. PGO will ensure that all backups are taken serially. Future work in pgBackRest will address parallel backups to different repos. Please don't confuse this with parallel backup: pgBackRest does allow for backups to use parallel processes when storing them to a single repo!
+While storing Ivory archives (write-ahead log [WAL] files) occurs in parallel when saving data to multiple pgBackRest repos, you cannot take parallel backups to different repos at the same time. IVYO will ensure that all backups are taken serially. Future work in pgBackRest will address parallel backups to different repos. Please don't confuse this with parallel backup: pgBackRest does allow for backups to use parallel processes when storing them to a single repo!
 
 ## Encryption
 
@@ -293,7 +293,7 @@ This contains the passphrase used to encrypt your data.
 Next, create a `kustomization.yaml` file that looks like this:
 
 ```yaml
-namespace: postgres-operator
+namespace: ivory-operator
 
 secretGenerator:
 - name: hippo-pgbackrest-secrets
@@ -307,10 +307,10 @@ resources:
 - postgres.yaml
 ```
 
-Finally, create the manifest for the Postgres cluster in a file named `postgres.yaml` that is similar to the following:
+Finally, create the manifest for the Ivory cluster in a file named `postgres.yaml` that is similar to the following:
 
 ```yaml
-apiVersion: postgres-operator.crunchydata.com/v1beta1
+apiVersion: ivory-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
   name: hippo
@@ -365,7 +365,7 @@ spec:
         repo1-cipher-type: aes-256-cbc
 ```
 
-You can now create a Postgres cluster that has encrypted backups!
+You can now create a Ivory cluster that has encrypted backups!
 
 ### Limitations
 
@@ -381,17 +381,17 @@ The full list of [pgBackRest configuration options](https://pgbackrest.org/confi
 
 ## IPv6 Support
 
-If you are running your cluster in an IPv6-only environment, you will need to add an annotation to your PostgresCluster so that PGO knows to set pgBackRest's `tls-server-address` to an IPv6 address. Otherwise, `tls-server-address` will be set to `0.0.0.0`, making pgBackRest inaccessible, and backups will not run. The annotation should be added as shown below:
+If you are running your cluster in an IPv6-only environment, you will need to add an annotation to your PostgresCluster so that IVYO knows to set pgBackRest's `tls-server-address` to an IPv6 address. Otherwise, `tls-server-address` will be set to `0.0.0.0`, making pgBackRest inaccessible, and backups will not run. The annotation should be added as shown below:
 
 ```yaml
-apiVersion: postgres-operator.crunchydata.com/v1beta1
+apiVersion: ivory-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
   name: hippo
   annotations:
-    postgres-operator.crunchydata.com/pgbackrest-ip-version: IPv6
+    ivory-operator.crunchydata.com/pgbackrest-ip-version: IPv6
 ```
 
 ## Next Steps
 
-We've now seen how to use PGO to get our backups and archives set up and safely stored. Now let's take a look at [backup management]({{< relref "./backup-management.md" >}}) and how we can do things such as set backup frequency, set retention policies, and even take one-off backups!
+We've now seen how to use IVYO to get our backups and archives set up and safely stored. Now let's take a look at [backup management]({{< relref "./backup-management.md" >}}) and how we can do things such as set backup frequency, set retention policies, and even take one-off backups!

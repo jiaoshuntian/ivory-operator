@@ -9,37 +9,37 @@ weight: 20
 Before attempting to upgrade from v4.x to v5, please familiarize yourself with the [prerequisites]({{< relref "upgrade/v4tov5/_index.md" >}}) applicable for all v4.x to v5 upgrade methods.
 {{% /notice %}}
 
-This upgrade method allows you to migrate from PGO v4 to PGO v5 by creating a new PGO v5 Postgres cluster using a backup from a PGO v4 cluster. This method allows you to preserve the data in your PGO v4 cluster while you transition to PGO v5. To fully move the data over, you will need to incur downtime and shut down your PGO v4 cluster.
+This upgrade method allows you to migrate from IVYO v4 to IVYO v5 by creating a new IVYO v5 Ivory cluster using a backup from a IVYO v4 cluster. This method allows you to preserve the data in your IVYO v4 cluster while you transition to IVYO v5. To fully move the data over, you will need to incur downtime and shut down your IVYO v4 cluster.
 
-### Step 1: Prepare the PGO v4 Cluster for Migration
+### Step 1: Prepare the IVYO v4 Cluster for Migration
 
-1\. Ensure you have a recent backup of your cluster. You can do so with the `pgo backup` command, e.g.:
+1\. Ensure you have a recent backup of your cluster. You can do so with the `ivyo backup` command, e.g.:
 
 ```
-pgo backup hippo
+ivyo backup hippo
 ```
 
-Please ensure that the backup completes. You will see the latest backup appear using the `pgo show backup` command.
+Please ensure that the backup completes. You will see the latest backup appear using the `ivyo show backup` command.
 
 2\. Next, delete the cluster while keeping backups (using the `--keep-backups` flag):
 
 ```
-pgo delete cluster hippo --keep-backups
+ivyo delete cluster hippo --keep-backups
 ```
 
 {{% notice warning %}}
 
 Additional steps are required to set proper file permissions when using certain storage options,
 such as NFS and HostPath storage, due to a known issue with how fsGroups are applied. When
-migrating from PGO v4, this will require the user to manually set the group value of the pgBackRest
-repo directory, and all subdirectories, to `26` to match the `postgres` group used in PGO v5.
+migrating from IVYO v4, this will require the user to manually set the group value of the pgBackRest
+repo directory, and all subdirectories, to `26` to match the `postgres` group used in IVYO v5.
 Please see [here](https://github.com/kubernetes/examples/issues/260) for more information.
 
 {{% /notice %}}
 
-### Step 2: Migrate to PGO v5
+### Step 2: Migrate to IVYO v5
 
-With the PGO v4 Postgres cluster's backup repository prepared, you can now create a [`PostgresCluster`]({{< relref "references/crd.md" >}}) custom resource. This migration method does not carry over any specific configurations or customizations from PGO v4: you will need to create the specific `PostgresCluster` configuration that you need.
+With the IVYO v4 Ivory cluster's backup repository prepared, you can now create a [`PostgresCluster`]({{< relref "references/crd.md" >}}) custom resource. This migration method does not carry over any specific configurations or customizations from IVYO v4: you will need to create the specific `PostgresCluster` configuration that you need.
 
 To complete the upgrade process, your `PostgresCluster` custom resource **MUST** include the following:
 
@@ -83,9 +83,9 @@ spec:
 
 Any required secrets or desired custom pgBackRest configuration should be created and configured as described in the [backup tutorial]({{< relref "tutorial/backups.md" >}}).
 
-You will also need to ensure that the “pgbackrest-repo-path” configured for the repository matches the path used by the PGO v4 cluster. The default repository path follows the pattern `/backrestrepo/<clusterName>-backrest-shared-repo`. Note that the path name here is different than migrating from a PVC-based repository.
+You will also need to ensure that the “pgbackrest-repo-path” configured for the repository matches the path used by the IVYO v4 cluster. The default repository path follows the pattern `/backrestrepo/<clusterName>-backrest-shared-repo`. Note that the path name here is different than migrating from a PVC-based repository.
 
-Using the `hippo` Postgres cluster as an example, you would set the following in the `spec.backups.pgbackrest.global` section:
+Using the `hippo` Ivory cluster as an example, you would set the following in the `spec.backups.pgbackrest.global` section:
 
 ```
 spec:
@@ -106,7 +106,7 @@ spec:
 
 You can also provide other pgBackRest restore options, e.g. if you wish to restore to a specific point-in-time (PITR).
 
-3\. If you are using a PVC-based pgBackRest repository, then you will also need to specify a pgBackRestVolume data source that references the PGO v4 pgBackRest repository PVC:
+3\. If you are using a PVC-based pgBackRest repository, then you will also need to specify a pgBackRestVolume data source that references the IVYO v4 pgBackRest repository PVC:
 
 ```
 spec:
@@ -120,15 +120,15 @@ spec:
 ```
 
 
-4\. If you customized other Postgres parameters, you will need to ensure they match in the PGO v5 cluster. For more information, please review the tutorial on [customizing a Postgres cluster]({{< relref "tutorial/customize-cluster.md" >}}).
+4\. If you customized other Ivory parameters, you will need to ensure they match in the IVYO v5 cluster. For more information, please review the tutorial on [customizing a Ivory cluster]({{< relref "tutorial/customize-cluster.md" >}}).
 
-5\. Once the `PostgresCluster` spec is populated according to these guidelines, you can create the `PostgresCluster` custom resource.  For example, if the `PostgresCluster` you're creating is a modified version of the [`postgres` example](https://github.com/CrunchyData/postgres-operator-examples/tree/main/kustomize/postgres) in the [PGO examples repo](https://github.com/CrunchyData/postgres-operator-examples), you can run the following command:
+5\. Once the `PostgresCluster` spec is populated according to these guidelines, you can create the `PostgresCluster` custom resource.  For example, if the `PostgresCluster` you're creating is a modified version of the [`postgres` example](https://github.com/ivorysql/ivory-operator-examples/tree/main/kustomize/postgres) in the [IVYO examples repo](https://github.com/ivorysql/ivory-operator-examples), you can run the following command:
 
 ```
 kubectl apply -k examples/postgrescluster
 ```
 
-**WARNING**: Once the PostgresCluster custom resource is created, it will become the owner of the PVC.  *This means that if the PostgresCluster is then deleted (e.g. if attempting to revert back to a PGO v4 cluster), then the PVC will be deleted as well.*
+**WARNING**: Once the PostgresCluster custom resource is created, it will become the owner of the PVC.  *This means that if the PostgresCluster is then deleted (e.g. if attempting to revert back to a IVYO v4 cluster), then the PVC will be deleted as well.*
 
 If you wish to protect against this, first remove the reference to the pgBackRest PVC in the PostgresCluster spec:
 
@@ -136,14 +136,14 @@ If you wish to protect against this, first remove the reference to the pgBackRes
 kubectl patch postgrescluster hippo-pgbr-repo --type='json' -p='[{"op": "remove", "path": "/spec/dataSource/volumes"}]'
 ```
 
-Then relabel the PVC prior to deleting the PostgresCluster custom resource. Below uses the `hippo` Postgres cluster as an example:
+Then relabel the PVC prior to deleting the PostgresCluster custom resource. Below uses the `hippo` Ivory cluster as an example:
 
 ```
 kubectl label pvc hippo-pgbr-repo \
-  postgres-operator.crunchydata.com/cluster- \
-  postgres-operator.crunchydata.com/pgbackrest-repo- \
-  postgres-operator.crunchydata.com/pgbackrest-volume- \
-  postgres-operator.crunchydata.com/pgbackrest-
+  ivory-operator.crunchydata.com/cluster- \
+  ivory-operator.crunchydata.com/pgbackrest-repo- \
+  ivory-operator.crunchydata.com/pgbackrest-volume- \
+  ivory-operator.crunchydata.com/pgbackrest-
 ```
 
 You will also need to remove all ownership references from the PVC:
@@ -154,4 +154,4 @@ kubectl patch pvc hippo-pgbr-repo --type='json' -p='[{"op": "remove", "path": "/
 
 It is recommended to set the reclaim policy for any PV’s bound to existing PVC’s to `Retain` to ensure data is retained in the event a PVC is accidentally deleted during the upgrade.
 
-Your upgrade is now complete! For more information on how to use PGO v5, we recommend reading through the [PGO v5 tutorial]({{< relref "tutorial/_index.md" >}}).
+Your upgrade is now complete! For more information on how to use IVYO v5, we recommend reading through the [IVYO v5 tutorial]({{< relref "tutorial/_index.md" >}}).

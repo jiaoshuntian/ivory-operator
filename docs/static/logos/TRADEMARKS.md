@@ -1,8 +1,8 @@
-# PGO Trademark Guidelines
+# IVYO Trademark Guidelines
 
 ## 1. Introduction
 
-This document - the "Policy" - outlines the policy of The PGO Project (the "Project") for the use of our trademarks.
+This document - the "Policy" - outlines the policy of The IVYO Project (the "Project") for the use of our trademarks.
 
 A trademark’s role is to assure consumers about the quality of the associated products or services. Because an open source license allows you to modify the copyrighted software, we cannot be sure your modified software will not mislead recipients if it is distributed under our trademarks. So, this Policy describes when you may or may not use our trademarks.
 
@@ -22,11 +22,11 @@ This Policy covers:
 
 ### 3.1 Our word trademarks and service marks (the "Word Marks"):
 
-PGO
+IVYO
 
 ### 3.2. Our logo (the "Logo"):
 
-<img width="150" src="./pgo.svg" alt="PGO: The Postgres Operator from Crunchy Data"/>
+<img width="150" src="./ivyo.svg" alt="IVYO: The Ivory Operator from Highgo"/>
 
 ### 3.3 And the unique visual styling of our website (the "Trade Dress").
 
@@ -36,9 +36,9 @@ This Policy encompasses all Project trademarks and service marks, whether Word M
 
 Whenever you use a Mark, you must not mislead anyone, either directly or by omission, about what they are getting and from whom. The law reflects this requirement in two major ways described below: it prohibits creating a "likelihood of confusion," but allows for "nominative use."
 
-For example, you cannot say you are distributing PGO software when you're distributing a modified version of it, because you likely would confuse people, since they are not getting the same features and functionality they would get if they downloaded the software from us. You also cannot use our Logo on your website to suggest your website is an official website or we endorse your website.
+For example, you cannot say you are distributing IVYO software when you're distributing a modified version of it, because you likely would confuse people, since they are not getting the same features and functionality they would get if they downloaded the software from us. You also cannot use our Logo on your website to suggest your website is an official website or we endorse your website.
 
-You can, though, say, for example, you like the PGO software, you are a PGO community participant, you are providing unmodified PGO software, or you wrote a book describing how to use the PGO software.
+You can, though, say, for example, you like the IVYO software, you are a IVYO community participant, you are providing unmodified IVYO software, or you wrote a book describing how to use the IVYO software.
 
 This fundamental requirement - that it is always clear to people what they are getting and from whom - is reflected throughout this Policy. It should guide you if you are unsure about how you are using the Marks.
 
@@ -63,12 +63,12 @@ When you redistribute our unmodified software, you are not changing its quality 
 
 #### 5.1.2 Distributing executable code you have compiled, or modified code
 
-You may use the Word Marks, but not the Logos, to describe the software’s origin, that is, that the code you are distributing is a modification of our software. You may say, for example, "this software is derived from the source code from the PGO Project."
+You may use the Word Marks, but not the Logos, to describe the software’s origin, that is, that the code you are distributing is a modification of our software. You may say, for example, "this software is derived from the source code from the IVYO Project."
 Of course, you can place your own trademarks or logos on software to which you have made substantive modifications, because by modifying the software, you have become the origin of the modified software.
 
 #### 5.1.3 Statements about compatibility, interoperability or derivation
 
-You may use the Word Marks, but not the Logos, to describe the relationship between your software and ours. You should use Our Mark after a verb or preposition that describes that relationship. So, you may say, for example, "Bob's plug-in for PGO," but may not say "Bob's PGO plug-in."
+You may use the Word Marks, but not the Logos, to describe the relationship between your software and ours. You should use Our Mark after a verb or preposition that describes that relationship. So, you may say, for example, "Bob's plug-in for IVYO," but may not say "Bob's IVYO plug-in."
 
 #### 5.1.4 Using trademarks to show community affiliation
 
@@ -79,7 +79,7 @@ You may use the Word Marks and the Logos in themes, personas, or skins to show y
 
 #### 5.2.1 Distributing unmodified software
 
-You may use the Word Marks and Logos to distribute executable code if you make the code from official Project source code using the procedure for creating an executable found at [https://access.crunchydata.com/documentation/postgres-operator/latest/installation/](https://access.crunchydata.com/documentation/postgres-operator/latest/installation/).
+You may use the Word Marks and Logos to distribute executable code if you make the code from official Project source code using the procedure for creating an executable found at [https://access.crunchydata.com/documentation/ivory-operator/latest/installation/](https://access.crunchydata.com/documentation/ivory-operator/latest/installation/).
 
 #### 5.3 Unpermitted uses we consider infringing
 
@@ -96,7 +96,7 @@ See universal considerations for all uses, above, which also apply.
 You may use the Word Marks and Logos on your webpage to show your Project support if:
 
 - Your own branding or naming is more prominent than any Project Marks;
-- The Logos hyperlink to the Project website: [https://github.com/CrunchyData/postgres-operator](https://github.com/CrunchyData/postgres-operator);
+- The Logos hyperlink to the Project website: [https://github.com/ivorysql/ivory-operator](https://github.com/ivorysql/ivory-operator);
 - The site does not mislead customers into thinking your website, service, or product is our website, service, or product; and
 - The site clearly states the Project does not affiliate with or endorse you.
 
@@ -130,7 +130,7 @@ We also would likely consider it an infringement to use the Marks on for-sale pr
 
 ### 7.1 Trademark legends
 
-If you are using our Marks in a way described in the sections entitled "Permitted uses," put the following notice at the foot of the page where you have used the Mark (or, if in a book, on the credits page), on packaging or labeling, and on advertising or marketing materials: "The PGO Project is a trademark of Crunchy Data Solutions, Inc., used with permission."
+If you are using our Marks in a way described in the sections entitled "Permitted uses," put the following notice at the foot of the page where you have used the Mark (or, if in a book, on the credits page), on packaging or labeling, and on advertising or marketing materials: "The IVYO Project is a trademark of Highgo Solutions, Inc., used with permission."
 
 ### 7.2 What to do when you see abuse
 

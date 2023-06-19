@@ -1,11 +1,11 @@
 ---
-title: "Upgrading PGO v5 Using Helm"
+title: "Upgrading IVYO v5 Using Helm"
 date:
 draft: false
 weight: 70
 ---
 
-Once PGO v5 has been installed with Helm, it can then be upgraded using the `helm upgrade` command.
+Once IVYO v5 has been installed with Helm, it can then be upgraded using the `helm upgrade` command.
 However, before running the `upgrade` command, any CustomResourceDefinitions (CRDs) must first be
 manually updated (this is specifically due to a [design decision in Helm v3][helm-crd-limits],
 in which any CRDs in the Helm chart are only applied when using the `helm install` command).
@@ -33,5 +33,5 @@ Then, perform the upgrade using Helm:
 ```shell
 helm upgrade <name> -n <namespace> helm/install
 ```
-PGO versions earlier than v5.4.0 include a pgo-upgrade deployment. When upgrading to v5.4.x, users
-should expect the pgo-upgrade deployment to be deleted automatically.
+IVYO versions earlier than v5.4.0 include a ivyo-upgrade deployment. When upgrading to v5.4.x, users
+should expect the ivyo-upgrade deployment to be deleted automatically.

@@ -8,24 +8,24 @@ weight: 900
 ![pgAdmin 4 Query](/images/pgadmin4-query.png)
 
 [pgAdmin 4](https://www.pgadmin.org/) is a popular graphical user interface that
-makes it easy to work with PostgreSQL databases from a web-based client. With
-its ability to manage and orchestrate changes for PostgreSQL users, the PostgreSQL
+makes it easy to work with IvorySQL databases from a web-based client. With
+its ability to manage and orchestrate changes for IvorySQL users, the IvorySQL
 Operator is a natural partner to keep a pgAdmin 4 environment synchronized with
-a PostgreSQL environment.
+a IvorySQL environment.
 
-The PostgreSQL Operator lets you deploy a pgAdmin 4 environment alongside a
-PostgreSQL cluster and keeps users' database credentials synchronized. You can
-simply log into pgAdmin 4 with your PostgreSQL username and password and
+The IvorySQL Operator lets you deploy a pgAdmin 4 environment alongside a
+IvorySQL cluster and keeps users' database credentials synchronized. You can
+simply log into pgAdmin 4 with your IvorySQL username and password and
 immediately have access to your databases.
 
 ## Deploying pgAdmin 4
 
 {{% notice warning %}}
-Unfortunately, pgAdmin 4 is not currently compatible with PostgreSQL 15.
+Unfortunately, pgAdmin 4 is not currently compatible with IvorySQL 15.
 {{% /notice %}}
 
 If you've done the [quickstart]({{< relref "quickstart/_index.md" >}}), add the
-following fields to the spec and reapply; if you don't have any Postgres clusters
+following fields to the spec and reapply; if you don't have any Ivory clusters
 running, add the fields to a spec, and apply.
 
 ```yaml
@@ -40,8 +40,8 @@ running, add the fields to a spec, and apply.
             storage: 1Gi
 ```
 
-This creates a pgAdmin 4 deployment unique to this PostgreSQL cluster and synchronizes
-the PostgreSQL user information. To access pgAdmin 4, you can set up a port-forward
+This creates a pgAdmin 4 deployment unique to this IvorySQL cluster and synchronizes
+the IvorySQL user information. To access pgAdmin 4, you can set up a port-forward
 to the Service, which follows the pattern `<clusterName>-pgadmin`, to port `5050`:
 
 ```
@@ -49,15 +49,15 @@ kubectl port-forward svc/hippo-pgadmin 5050:5050
 ```
 
 Point your browser at `http://localhost:5050` and you will be prompted to log in.
-Use your database username with `@pgo` appended and your database password.
-In our case, the pgAdmin username is `hippo@pgo` and the password is found in the
+Use your database username with `@ivyo` appended and your database password.
+In our case, the pgAdmin username is `hippo@ivyo` and the password is found in the
 user secret, `hippo-pguser-hippo`:
 
 ```
 PG_CLUSTER_USER_SECRET_NAME=hippo-pguser-hippo
 
-PGPASSWORD=$(kubectl get secrets -n postgres-operator "${PG_CLUSTER_USER_SECRET_NAME}" -o go-template='{{.data.password | base64decode}}')
-PGUSER=$(kubectl get secrets -n postgres-operator "${PG_CLUSTER_USER_SECRET_NAME}" -o go-template='{{.data.user | base64decode}}')
+PGPASSWORD=$(kubectl get secrets -n ivory-operator "${PG_CLUSTER_USER_SECRET_NAME}" -o go-template='{{.data.password | base64decode}}')
+PGUSER=$(kubectl get secrets -n ivory-operator "${PG_CLUSTER_USER_SECRET_NAME}" -o go-template='{{.data.user | base64decode}}')
 ```
 
 ![pgAdmin 4 Login Page](/images/pgadmin4-login.png)

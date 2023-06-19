@@ -1,20 +1,20 @@
 ---
-title: "Tablespaces in PGO"
+title: "Tablespaces in IVYO"
 date:
 draft: false
 weight: 160
 ---
 
 {{% notice warning %}}
-PGO tablespaces currently requires enabling the `TablespaceVolumes` feature gate
+IVYO tablespaces currently requires enabling the `TablespaceVolumes` feature gate
 and may interfere with other features. (See below for more details.)
 {{% /notice %}}
 
 A [Tablespace](https://www.postgresql.org/docs/current/manage-ag-tablespaces.html)
-is a Postgres feature that is used to store data on a different volume than the
+is a Ivory feature that is used to store data on a different volume than the
 primary data directory. While most workloads do not require tablespaces, they can
 be helpful for larger data sets or utilizing particular hardware to optimize
-performance on a particular Postgres object (a table, index, etc.). Some examples
+performance on a particular Ivory object (a table, index, etc.). Some examples
 of use cases for tablespaces include:
 
 - Partitioning larger data sets across different volumes
@@ -24,31 +24,31 @@ of use cases for tablespaces include:
 
 and others.
 
-In order to use Postgres tablespaces properly in a highly-available,
+In order to use Ivory tablespaces properly in a highly-available,
 distributed system, there are several considerations to ensure proper operations:
 
 - Each tablespace must have its own volume; this means that every tablespace for
 every replica in a system must have its own volume;
-- The available filesystem paths must be consistent on each Postgres pod in a Postgres cluster;
+- The available filesystem paths must be consistent on each Ivory pod in a Ivory cluster;
 - The backup & disaster recovery management system must be able to safely backup
 and restore data to tablespaces.
 
-Additionally, a tablespace is a critical piece of a Postgres instance: if
-Postgres expects a tablespace to exist and the tablespace volume is unavailable,
+Additionally, a tablespace is a critical piece of a Ivory instance: if
+Ivory expects a tablespace to exist and the tablespace volume is unavailable,
 this could trigger a downtime scenario.
 
-While there are certain challenges with creating a Postgres cluster with
+While there are certain challenges with creating a Ivory cluster with
 high-availability along with tablespaces in a Kubernetes-based environment, the
-Postgres Operator adds many conveniences to make it easier to use tablespaces.
+Ivory Operator adds many conveniences to make it easier to use tablespaces.
 
-## Enabling TablespaceVolumes in PGO v5
+## Enabling TablespaceVolumes in IVYO v5
 
-In PGO v5, tablespace support is currently feature-gated. If you want to use this
-experimental feature, you will need to enable the feature via the PGO `TablespaceVolumes`
+In IVYO v5, tablespace support is currently feature-gated. If you want to use this
+experimental feature, you will need to enable the feature via the IVYO `TablespaceVolumes`
 [feature gate](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/).
 
-PGO feature gates are enabled by setting the `PGO_FEATURE_GATES` environment
-variable on the PGO Deployment. To enable tablespaces, you would want to set
+IVYO feature gates are enabled by setting the `PGO_FEATURE_GATES` environment
+variable on the IVYO Deployment. To enable tablespaces, you would want to set
 
 ```
 PGO_FEATURE_GATES="TablespaceVolumes=true"
@@ -62,13 +62,13 @@ you would set `PGO_FEATURE_GATES` like so:
 PGO_FEATURE_GATES="FeatureName=true,FeatureName2=true,FeatureName3=true..."
 ```
 
-## Adding TablespaceVolumes to a postgrescluster in PGO v5
+## Adding TablespaceVolumes to a postgrescluster in IVYO v5
 
-Once you have enabled `TablespaceVolumes` on your PGO deployment, you can add volumes to
+Once you have enabled `TablespaceVolumes` on your IVYO deployment, you can add volumes to
 a new or existing cluster by adding volumes to the `spec.instances.tablespaceVolumes` field.
 
 A `TablespaceVolume` object has two fields: a name (which is required and used to set the path)
-and a `dataVolumeClaimSpec`, which describes the storage that your Postgres instance will use
+and a `dataVolumeClaimSpec`, which describes the storage that your Ivory instance will use
 for this volume. This field behaves identically to the `dataVolumeClaimSpec` in the `instances`
 list. For example, you could use the following to create a `postgrescluster`:
 
@@ -93,7 +93,7 @@ spec:
 ```
 
 In this case, the `postgrescluster` will have 1Gi for the database volume and 1Gi for the tablespace
-volume, and both will be provisioned by PGO.
+volume, and both will be provisioned by IVYO.
 
 But if you were attempting to migrate data from one `postgrescluster` to another, you could re-use
 pre-existing volumes by passing in some label selector or the `volumeName` into the
@@ -129,26 +129,26 @@ Note: the `name` of the `tablespaceVolume` needs to be
 
 There is validation on the CRD for these requirements.
 
-Once you request those `tablespaceVolumes`, PGO takes care of creating (or reusing) those volumes,
+Once you request those `tablespaceVolumes`, IVYO takes care of creating (or reusing) those volumes,
 including mounting them to the pod at a known path (`/tablespaces/NAME`) and adding them to the
 necessary containers.
 
-### How to use Postgres Tablespaces in PGO v5
+### How to use Ivory Tablespaces in IVYO v5
 
-After PGO has mounted the volumes at the requested locations, the startup container makes sure
+After IVYO has mounted the volumes at the requested locations, the startup container makes sure
 that those locations have the appropriate owner and permissions. This behavior mimics the startup
 behavior behind the `PGDATA` directory, so that when you connect to your cluster, you should be
 able to start using those tablespaces.
 
-In order to use those tablespaces in Postgres, you will first need to create the tablespace,
-including the location. As noted above, PGO mounts the requested volumes at `/tablespaces/NAME`.
+In order to use those tablespaces in Ivory, you will first need to create the tablespace,
+including the location. As noted above, IVYO mounts the requested volumes at `/tablespaces/NAME`.
 So if you request tablespaces with the names `books` and `authors`, the two volumes will be
 mounted at `/tablespaces/books` and `/tablespaces/authors`.
 
-However, in order to make sure that the directory has the appropriate ownership so that Postgres
+However, in order to make sure that the directory has the appropriate ownership so that Ivory
 can use it, we create a subdirectory called `data` in each volume.
 
-To create a tablespace in Postgres, you will issue a command of the form
+To create a tablespace in Ivory, you will issue a command of the form
 
 ```
 CREATE TABLESPACE name LOCATION '/path/to/dir';
@@ -168,7 +168,7 @@ Once you have
 
 * enabled the `TablespaceVolumes` feature gate,
 * added `tablespaceVolumes` to your cluster spec,
-* and created the tablespace in Postgres,
+* and created the tablespace in Ivory,
 
 then you are ready to use tablespaces in your cluster. For example, if you wanted to create a
 table called `books` on the `books` tablespace, you could execute the following SQL:
@@ -188,7 +188,7 @@ TABLESPACE books;
 
 As stated above, it is important to ensure that every tablespace has its own volume
 (i.e. its own [persistent volume claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)).
-This is especially true for any replicas in a cluster: you don't want multiple Postgres instances
+This is especially true for any replicas in a cluster: you don't want multiple Ivory instances
 writing to the same volume.
 
 So if you have a single named volume in your spec (for either the main PGDATA directory or
@@ -201,23 +201,23 @@ Different Kubernetes objects have different limits about the length of their nam
 services follow the DNS label conventions: 63 characters or less, lowercase, and alphanumeric with
 hyphens U+002D allowed in between.
 
-Occasionally some PGO-managed objects will go over the limit set for that object type because of
+Occasionally some IVYO-managed objects will go over the limit set for that object type because of
 the user-set cluster or instance name.
 
 We do not anticipate this being a problem with the `PersistentVolumeClaim` created for a tablespace.
-The name for a `PersistentVolumeClaim` created by PGO for a tablespace will potentially be long since
+The name for a `PersistentVolumeClaim` created by IVYO for a tablespace will potentially be long since
 the name is a combination of the cluster, the instance, the tablespace, and the `-tablespace` suffix.
 However, a `PersistentVolumeClaim` name can be up to 253 characters in length.
 
 ### Same tablespace volume names across replicas
 
-We want to make sure that every pod has a consistent filesystem because Postgres expects
+We want to make sure that every pod has a consistent filesystem because Ivory expects
 the same path on each replica.
 
-For instance, imagine on your primary Postgres, you add a tablespace with the location
+For instance, imagine on your primary Ivory, you add a tablespace with the location
 `/tablespaces/kafka/data`. If you have a replica attached to that primary, it will likewise
 try to add a tablespace at the location `/tablespaces/kafka/data`; and if that location doesn't
-exist on the replica's filesystem, Postgres will rightly complain.
+exist on the replica's filesystem, Ivory will rightly complain.
 
 Therefore, if you expand your `postgrescluster` with multiple instances, you will need to make
 sure that the multiple instances have `tablespaceVolumes` with the *same names*, like so:
@@ -259,7 +259,7 @@ spec:
 
 ### Tablespace backups
 
-PGO uses `pgBackRest` as our backup solution, and `pgBackRest` is built to work with tablespaces
+IVYO uses `pgBackRest` as our backup solution, and `pgBackRest` is built to work with tablespaces
 natively. That is, `pgBackRest` should back up the entire database, including tablespaces, without
 any additional work on your part.
 
@@ -270,7 +270,7 @@ tablespaces will not help, and you should first solve your backup space problem.
 
 ### Adding tablespaces to existing clusters
 
-As with other changes made to the definition of a Postgres pod, adding `tablespaceVolumes` to an
+As with other changes made to the definition of a Ivory pod, adding `tablespaceVolumes` to an
 existing cluster may cause downtime. The act of mounting a new PVC to a Kubernetes Deployment
 causes the Pods in the deployment to restart.
 
@@ -280,9 +280,9 @@ This functionality has not been fully tested. Enjoy!
 
 ### Removing tablespaces
 
-Removing a tablespace is a nontrivial operation. Postgres does not provide a
+Removing a tablespace is a nontrivial operation. Ivory does not provide a
 `DROP TABLESPACE .. CASCADE` command that would drop any associated objects with a tablespace.
-Additionally, the Postgres documentation covering the
+Additionally, the Ivory documentation covering the
 [`DROP TABLESPACE`](https://www.postgresql.org/docs/current/sql-droptablespace.html)
 command goes on to note:
 
@@ -293,19 +293,19 @@ command goes on to note:
 > tablespace is listed in the temp_tablespaces setting of any active session,
 > the DROP might fail due to temporary files residing in the tablespace.
 
-Because of this, and to avoid a situation where a Postgres cluster is left in an inconsistent
-state due to trying to remove a tablespace, PGO does not provide any means to remove tablespaces
-automatically. If you need to remove a tablespace from a Postgres deployment, we recommend
+Because of this, and to avoid a situation where a Ivory cluster is left in an inconsistent
+state due to trying to remove a tablespace, IVYO does not provide any means to remove tablespaces
+automatically. If you need to remove a tablespace from a Ivory deployment, we recommend
 following this procedure:
 
 1. As a database administrator:
   1. Log into the primary instance of your cluster.
   1. Drop any objects (tables, indexes, etc) that reside within the tablespace you wish to delete.
-  1. Delete this tablespace from the Postgres cluster using the `DROP TABLESPACE` command.
+  1. Delete this tablespace from the Ivory cluster using the `DROP TABLESPACE` command.
 1. As a Kubernetes user who can modify `postgrescluster` specs
   1. Remove the `tablespaceVolumes` entries for the tablespaces you wish to remove.
 
 ## More Information
 
-For more information on how tablespaces work in Postgres please refer to the
-[Postgres manual](https://www.postgresql.org/docs/current/manage-ag-tablespaces.html).
+For more information on how tablespaces work in Ivory please refer to the
+[Ivory manual](https://www.postgresql.org/docs/current/manage-ag-tablespaces.html).
