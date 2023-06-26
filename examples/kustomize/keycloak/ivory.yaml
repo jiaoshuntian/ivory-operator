@@ -1,0 +1,37 @@
+apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: keycloakdb
+spec:
+  image: docker.io/balinor2017/highgo-ivory:0.1
+  postgresVersion: 15
+  instances:
+    - replicas: 2
+      dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  ivory-operator.ivorysql.org/cluster: keycloakdb
+                  ivory-operator.ivorysql.org/instance-set: "00"
+  backups:
+    pgbackrest:
+      image: docker.io/balinor2017/highgo-pgbackrest:0.1
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi

@@ -1,0 +1,27 @@
+apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo
+spec:
+  image: docker.io/balinor2017/highgo-ivory:0.1
+  postgresVersion: 15
+  instances:
+    - name: instance1
+      dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: docker.io/balinor2017/highgo-pgbackrest:0.1
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi

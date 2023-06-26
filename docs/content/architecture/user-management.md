@@ -5,7 +5,7 @@ draft: false
 weight: 125
 ---
 
-IVYO manages IvorySQL users that you define in [`PostgresCluster.spec.users`]({{< relref "/references/crd#postgresclusterspecusersindex" >}}).
+IVYO manages IvorySQL users that you define in IvoryCluster.spec.users.
 There, you can list their [role attributes](https://www.postgresql.org/docs/current/role-attributes.html) and which databases they can access.
 
 Below is some information on how the user and database management systems work. To try out some examples, please see the [user and database management]({{< relref "tutorial/user-management.md" >}}) section of the [tutorial]({{< relref "tutorial/_index.md" >}}).
@@ -38,23 +38,23 @@ As an example, using our `hippo` Ivory cluster, we would see the following creat
 
 While the above defaults may work for your application, there are certain cases where you may need to customize your user and databases:
 
-- You may require access to the `postgres` superuser.
+- You may require access to the `ivorysql` superuser.
 - You may need to define privileges for your users.
 - You may need multiple databases in your cluster, e.g. in a multi-tenant application.
 - Certain users may only be able to access certain databases.
 
 ## Custom Users and Databases
 
-Users and databases can be customized in the [`spec.users`]({{< relref "/references/crd#postgresclusterspecusersindex" >}}) section of the custom resource. These can be adding during cluster creation and adjusted over time, but it's important to note the following:
+Users and databases can be customized in the spec.users section of the custom resource. These can be adding during cluster creation and adjusted over time, but it's important to note the following:
 
-- If `spec.users` is set during cluster creation, IVYO will **not** create any default users or databases except for `postgres`. If you want additional databases, you will need to specify them.
+- If `spec.users` is set during cluster creation, IVYO will **not** create any default users or databases except for `ivorysql`. If you want additional databases, you will need to specify them.
 - For any users added in `spec.users`, IVYO will created a Secret of the format `<clusterName>-pguser-<userName>`. This will contain the user credentials.
   - If no databases are specified, `dbname` and `uri` will not be present in the Secret.
   - If at least one `spec.users.databases` is specified, the first database in the list will be populated into the connection credentials.
 - To prevent accidental data loss, IVYO does not automatically drop users. We will see how to drop a user below.
 - Similarly, to prevent accidental data loss IVYO does not automatically drop databases. We will see how to drop a database below.
 - Role attributes are not automatically dropped if you remove them. You will have to set the inverse attribute to drop them (e.g. `NOSUPERUSER`).
-- The special `postgres` user can be added as one of the custom users; however, the privileges of the users cannot be adjusted.
+- The special `ivorysql` user can be added as one of the custom users; however, the privileges of the users cannot be adjusted.
 
 For specific examples for how to manage users, please see the [user and database management]({{< relref "tutorial/user-management.md" >}}) section of the [tutorial]({{< relref "tutorial/_index.md" >}}).
 
@@ -77,12 +77,12 @@ kubectl patch secret -n ivory-operator hippo-pguser-hippo -p '{"data":{"password
 
 There are cases where you may want to explicitly provide your own password for a Ivory user.
 IVYO determines the password from an attribute in the user Secret called `verifier`. This contains
-a hashed copy of your password. When `verifier` changes, IVYO will load the contents of the verifier
+a hashed copy of your password. When `verifier` changes, IVYO will loa d the contents of the verifier
 into your Ivory cluster. This method allows for the secure transmission of the password into the
 Ivory database.
 
 Ivory provides two methods for hashing passwords: SCRAM-SHA-256 and MD5.
-IVYO uses the preferred (and as of IvorySQL 14, default) method, SCRAM-SHA-256.
+IVYO uses the preferred (and as of IvorySQL 2, default) method, SCRAM-SHA-256.
 
 There are two ways you can set a custom password for a user. You can provide a plaintext password
 in the `password` field and remove the `verifier`. When IVYO detects a password without a verifier

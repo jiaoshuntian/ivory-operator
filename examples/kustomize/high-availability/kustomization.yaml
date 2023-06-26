@@ -1,0 +1,4 @@
+namespace: ivory-operator
+
+resources:
+- ha-ivory.yaml

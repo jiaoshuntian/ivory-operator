@@ -21,7 +21,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance1
@@ -38,7 +38,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -174,7 +174,7 @@ spec:
 Note: Although the custom TLS and custom replication TLS Secrets share the same `ca.crt`, they do not share the same `tls.crt`:
 
 * Your `spec.customTLSSecret` TLS certificate should have a Common Name (CN) setting that matches the primary Service name. This is the name of the cluster suffixed with `-primary`. For example, for our `hippo` cluster this would be `hippo-primary`.
-* Your `spec.customReplicationTLSSecret` TLS certificate should have a Common Name (CN) setting that matches `_crunchyrepl`, which is the preset replication user.
+* Your `spec.customReplicationTLSSecret` TLS certificate should have a Common Name (CN) setting that matches `_highgorepl`, which is the preset replication user.
 
 As with the other changes, you can roll out the TLS customizations with `kubectl apply`.
 
@@ -185,7 +185,6 @@ There are several ways to add your own custom Kubernetes [Labels](https://kubern
 - Cluster: You can apply labels to any IVYO managed object in a cluster by editing the `spec.metadata.labels` section of the custom resource.
 - Ivory: You can apply labels to a Ivory instance set and its objects by editing `spec.instances.metadata.labels`.
 - pgBackRest: You can apply labels to pgBackRest and its objects by editing `ivoryclusters.spec.backups.pgbackrest.metadata.labels`.
-- PgBouncer: You can apply labels to PgBouncer connection pooling instances by editing `spec.proxy.pgBouncer.metadata.labels`.
 
 ## Annotations
 
@@ -194,7 +193,6 @@ There are several ways to add your own custom Kubernetes [Annotations](https://k
 - Cluster: You can apply annotations to any IVYO managed object in a cluster by editing the `spec.metadata.annotations` section of the custom resource.
 - Ivory: You can apply annotations to a Ivory instance set and its objects by editing `spec.instances.metadata.annotations`.
 - pgBackRest: You can apply annotations to pgBackRest and its objects by editing `spec.backups.pgbackrest.metadata.annotations`.
-- PgBouncer: You can apply annotations to PgBouncer connection pooling instances by editing `spec.proxy.pgBouncer.metadata.annotations`.
 
 ## Pod Priority Classes
 
@@ -202,7 +200,6 @@ IVYO allows you to use [pod priority classes](https://kubernetes.io/docs/concept
 
 - Instances: Priority is defined per instance set and is applied to all Pods in that instance set by editing the `spec.instances.priorityClassName` section of the custom resource.
 - Dedicated Repo Host: Priority defined under the repoHost section of the spec is applied to the dedicated repo host by editing the `spec.backups.pgbackrest.repoHost.priorityClassName` section of the custom resource.
-- PgBouncer: Priority is defined under the pgBouncer section of the spec and will apply to all PgBouncer Pods by editing the `spec.proxy.pgBouncer.priorityClassName` section of the custom resource.
 - Backup (manual and scheduled): Priority is defined under the `spec.backups.pgbackrest.jobs.priorityClassName` section and applies that priority to all pgBackRest backup Jobs (manual and scheduled).
 - Restore (data source or in-place): Priority is defined for either a "data source" restore or an in-place restore by editing the `spec.dataSource.ivorycluster.priorityClassName` section of the custom resource.
 - Data Migration: The priority defined for the first instance set in the spec (array position 0) is used for the PGDATA and WAL migration Jobs. The pgBackRest repo migration Job will use the priority class applied to the repoHost.
@@ -227,134 +224,6 @@ spec:
 
 This volume can be removed later by removing the `walVolumeClaimSpec` section from the instance. Note that when changing the WAL directory, care is taken so as not to lose any WAL files. IVYO only
 deletes the PVC once there are no longer any WAL files on the previously configured volume.
-
-## Custom Sidecar Containers
-
-IVYO allows you to configure custom
-[sidecar Containers](https://kubernetes.io/docs/concepts/workloads/pods/#how-pods-manage-multiple-containers)
-for your IvorySQL instance and pgBouncer Pods.
-
-To use the custom sidecar features, you will need to enable
-them via the IVYO
-[feature gate](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/).
-
-IVYO feature gates are enabled by setting the `IVYO_FEATURE_GATES` environment
-variable on the IVYO Deployment. For a feature named 'FeatureName', that would
-look like
-
-```
-IVYO_FEATURE_GATES="FeatureName=true"
-```
-
-Please note that it is possible to enable more than one feature at a time as
-this variable accepts a comma delimited list, for example:
-
-```
-IVYO_FEATURE_GATES="FeatureName=true,FeatureName2=true,FeatureName3=true..."
-```
-
-{{% notice warning %}}
-Any feature name added to `IVYO_FEATURE_GATES` must be defined by IVYO and must be
-set to true or false. Any misconfiguration will prevent IVYO from deploying.
-See the [considerations](#considerations) below for additional guidance.
-{{% /notice %}}
-
-### Custom Sidecar Containers for IvorySQL Instance Pods
-
-To configure custom sidecar Containers for any of your IvorySQL instance Pods
-you will need to enable that feature via the IVYO feature gate.
-
-As mentioned above, IVYO feature gates are enabled by setting the `IVYO_FEATURE_GATES`
-environment variable on the IVYO Deployment. For the IvorySQL instance sidecar
-container feature, that will be
-
-```
-IVYO_FEATURE_GATES="InstanceSidecars=true"
-```
-
-Once this feature is enabled, you can add your custom
-[Containers](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#container-v1-core)
-as an array to `spec.instances.containers`. See the [custom sidecar example](#custom-sidecar-example)
-below for more information!
-
-### Custom Sidecar Containers for pgBouncer Pods
-
-Similar to your IvorySQL instance Pods, to configure custom sidecar Containers
-for your pgBouncer Pods you will need to enable it via the IVYO feature gate.
-
-As mentioned above, IVYO feature gates are enabled by setting the `IVYO_FEATURE_GATES`
-environment variable on the IVYO Deployment. For the pgBouncer custom sidecar
-container feature, that will be
-
-```
-IVYO_FEATURE_GATES="PGBouncerSidecars=true"
-```
-
-Once this feature is enabled, you can add your custom
-[Containers](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#container-v1-core)
-as an array to `spec.proxy.pgBouncer.containers`. See the [custom sidecar example](#custom-sidecar-example)
-below for more information!
-
-### Custom Sidecar Example
-
-As a simple example, consider
-
-```
-apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
-metadata:
-  name: sidecar-hippo
-spec:
-  image: {{< param imageCrunchyPostgres >}}
-  postgresVersion: {{< param postgresVersion >}}
-  instances:
-    - name: instance1
-      containers:
-      - name: testcontainer
-        image: mycontainer1:latest
-      - name: testcontainer2
-        image: mycontainer1:latest
-      dataVolumeClaimSpec:
-        accessModes:
-        - "ReadWriteOnce"
-        resources:
-          requests:
-            storage: 1Gi
-  backups:
-    pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
-      repos:
-      - name: repo1
-        volume:
-          volumeClaimSpec:
-            accessModes:
-            - "ReadWriteOnce"
-            resources:
-              requests:
-                storage: 1Gi
-  proxy:
-    pgBouncer:
-      image: {{< param imageCrunchyPGBouncer >}}
-      containers:
-      - name: bouncertestcontainer1
-        image: mycontainer1:latest
-```
-
-In the above example, we've added two sidecar Containers to the `instance1` Pod
-and one sidecar container to the `pgBouncer` Pod. These Containers can be
-defined in the manifest at any time, but the Containers will not be added to their
-respective Pods until the feature gate is enabled.
-
-### Considerations
-
-- Volume mounts and other Pod details are subject to change between releases.
-- The custom sidecar features are currently feature-gated. Any sidecar Containers,
-  as well as any settings included in their configuration, are added and used at
-  your own risk. Improperly configured sidecar Containers could impact the health
-  and/or security of your IvorySQL cluster!
-- When adding a sidecar container, we recommend adding a unique prefix to the
-  container name to avoid potential naming conflicts with the official IVYO
-  containers.
 
 ## Database Initialization SQL
 
