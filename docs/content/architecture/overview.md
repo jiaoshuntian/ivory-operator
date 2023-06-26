@@ -46,7 +46,7 @@ Pgtask)
 The main purpose of IVYO is to create and update information
 around the structure of a Ivory Cluster, and to relay information about the
 overall status and health of a IvorySQL cluster. The goal is to also simplify
-this process as much as possible for users. 
+this process as much as possible for users.
 
 The Ivory Operator handles setting up all of the various StatefulSets, Deployments, Services and other Kubernetes objects.
 
