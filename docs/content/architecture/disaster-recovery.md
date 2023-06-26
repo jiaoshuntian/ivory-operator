@@ -15,8 +15,7 @@ uptime requirements.
 As of this writing, federation in Kubernetes is still in ongoing development
 and is something we monitor with intense interest. As Kubernetes federation
 continues to mature, we wanted to provide a way to deploy IvorySQL clusters
-managed by the [IvorySQL Operator](https://www.crunchydata.com/developers/download-postgres/containers/ivory-operator)
-that can span multiple Kubernetes clusters.
+managed by the IvorySQL Operator that can span multiple Kubernetes clusters.
 
 At a high-level, the IvorySQL Operator follows the "active-standby" data
 center deployment model for managing the IvorySQL clusters across Kubernetes
@@ -51,7 +50,7 @@ repository or via streaming replication, while other instances are replicas of i
 Any replicas created in the standby cluster are known as cascading replicas, i.e., replicas
 replicating from a database server that itself is replicating from another database server. More
 information about [cascading replication](https://www.postgresql.org/docs/current/warm-standby.html#CASCADING-REPLICATION)
-can be found in the IvorySQL documentation.
+can be found in the PostgreSQL documentation.
 
 Because standby clusters are effectively read-only, certain functionality
 that involves making changes to a database, e.g., IvorySQL user changes, is
@@ -71,14 +70,10 @@ A repo-based standby will connect to a pgBackRest repo stored in an external sto
 clusters). The standby cluster will receive WAL files from the repo and will apply those to the
 database.
 
-![IvorySQL Operator Repo-based Standby](/images/repo-based-standby.png)
-
 #### Streaming Standby
 
 A streaming standby relies on an authenticated connection to the primary over the network. The
 standby will receive WAL records directly from the primary as they are generated.
-
-![IvorySQL Operator Streaming Standby](/images/streaming-standby.png)
 
 #### Streaming Standby with an External Repo
 
@@ -87,8 +82,6 @@ standby cluster will bootstrap from the pgBackRest repo and continue to receive 
 are pushed to the repo. The cluster will also directly connect to primary and receive WAL records
 as they are generated. Using a repo while also streaming ensures that your cluster will still be up
 to date with the pgBackRest repo if streaming falls behind.
-
-![IvorySQL Operator Streaming Standby with External Repo](/images/streaming-standby-external-repo.png)
 
 For creating a standby Ivory cluster with IVYO, please see the [disaster recovery tutorial]({{< relref "tutorial/disaster-recovery.md" >}}#standby-cluster)
 

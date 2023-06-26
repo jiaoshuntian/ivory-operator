@@ -22,8 +22,6 @@ hardware upgrade, or other maintenance.
 
 Fortunately, IVYO, the Ivory Operator from Highgo, is prepared for this.
 
-![IvorySQL Operator high availability Overview](/images/postgresql-ha-overview.png)
-
 The Highgo IvorySQL Operator supports a distributed-consensus based
 high availability (HA) system that keeps its managed IvorySQL clusters up and
 running, even if the IvorySQL Operator disappears. Additionally, it leverages
@@ -185,7 +183,7 @@ restricting the types of Pods that can be assigned to particular Nodes.
 Reasoning and strategy for using taints and tolerations is outside the scope of
 this documentation.
 
-You can configure the tolerations for your Ivory instances on the `postgresclusters` custom resource.
+You can configure the tolerations for your Ivory instances on the `ivoryclusters` custom resource.
 
 ## Pod Topology Spread Constraints
 
@@ -202,7 +200,7 @@ the [high availability tutorial]({{< relref "tutorial/high-availability.md" >}}#
 ## Rolling Updates
 
 During the lifecycle of a IvorySQL cluster, there are certain events that may
-require a planned restart, such as an update to a "restart required" IvorySQL
+require a planned restart, such as an update to a "restart required" PostgreSQL
 configuration setting (e.g. [`shared_buffers`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS))
 or a change to a Kubernetes Pod template (e.g. [changing the memory request]({{< relref "tutorial/resize-cluster.md">}}#customize-cpu-memory)).
 Restarts can be disruptive in a high availability deployment, which is
@@ -247,8 +245,8 @@ Pods in a Kubernetes cluster can experience [voluntary disruptions](https://kube
 as a result of actions initiated by the application owner or a Cluster Administrator. During these
 voluntary disruptions Pod Disruption Budgets (PDBs) can be used to ensure that a minimum number of Pods
 will be running. The operator allows you to define a minimum number of Pods that should be
-available for instance sets and PgBouncer deployments in your postgrescluster. This minimum is
-configured in the postgrescluster spec and will be used to create PDBs associated to a resource defined
+available for instance sets and PgBouncer deployments in your ivorycluster. This minimum is
+configured in the ivorycluster spec and will be used to create PDBs associated to a resource defined
 in the spec. For example, the following spec will create two PDBs, one for `instance1` and one for
 the PgBouncer deployment:
 

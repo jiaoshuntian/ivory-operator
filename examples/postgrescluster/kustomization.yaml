@@ -1,4 +1,4 @@
-namespace: postgres-operator
+namespace: ivory-operator
 
 resources:
-- postgrescluster.yaml
+- ivorycluster.yaml

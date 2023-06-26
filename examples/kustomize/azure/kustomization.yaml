@@ -1,0 +1,12 @@
+namespace: ivory-operator
+
+secretGenerator:
+- name: ivyo-azure-creds
+  files:
+  - azure.conf
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+resources:
+- ivory.yaml

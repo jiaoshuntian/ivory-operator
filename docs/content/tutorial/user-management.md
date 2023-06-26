@@ -110,7 +110,3 @@ For example, to remove the `zoo` database, you would execute the following:
 ```
 DROP DATABASE zoo;
 ```
-
-## Next Steps
-
-You now know how to manage users and databases in your cluster and have now a well-rounded set of tools to support your "Day 1" operations. Let's start looking at some of the "Day 2" work you can do with IVYO, such as [updating to the next Ivory version]({{< relref "./update-cluster.md" >}}), in the [next section]({{< relref "./update-cluster.md" >}}).

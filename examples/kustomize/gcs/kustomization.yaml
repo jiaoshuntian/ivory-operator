@@ -1,0 +1,13 @@
+namespace: ivory-operator
+
+secretGenerator:
+- name: ivyo-gcs-creds
+  files:
+  - gcs.conf
+  - gcs-key.json
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+resources:
+- ivory.yaml

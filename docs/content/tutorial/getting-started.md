@@ -5,7 +5,7 @@ draft: false
 weight: 10
 ---
 
-1. Installed IVYO to the `ivory-operator` namespace. If you are inside your `ivory-operator-examples` directory, you can run the `kubectl apply --server-side -k kustomize/install/default` command.
+1. Installed IVYO to the `ivory-operator` namespace. If you are inside your `examples` directory, you can run the `kubectl apply --server-side -k kustomize/install/default` command.
 
 Throughout this tutorial, we will be building on the example provided in the `kustomize/ivory`.
 
@@ -19,6 +19,6 @@ spec:
 
 we would say `spec.hippos.appetite`.
 
-`kubectl explain` is your friend. You can use `kubectl explain ivorycluster` to introspect the `ivorycluster.ivory-operator.ivorysql.org` custom resource definition. You can also review the [CRD reference]({{< relref "references/crd.md" >}}).
+`kubectl explain` is your friend. You can use `kubectl explain ivorycluster` to introspect the `ivorycluster.ivory-operator.ivorysql.org` custom resource definition.
 
 With IVYO, the Ivory Operator installed, let's go and [create a Ivory cluster]({{< relref "./create-cluster.md" >}})!

@@ -53,7 +53,6 @@ and [NodePort value](https://kubernetes.io/docs/concepts/services-networking/ser
 You can modify the Services that IVYO manages from the following attributes:
 
 - `spec.service` - this manages the Service for connecting to a Ivory primary.
-- `spec.proxy.pgBouncer.service` - this manages the Service for connecting to the PgBouncer connection pooler.
 - `spec.userInterface.pgAdmin.service` - this manages the Service for connecting to the pgAdmin management tool.
 
 For example, say you want to set the Ivory primary to use a `NodePort` service, a specific `nodePort` value, and set
@@ -118,9 +117,7 @@ features of IVYO).
 
 For this tutorial, we are going to connect [Keycloak](https://www.keycloak.org/), an open source
 identity management application. Keycloak can be deployed on Kubernetes and is backed by a Ivory
-database. While we provide an [example of deploying Keycloak and a ivorycluster](https://github.com/ivorysql/ivory-operator-examples/tree/main/kustomize/keycloak)
-in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples)
-repository, the manifest below deploys it using our `hippo` cluster that is already running:
+database. We provide an example of deploying Keycloak and a ivorycluster, the manifest below deploys it using our `hippo` cluster that is already running:
 
 ```
 kubectl apply --filename=- <<EOF

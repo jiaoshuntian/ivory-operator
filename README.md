@@ -1,13 +1,10 @@
 <h1 align="center">IVYO: The Ivory Operator from Highgo</h1>
-<p align="center">
-  <img width="150" src="./docs/static/logos/pgo.svg" alt="IVYO: The Ivory Operator from Highgo"/>
-</p>
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/crunchydata/postgres-operator)](https://goreportcard.com/report/github.com/CrunchyData/postgres-operator)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ivorysql/ivory-operator)](https://goreportcard.com/report/github.com/ivorysql/ivory-operator)
 
 # Production Ivory Made Easy
 
-[IVYO](https://github.com/gaoxueyu/ivory-operator), the [Ivory Operator](https://github.com/gaoxueyu/ivory-operator) from [Highgo](https://www.highgo.com), gives you a **declarative Ivory** solution that automatically manages your [IvorySQL](https://ivorysql.org) clusters.
+[IVYO](https://github.com/IvorySQL/ivory-operator), the [Ivory Operator](https://github.com/IvorySQL/ivory-operator) from [Highgo](https://www.highgo.com), gives you a **declarative Ivory** solution that automatically manages your [IvorySQL](https://ivorysql.org) clusters.
 
 Designed for your GitOps workflows, it is [easy to get started](https://access.crunchydata.com/documentation/postgres-operator/v5/quickstart/) with Ivory on Kubernetes with IVYO. Within a few moments, you can have a production-grade Ivory cluster complete with high availability, disaster recovery, and monitoring, all over secure TLS communications. Even better, IVYO lets you easily customize your Ivory cluster to tailor it to your workload!
 

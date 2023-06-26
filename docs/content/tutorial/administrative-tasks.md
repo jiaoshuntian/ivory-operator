@@ -33,9 +33,6 @@ scaled to 0. You can verify this with the following command:
 ```
 kubectl get deploy,sts,cronjob --selector=ivory-operator.ivorysql.org/cluster=hippo
 
-NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/hippo-pgbouncer   0/0     0            0           1h
-
 NAME                             READY   AGE
 statefulset.apps/hippo-00-lwgx   0/0     1h
 
@@ -108,44 +105,6 @@ IVYO will perform a [rolling restart]({{< relref "/architecture/high-availabilit
 When changing the IvorySQL certificate authority, make sure to update
 [`customReplicationTLSSecret`]({{< relref "/tutorial/customize-cluster.md" >}}#customize-tls) as well.
 {{% /notice %}}
-
-IVYO automatically notifies PgBouncer when there are changes to the contents of
-PgBouncer certificate Secrets. Recent PgBouncer versions load those changes
-without downtime, but versions prior to 1.16.0 need to be restarted manually.
-There are a few ways to restart an older version PgBouncer to reload Secrets:
-
-1. Store the new certificates in a new Secret. Edit the ivorycluster object
-   to refer to the new Secret, and IVYO will perform a rolling restart of PgBouncer.
-   ```yaml
-   spec:
-     proxy:
-       pgBouncer:
-         customTLSSecret:
-           name: hippo.pgbouncer.new.tls
-   ```
-
-   _or_
-
-2. Replace the old certificates in the current Secret. IVYO doesn't notice when
-   the contents of your Secret change, so you need to trigger a rolling restart
-   of PgBouncer. Edit the ivorycluster object to add a unique annotation.
-   The name and value are up to you, so long as the value differs from the
-   previous value.
-   ```yaml
-   spec:
-     proxy:
-       pgBouncer:
-         metadata:
-           annotations:
-             restarted: Q1-certs
-   ```
-
-   This `kubectl patch` command uses your local date and time:
-
-   ```shell
-   kubectl patch ivorycluster/hippo --type merge \
-     --patch '{"spec":{"proxy":{"pgBouncer":{"metadata":{"annotations":{"restarted":"'"$(date)"'"}}}}}}'
-   ```
 
 ## Changing the Primary
 
