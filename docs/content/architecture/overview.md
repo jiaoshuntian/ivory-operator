@@ -22,7 +22,7 @@ to create several
 [custom resource definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions)
 that allow for the management of IvorySQL clusters.
 
-The main custom resource definition is [`postgresclusters.ivory-operator.crunchydata.com`]({{< relref "references/crd.md" >}}). This allows you to control all the information about a Ivory cluster, including:
+The main custom resource definition is ivoryclusters.ivory-operator.highgo.com. This allows you to control all the information about a Ivory cluster, including:
 
 - General information
 - Resource allocation
@@ -46,14 +46,7 @@ Pgtask)
 The main purpose of IVYO is to create and update information
 around the structure of a Ivory Cluster, and to relay information about the
 overall status and health of a IvorySQL cluster. The goal is to also simplify
-this process as much as possible for users. For example, let's say we want to
-create a high-availability IvorySQL cluster that has multiple replicas,
-supports having backups in both a local storage area and Amazon S3 and has
-built-in metrics and connection pooling, similar to:
-
-![IvorySQL Cluster Architecture](/images/postgresql-cluster-architecture.png)
-
-This can be accomplished with a relatively simple manifest. Please refer to the [tutorial]({{< relref "tutorial/_index.md" >}}) for how to accomplish this, or see the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repo.
+this process as much as possible for users. 
 
 The Ivory Operator handles setting up all of the various StatefulSets, Deployments, Services and other Kubernetes objects.
 

@@ -1,0 +1,28 @@
+apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo-s3
+spec:
+  image: docker.io/balinor2017/highgo-ivory:0.1
+  postgresVersion: 15
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: docker.io/balinor2017/highgo-pgbackrest:0.1
+      configuration:
+      - secret:
+          name: ivyo-s3-creds
+      global:
+        repo1-path: /pgbackrest/ivory-operator/hippo-s3/repo1
+      repos:
+      - name: repo1
+        s3:
+          bucket: "<YOUR_AWS_S3_BUCKET_NAME>"
+          endpoint: "<YOUR_AWS_S3_ENDPOINT>"
+          region: "<YOUR_AWS_S3_REGION>"

@@ -25,10 +25,6 @@ allowing them to replay old WAL logs
 - ...and of course, allowing for one to take full, differential, and incremental
 backups and perform full and point-in-time restores
 
-Below is one example of how IVYO manages backups with both a local storage and a Amazon S3 configuration.
-
-![IvorySQL Operator pgBackRest Integration](/images/postgresql-cluster-dr-base.png)
-
 The IvorySQL Operator leverages a pgBackRest repository to facilitate the
 usage of the pgBackRest features in a IvorySQL cluster. When a new IvorySQL
 cluster is created, it simultaneously creates a pgBackRest repository.

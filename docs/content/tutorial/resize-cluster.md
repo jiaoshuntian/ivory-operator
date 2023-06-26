@@ -21,18 +21,15 @@ It's important for instances in the same high availability set to have the same 
 IVYO lets you adjust CPU and memory within the `resources` sections of the `ivoryclusters.ivory-operator.ivorysql.org` custom resource. These include:
 
 - `spec.instances.resources` section, which sets the resource values for the IvorySQL container,
-  as well as any init containers in the associated pod and containers created by the `pgDataVolume` and `pgWALVolume` [data migration jobs]({{< relref "guides/data-migration.md" >}}).
+  as well as any init containers in the associated pod and containers created by the `pgDataVolume` and `pgWALVolume` data migration jobs.
 - `spec.instances.sidecars.replicaCertCopy.resources` section, which sets the resources for the `replica-cert-copy` sidecar container.
-- `spec.monitoring.pgmonitor.exporter.resources` section, which sets the resources for the `exporter` sidecar container.
 - `spec.backups.pgbackrest.repoHost.resources` section, which sets the resources for the pgBackRest repo host container,
-  as well as any init containers in the associated pod and containers created by the `pgBackRestVolume` [data migration job]({{< relref "guides/data-migration.md" >}}).
+  as well as any init containers in the associated pod and containers created by the `pgBackRestVolume` data migration job.
 - `spec.backups.pgbackrest.sidecars.pgbackrest.resources` section, which sets the resources for the `pgbackrest` sidecar container.
 - `spec.backups.pgbackrest.sidecars.pgbackrestConfig.resources` section, which sets the resources for the `pgbackrest-config` sidecar container.
 - `spec.backups.pgbackrest.jobs.resources` section, which sets the resources for any pgBackRest backup job.
 - `spec.backups.pgbackrest.restore.resources` section, which sets the resources for manual pgBackRest restore jobs.
 - `spec.dataSource.ivorycluster.resources` section, which sets the resources for pgBackRest restore jobs created during the [cloning]({{< relref "./disaster-recovery.md" >}}) process.
-- `spec.proxy.pgBouncer.resources` section, which sets the resources for the `pgbouncer` container.
-- `spec.proxy.pgBouncer.sidecars.pgbouncerConfig.resources` section, which sets the resources for the `pgbouncer-config` sidecar container.
 
 The layout of these `resources` sections should be familiar: they follow the same pattern as the standard Kubernetes structure for setting [container resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). Note that these settings also allow for the configuration of [QoS classes](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/).
 
@@ -44,7 +41,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance1
@@ -61,7 +58,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -123,7 +120,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance1
@@ -140,7 +137,7 @@ spec:
             storage: 10Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -190,7 +187,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance1
@@ -207,7 +204,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -227,7 +224,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance1
@@ -256,7 +253,7 @@ spec:
             storage: 10Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -295,7 +292,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance2
@@ -312,7 +309,7 @@ spec:
             storage: 10Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:

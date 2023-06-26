@@ -1,0 +1,14 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ivory-operator
+  labels:
+    ivory-operator.ivorysql.org/control-plane: ivory-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ivory-operator
+subjects:
+- kind: ServiceAccount
+  name: ivyo

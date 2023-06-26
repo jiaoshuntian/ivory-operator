@@ -1,0 +1,5 @@
+namespace: ivory-operator
+
+resources:
+- ivory.yaml
+- keycloak.yaml

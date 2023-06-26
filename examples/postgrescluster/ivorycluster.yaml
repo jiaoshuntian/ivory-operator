@@ -1,5 +1,5 @@
-apiVersion: postgres-operator.crunchydata.com/v1beta1
-kind: PostgresCluster
+apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -33,6 +33,3 @@ spec:
             resources:
               requests:
                 storage: 1Gi
-  proxy:
-    pgBouncer:
-      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.18-0

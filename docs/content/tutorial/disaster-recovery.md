@@ -15,7 +15,7 @@ Let's look at how we can perform different types of restore operations. First, l
 
 {{% notice info %}}
 
-As of v5.0.5, IVYO offers the ability to restore from an existing ivorycluster or a remote
+IVYO offers the ability to restore from an existing ivorycluster or a remote
 cloud-based data source, such as S3, GCS, etc. For more on that, see the [Clone From Backups Stored in S3 / GCS / Azure Blob Storage](#cloud-based-data-source) section.
 
 Note that you **cannot** use both a local ivorycluster data source and a remote cloud-based data
@@ -24,7 +24,7 @@ are filled in, the local ivorycluster data source will take precedence.
 
 {{% /notice %}}
 
-There are several attributes on the custom resource that are important to understand as part of the restore process. All of these attributes are grouped together in the [`spec.dataSource.ivorycluster`]({{< relref "/references/crd#ivoryclusterspecdatasourceivorycluster" >}}) section of the custom resource.
+There are several attributes on the custom resource that are important to understand as part of the restore process. All of these attributes are grouped together in the spec.dataSource.ivorycluster section of the custom resource.
 
 Please review the table below to understand how each of these attributes work in the context of setting up a restore operation.
 
@@ -54,7 +54,7 @@ spec:
     ivorycluster:
       clusterName: hippo
       repoName: repo1
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec:
@@ -65,7 +65,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -128,7 +128,7 @@ spec:
       options:
       - --type=time
       - --target="2021-06-09 14:15:11-04"
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec:
@@ -139,7 +139,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -292,13 +292,13 @@ kind: ivorycluster
 metadata:
   name: hippo-standby
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         s3:
@@ -325,7 +325,7 @@ kind: ivorycluster
 metadata:
   name: hippo-standby
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
@@ -358,13 +358,13 @@ kind: ivorycluster
 metadata:
   name: hippo-standby
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         s3:
@@ -419,7 +419,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec:
@@ -430,7 +430,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       configuration:
       - secret:
           name: ivyo-s3-creds
@@ -472,7 +472,7 @@ kind: ivorycluster
 metadata:
   name: elephant
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   dataSource:
     pgbackrest:
@@ -497,7 +497,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       configuration:
       - secret:
           name: ivyo-s3-creds
@@ -565,7 +565,7 @@ kind: ivorycluster
 metadata:
   name: rhino
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   dataSource:
     pgbackrest:
@@ -590,7 +590,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
@@ -602,7 +602,3 @@ spec:
                 storage: 1Gi
 
 ```
-
-## Next Steps
-
-Now we've seen how to clone a cluster and perform a point-in-time-recovery, let's see how we can [monitor]({{< relref "./monitoring.md" >}}) our Ivory cluster to detect and prevent issues from occurring.

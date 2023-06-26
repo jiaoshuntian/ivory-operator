@@ -80,183 +80,6 @@ The one requirement of volume is that you need to fill out the `volumeClaimSpec`
 
 In the above example, we assume that the Kubernetes cluster is using a default storage class. If your cluster does not have a default storage class, or you wish to use a different storage class, you will have to set `spec.backups.pgbackrest.repos.volume.volumeClaimSpec.storageClassName`.
 
-## Using S3
-
-Setting up backups in S3 requires a few additional modifications to your custom resource spec
-and either
-- the use of a Secret to protect your S3 credentials, or
-- setting up identity providers in AWS to allow pgBackRest to assume a role with permissions.
-
-### Using S3 Credentials
-
-There is an example for creating a Ivory cluster that uses S3 for backups in the `kustomize/s3` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In this directory, there is a file called `s3.conf.example`. Copy this example file to `s3.conf`:
-
-```
-cp s3.conf.example s3.conf
-```
-
-Note that `s3.conf` is protected from commit by a `.gitignore`.
-
-Open up `s3.conf`, you will see something similar to:
-
-```
-[global]
-repo1-s3-key=<YOUR_AWS_S3_KEY>
-repo1-s3-key-secret=<YOUR_AWS_S3_KEY_SECRET>
-```
-
-Replace the values with your AWS S3 credentials and save.
-
-Now, open up `kustomize/s3/postgres.yaml`. In the `s3` section, you will see something similar to:
-
-```
-s3:
-  bucket: "<YOUR_AWS_S3_BUCKET_NAME>"
-  endpoint: "<YOUR_AWS_S3_ENDPOINT>"
-  region: "<YOUR_AWS_S3_REGION>"
-```
-
-Again, replace these values with the values that match your S3 configuration. For `endpoint`, only use the domain and, if necessary, the port (e.g. `s3.us-east-2.amazonaws.com`).
-
-Note that `region` is required by S3, as does pgBackRest. If you are using a storage system with a S3 compatibility layer that does not require `region`, you can fill in region with a random value.
-
-If you are using MinIO, you may need to set the URI style to use `path` mode. You can do this from the global settings, e.g. for `repo1`:
-
-```yaml
-spec:
-  backups:
-    pgbackrest:
-      global:
-        repo1-s3-uri-style: path
-```
-
-When your configuration is saved, you can deploy your cluster:
-
-```
-kubectl apply -k kustomize/s3
-```
-
-Watch your cluster: you will see that your backups and archives are now being stored in S3!
-
-### Using an AWS-integrated identity provider and role
-
-If you deploy ivoryclusters to AWS Elastic Kubernetes Service, you can take advantage of their
-IAM role integration. When you attach a certain annotation to your ivorycluster spec, AWS will
-automatically mount an AWS token and other needed environment variables. These environment
-variables will then be used by pgBackRest to assume the identity of a role that has permissions
-to upload to an S3 repository.
-
-This method requires [additional setup in AWS IAM](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
-Use the procedure in the linked documentation for the first two steps described below:
-
-1. Create an OIDC provider for your EKS cluster.
-2. Create an IAM policy for bucket access and an IAM role with a trust relationship with the
-OIDC provider in step 1.
-
-The third step is to associate that IAM role with a ServiceAccount, but there's no need to
-do that manually, as IVYO does that for you. First, make a note of the IAM role's `ARN`.
-
-You can then make the following changes to the files in the `kustomize/s3` directory in the
-[Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository:
-
-1\. Add the `s3` section to the spec in `kustomize/s3/postgres.yaml` as discussed in the
-[Using S3 Credentials](#using-s3-credentials) section above. In addition to that, add the required `eks.amazonaws.com/role-arn`
-annotation to the ivorycluster spec using the IAM `ARN` that you noted above.
-
-For instance, given an IAM role with the ARN `arn:aws:iam::123456768901:role/allow_bucket_access`,
-you would add the following to the ivorycluster spec:
-
-```
-spec:
-  metadata:
-    annotations:
-      eks.amazonaws.com/role-arn: "arn:aws:iam::123456768901:role/allow_bucket_access"
-```
-
-That `annotations` field will get propagated to the ServiceAccounts that require it automatically.
-
-2\. Copy the `s3.conf.example` file to `s3.conf`:
-
-```
-cp s3.conf.example s3.conf
-```
-
-Update that `kustomize/s3/s3.conf` file so that it looks like this:
-
-```
-[global]
-repo1-s3-key-type=web-id
-```
-
-That `repo1-s3-key-type=web-id` line will tell
-[pgBackRest](https://pgbackrest.org/configuration.html#section-repository/option-repo-s3-key-type)
-to use the IAM integration.
-
-With those changes saved, you can deploy your cluster:
-
-```
-kubectl apply -k kustomize/s3
-```
-
-And watch as it spins up and backs up to S3 using pgBackRest's IAM integration.
-
-## Using Google Cloud Storage (GCS)
-
-Similar to S3, setting up backups in Google Cloud Storage (GCS) requires a few additional modifications to your custom resource spec and the use of a Secret to protect your GCS credentials.
-
-There is an example for creating a Ivory cluster that uses GCS for backups in the `kustomize/gcs` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In order to configure this example to use GCS for backups, you will need do two things.
-
-First, copy your GCS key secret (which is a JSON file) into `kustomize/gcs/gcs-key.json`. Note that a `.gitignore` directive prevents you from committing this file.
-
-Next, open the `postgres.yaml` file and edit `spec.backups.pgbackrest.repos.gcs.bucket` to the name of the GCS bucket that you want to back up to.
-
-Save this file, and then run:
-
-```
-kubectl apply -k kustomize/gcs
-```
-
-Watch your cluster: you will see that your backups and archives are now being stored in GCS!
-
-## Using Azure Blob Storage
-
-Similar to the above, setting up backups in Azure Blob Storage requires a few additional modifications to your custom resource spec and the use of a Secret to protect your Azure Storage credentials.
-
-There is an example for creating a Ivory cluster that uses Azure for backups in the `kustomize/azure` directory in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository. In this directory, there is a file called `azure.conf.example`. Copy this example file to `azure.conf`:
-
-```
-cp azure.conf.example azure.conf
-```
-
-Note that `azure.conf` is protected from commit by a `.gitignore`.
-
-Open up `azure.conf`, you will see something similar to:
-
-```
-[global]
-repo1-azure-account=<YOUR_AZURE_ACCOUNT>
-repo1-azure-key=<YOUR_AZURE_KEY>
-```
-
-Replace the values with your Azure credentials and save.
-
-Now, open up `kustomize/azure/postgres.yaml`. In the `azure` section, you will see something similar to:
-
-```
-azure:
-  container: "<YOUR_AZURE_CONTAINER>"
-```
-
-Again, replace these values with the values that match your Azure configuration.
-
-When your configuration is saved, you can deploy your cluster:
-
-```
-kubectl apply -k kustomize/azure
-```
-
-Watch your cluster: you will see that your backups and archives are now being stored in Azure!
-
 ## Set Up Multiple Backup Repositories
 
 It is possible to store backups in multiple locations! For example, you may want to keep your backups both within your Kubernetes cluster and S3. There are many reasons for doing this:
@@ -268,8 +91,6 @@ It is possible to store backups in multiple locations! For example, you may want
 and more.
 
 IVYO lets you store your backups in up to four locations simultaneously. You can mix and match: for example, you can store backups both locally and in GCS, or store your backups in two different GCS repositories. It's up to you!
-
-There is an example in the [Ivory Operator examples](https://github.com/ivorysql/ivory-operator-examples/fork) repository in the `kustomize/multi-backup-repo` folder that sets up backups in four different locations using each storage type. You can modify this example to match your desired backup topology.
 
 ### Additional Notes
 
@@ -304,10 +125,10 @@ generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-- postgres.yaml
+- ivory.yaml
 ```
 
-Finally, create the manifest for the Ivory cluster in a file named `postgres.yaml` that is similar to the following:
+Finally, create the manifest for the Ivory cluster in a file named `ivory.yaml` that is similar to the following:
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
@@ -315,7 +136,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - dataVolumeClaimSpec:
@@ -326,7 +147,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       configuration:
       - secret:
           name: hippo-pgbackrest-secrets

@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ivyo
+  labels:
+    ivory-operator.ivorysql.org/control-plane: ivory-operator
+spec:
+  replicas: 1
+  strategy: { type: Recreate }
+  selector:
+    matchLabels:
+      ivory-operator.ivorysql.org/control-plane: ivory-operator
+  template:
+    metadata:
+      labels:
+        ivory-operator.ivorysql.org/control-plane: ivory-operator
+    spec:
+      containers:
+      - name: operator
+        image: ivory-operator
+        env:
+        - name: IVYO_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: IVORY_DEBUG
+          value: "true"
+        - name: RELATED_IMAGE_IVORY_2
+          value: "docker.io/balinor2017/highgo-ivory:0.1"
+        - name: RELATED_IMAGE_PGBACKREST
+          value: "docker.io/balinor2017/highgo-pgbackrest:0.1"
+
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: { drop: [ALL] }
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+      serviceAccountName: ivyo

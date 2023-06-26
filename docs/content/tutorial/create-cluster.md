@@ -5,8 +5,6 @@ draft: false
 weight: 20
 ---
 
-If you came here through the [quickstart]({{< relref "quickstart/_index.md" >}}), you may have already created a cluster. If you created a cluster by using the example in the `kustomize/ivory` directory, feel free to skip to connecting to a cluster, or read onward for a more in depth look into cluster creation!
-
 ## Create a Ivory Cluster
 
 Creating a Ivory cluster is pretty simple. Using the example in the `kustomize/ivory` directory, all we have to do is run:
@@ -38,7 +36,7 @@ kind: ivorycluster
 metadata:
   name: hippo
 spec:
-  image: {{< param imageCrunchyPostgres >}}
+  image: {{< param imageIvorySQL >}}
   postgresVersion: {{< param postgresVersion >}}
   instances:
     - name: instance1
@@ -50,7 +48,7 @@ spec:
             storage: 1Gi
   backups:
     pgbackrest:
-      image: {{< param imageCrunchyPGBackrest >}}
+      image: {{< param imagePGBackrest >}}
       repos:
       - name: repo1
         volume:
