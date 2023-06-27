@@ -3,13 +3,13 @@ kind: TestStep
 delete:
 - apiVersion: apps/v1
   kind: StatefulSet
-  name: non-crunchy-cluster
+  name: non-ivorysql-cluster
 - apiVersion: v1
   kind: Service
-  name: non-crunchy-cluster
+  name: non-ivorysql-cluster
 - apiVersion: v1
   kind: Service
-  name: non-crunchy-cluster-hl
+  name: non-ivorysql-cluster-hl
 - apiVersion: v1
   kind: Secret
-  name: non-crunchy-cluster
+  name: non-ivorysql-cluster

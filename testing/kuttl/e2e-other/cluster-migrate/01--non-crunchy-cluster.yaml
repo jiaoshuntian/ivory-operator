@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: non-crunchy-cluster
+  name: non-ivorysql-cluster
   labels:
     ivory-operator-test: kuttl
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/instance: non-crunchy-cluster
+    app.kubernetes.io/instance: non-ivorysql-cluster
 type: Opaque
 stringData:
   postgres-password: "SR6kNAFXvX"
@@ -13,11 +13,11 @@ stringData:
 apiVersion: v1
 kind: Service
 metadata:
-  name: non-crunchy-cluster-hl
+  name: non-ivorysql-cluster-hl
   labels:
     ivory-operator-test: kuttl
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/instance: non-crunchy-cluster
+    app.kubernetes.io/instance: non-ivorysql-cluster
     app.kubernetes.io/component: primary
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
@@ -30,17 +30,17 @@ spec:
       targetPort: tcp-postgresql
   selector:
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/instance: non-crunchy-cluster
+    app.kubernetes.io/instance: non-ivorysql-cluster
     app.kubernetes.io/component: primary
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: non-crunchy-cluster
+  name: non-ivorysql-cluster
   labels:
     ivory-operator-test: kuttl
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/instance: non-crunchy-cluster
+    app.kubernetes.io/instance: non-ivorysql-cluster
     app.kubernetes.io/component: primary
 spec:
   type: ClusterIP
@@ -52,21 +52,21 @@ spec:
       nodePort: null
   selector:
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/instance: non-crunchy-cluster
+    app.kubernetes.io/instance: non-ivorysql-cluster
     app.kubernetes.io/component: primary
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: non-crunchy-cluster
+  name: non-ivorysql-cluster
   labels:
     ivory-operator-test: kuttl
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/instance: non-crunchy-cluster
+    app.kubernetes.io/instance: non-ivorysql-cluster
     app.kubernetes.io/component: primary
 spec:
   replicas: 1
-  serviceName: non-crunchy-cluster-hl
+  serviceName: non-ivorysql-cluster-hl
   updateStrategy:
     rollingUpdate: {}
     type: RollingUpdate
@@ -74,15 +74,15 @@ spec:
     matchLabels:
       ivory-operator-test: kuttl
       app.kubernetes.io/name: postgresql
-      app.kubernetes.io/instance: non-crunchy-cluster
+      app.kubernetes.io/instance: non-ivorysql-cluster
       app.kubernetes.io/component: primary
   template:
     metadata:
-      name: non-crunchy-cluster
+      name: non-ivorysql-cluster
       labels:
         ivory-operator-test: kuttl
         app.kubernetes.io/name: postgresql
-        app.kubernetes.io/instance: non-crunchy-cluster
+        app.kubernetes.io/instance: non-ivorysql-cluster
         app.kubernetes.io/component: primary
     spec:
       serviceAccountName: default
@@ -94,7 +94,7 @@ spec:
                   matchLabels:
                     ivory-operator-test: kuttl
                     app.kubernetes.io/name: postgresql
-                    app.kubernetes.io/instance: non-crunchy-cluster
+                    app.kubernetes.io/instance: non-ivorysql-cluster
                     app.kubernetes.io/component: primary
                 namespaces:
                   - "default"
@@ -122,7 +122,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: non-crunchy-cluster
+                  name: non-ivorysql-cluster
                   key: postgres-password
             - name: POSTGRESQL_ENABLE_LDAP
               value: "no"

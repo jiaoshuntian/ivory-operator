@@ -7,7 +7,7 @@ on:
 
 jobs:
   scan_MAIN:
-    if: ${{ github.repository == 'CrunchyData/postgres-operator' }}
+    if: ${{ github.repository == 'IvorySQL/ivory-operator' }}
 
     permissions:
       # for github/codeql-action/upload-sarif to upload SARIF results
@@ -47,7 +47,7 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 
   scan_REL_4_7:
-    if: ${{ github.repository == 'CrunchyData/postgres-operator' }}
+    if: ${{ github.repository == 'IvorySQL/ivory-operator' }}
 
     runs-on: ubuntu-latest
 
@@ -70,5 +70,5 @@ jobs:
           report=`cat trivy-results`
           report="${report:-Nothing to Report}"
           curl -X POST -H 'Content-type: application/json' \
-            --data '{"text": "postgres-operator REL_4_7 CVE Alert ```'"$report"'```"}'\
+            --data '{"text": "ivory-operator REL_4_7 CVE Alert ```'"$report"'```"}'\
             ${{ secrets.SLACK_WEBHOOK }}
