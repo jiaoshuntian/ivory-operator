@@ -67,14 +67,14 @@ clean-deprecated: ## Clean deprecated resources
 	@# packages used to be downloaded into the vendor directory
 	[ ! -d vendor ] || rm -r vendor
 	@# executables used to be compiled into the $GOBIN directory
-	[ ! -n '$(GOBIN)' ] || rm -f $(GOBIN)/ivory-operator $(GOBIN)/apiserver $(GOBIN)/*pgo
+	[ ! -n '$(GOBIN)' ] || rm -f $(GOBIN)/ivory-operator $(GOBIN)/apiserver $(GOBIN)/*ivyo
 	@# executables used to be in subdirectories
-	[ ! -d bin/pgo-rmdata ] || rm -r bin/pgo-rmdata
-	[ ! -d bin/pgo-backrest ] || rm -r bin/pgo-backrest
-	[ ! -d bin/pgo-scheduler ] || rm -r bin/pgo-scheduler
+	[ ! -d bin/ivyo-rmdata ] || rm -r bin/ivyo-rmdata
+	[ ! -d bin/ivyo-backrest ] || rm -r bin/ivyo-backrest
+	[ ! -d bin/ivyo-scheduler ] || rm -r bin/ivyo-scheduler
 	[ ! -d bin/ivory-operator ] || rm -r bin/ivory-operator
 	@# keys used to be generated before install
-	[ ! -d conf/pgo-backrest-repo ] || rm -r conf/pgo-backrest-repo
+	[ ! -d conf/ivyo-backrest-repo ] || rm -r conf/ivyo-backrest-repo
 	[ ! -d conf/ivory-operator ] || rm -r conf/ivory-operator
 
 ##@ Deployment
@@ -108,12 +108,12 @@ deploy-dev: IVYO_FEATURE_GATES ?= "TablespaceVolumes=true"
 deploy-dev: build-ivory-operator
 deploy-dev: createnamespaces
 	kubectl apply --server-side -k ./config/dev
-	hack/create-kubeconfig.sh ivory-operator pgo
+	hack/create-kubeconfig.sh ivory-operator ivyo
 	env \
 		IVORY_DEBUG=true \
 		IVYO_FEATURE_GATES="${IVYO_FEATURE_GATES}" \
 		CHECK_FOR_UPGRADES='$(if $(CHECK_FOR_UPGRADES),$(CHECK_FOR_UPGRADES),false)' \
-		KUBECONFIG=hack/.kube/ivory-operator/pgo \
+		KUBECONFIG=hack/.kube/ivory-operator/ivyo \
 		IVYO_NAMESPACE='ivory-operator' \
 		$(shell kubectl kustomize ./config/dev | \
 			sed -ne '/^kind: Deployment/,/^---/ { \
@@ -152,7 +152,7 @@ build-ivory-operator-image: build/ivory-operator/Dockerfile
 		--label vendor='$(IVYO_IMAGE_MAINTAINER)' \
 		--label io.k8s.display-name='$(IVYO_IMAGE_NAME)' \
 		--label io.k8s.description='$(IVYO_IMAGE_DESCRIPTION)' \
-		--label io.openshift.tags="postgresql,postgres,sql,nosql,crunchy" \
+		--label io.openshift.tags="postgresql,postgres,sql,nosql,ivorysql" \
 		--annotation org.opencontainers.image.authors='$(IVYO_IMAGE_MAINTAINER)' \
 		--annotation org.opencontainers.image.vendor='$(IVYO_IMAGE_MAINTAINER)' \
 		--annotation org.opencontainers.image.created='$(IVYO_IMAGE_TIMESTAMP)' \
@@ -296,12 +296,12 @@ release-ivory-operator-image-labels:
 	$(if $(IVYO_IMAGE_SUMMARY),,    	$(error missing IVYO_IMAGE_SUMMARY))
 	$(if $(IVYO_VERSION),,			$(error missing IVYO_VERSION))
 
-.PHONY: release-highgo-ivory-exporter-image release-highgo-ivory-exporter-image-labels
-release-highgo-ivory-exporter-image: ## Build the ivory-operator image and all its prerequisites
-release-highgo-ivory-exporter-image: release-highgo-ivory-exporter-image-labels
-release-highgo-ivory-exporter-image: licenses
-release-highgo-ivory-exporter-image: build-ivory-operator-image
-release-highgo-ivory-exporter-image-labels:
+.PHONY: release-ivorysql-ivory-exporter-image release-ivorysql-ivory-exporter-image-labels
+release-ivorysql-ivory-exporter-image: ## Build the ivory-operator image and all its prerequisites
+release-ivorysql-ivory-exporter-image: release-ivorysql-ivory-exporter-image-labels
+release-ivorysql-ivory-exporter-image: licenses
+release-ivorysql-ivory-exporter-image: build-ivory-operator-image
+release-ivorysql-ivory-exporter-image-labels:
 	$(if $(IVYO_IMAGE_DESCRIPTION),,	$(error missing IVYO_IMAGE_DESCRIPTION))
 	$(if $(IVYO_IMAGE_MAINTAINER),, 	$(error missing IVYO_IMAGE_MAINTAINER))
 	$(if $(IVYO_IMAGE_NAME),,       	$(error missing IVYO_IMAGE_NAME))

@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -692,7 +692,7 @@ type ExporterSpec struct {
 	// +optional
 	CustomTLSSecret *corev1.SecretProjection `json:"customTLSSecret,omitempty"`
 
-	// The image name to use for highgo-ivory-exporter containers. The image may
+	// The image name to use for ivorysql-ivory-exporter containers. The image may
 	// also be set using the RELATED_IMAGE_PGEXPORTER environment variable.
 	// +optional
 	Image string `json:"image,omitempty"`

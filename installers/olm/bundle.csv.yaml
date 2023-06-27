@@ -8,7 +8,7 @@ kind: ClusterServiceVersion
 metadata:
   name: '' # generate.sh
   annotations:
-    support: crunchydata.com
+    support: ivorysql.com
     olm.properties: '[]'
 
     # The following affect how the package is indexed at OperatorHub.io:
@@ -21,38 +21,39 @@ metadata:
     # The following appear on the details page at OperatorHub.io:
     # https://operatorhub.io/operator/postgresql
     createdAt: 2019-12-31 19:40Z
-    repository: https://github.com/CrunchyData/postgres-operator
+    repository: https://github.com/IvorySQL/ivory-operator
     containerImage: # kustomize config/operator
     alm-examples: |- # kustomize config/examples
 
 spec:
   # The following affect how the package is indexed at OperatorHub.io:
   # https://operatorhub.io/
-  displayName: Crunchy Postgres for Kubernetes
+  displayName: IvorySQL Ivory for Kubernetes
   provider:
     # These values become labels on the PackageManifest.
-    name: Crunchy Data
-    url: https://www.crunchydata.com/
+    name: Ivory
+    url: https://www.ivorysql.org/
   keywords:
     - postgres
     - postgresql
     - database
     - sql
     - operator
-    - crunchy data
+    - ivory
+    - ivorysql
 
   # The following appear on the details page at OperatorHub.io:
   # https://operatorhub.io/operator/postgresql
   description: |- # description.md
   version: '' # generate.sh
   links:
-    - name: Crunchy Data
-      url: https://www.crunchydata.com/
+    - name: IvorySQL
+      url: https://www.ivorysql.org/
     - name: Documentation
-      url: https://access.crunchydata.com/documentation/postgres-operator/v5/
+      url: https://access.ivorysql.org/documentation/ivory-operator/v5/
   maintainers:
-    - name: Crunchy Data
-      email: info@crunchydata.com
+    - name: IvorySQL
+      email: info@ivorysql.org
 
   # https://olm.operatorframework.io/docs/best-practices/common/
   # Note: The minKubeVersion must correspond to the lowest supported OCP version

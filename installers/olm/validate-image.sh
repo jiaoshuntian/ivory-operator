@@ -50,7 +50,7 @@ validate_bundle_image() {
 
 	port=$(${container} inspect "${registry}" \
 		--format='{{ (index .NetworkSettings.Ports "5000/tcp" 0).HostPort }}')
-	image="localhost:${port}/postgres-operator-bundle:latest"
+	image="localhost:${port}/ivory-operator-bundle:latest"
 
 	cat > "${TMPDIR}/registries.conf" <<-TOML
 	[[registry]]

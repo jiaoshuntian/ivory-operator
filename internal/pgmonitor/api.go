@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -49,7 +49,7 @@ func (exec Executor) GetExporterSetupSQL(ctx context.Context, version int) (stri
 		// the path to point to the script in our database image.
 		sql = strings.ReplaceAll(stdout.String(),
 			"/usr/bin/pgbackrest-info.sh",
-			"/opt/highgo/bin/ivory/pgbackrest_info.sh")
+			"/opt/crunchy/bin/postgres/pgbackrest_info.sh")
 	}
 
 	log.V(1).Info("updated pgMonitor default configration", "sql", sql)

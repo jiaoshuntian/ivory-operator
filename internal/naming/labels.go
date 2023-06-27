@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -83,7 +83,7 @@ const (
 
 	// LabelPGMonitorDiscovery is the label added to Pods running the "exporter" container to
 	// support discovery by Prometheus according to pgMonitor configuration
-	LabelPGMonitorDiscovery = labelPrefix + "highgo-ivory-exporter"
+	LabelPGMonitorDiscovery = labelPrefix + "ivorysql-ivory-exporter"
 
 	// LabelIvoryUser identifies the IvorySQL user an object is for or about.
 	LabelIvoryUser = labelPrefix + "pguser"

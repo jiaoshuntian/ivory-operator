@@ -10348,7 +10348,7 @@ spec:
                                 type: boolean
                             type: object
                           image:
-                            description: The image name to use for highgo-ivory-exporter
+                            description: The image name to use for ivorysql-ivory-exporter
                               containers. The image may also be set using the RELATED_IMAGE_PGEXPORTER
                               environment variable.
                             type: string
