@@ -27,7 +27,7 @@ import (
 	"sigs.k8s.io/yaml"
 
 	"github.com/ivorysql/ivory-operator/internal/initialize"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // marshalMatches converts actual to YAML and compares that to expected.
@@ -82,14 +82,14 @@ kind: Job
 metadata:
   creationTimestamp: null
   labels:
-    ivory-operator.highgo.com/cluster: pg5
-    ivory-operator.highgo.com/ivyupgrade: pgu2
-    ivory-operator.highgo.com/role: ivyupgrade
-    ivory-operator.highgo.com/version: "25"
+    ivory-operator.ivorysql.org/cluster: pg5
+    ivory-operator.ivorysql.org/ivyupgrade: pgu2
+    ivory-operator.ivorysql.org/role: ivyupgrade
+    ivory-operator.ivorysql.org/version: "25"
   name: pgu2-pgdata
   namespace: ns1
   ownerReferences:
-  - apiVersion: ivory-operator.highgo.com/v1beta1
+  - apiVersion: ivory-operator.ivorysql.org/v1beta1
     blockOwnerDeletion: true
     controller: true
     kind: IvyUpgrade
@@ -101,10 +101,10 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        ivory-operator.highgo.com/cluster: pg5
-        ivory-operator.highgo.com/ivyupgrade: pgu2
-        ivory-operator.highgo.com/role: ivyupgrade
-        ivory-operator.highgo.com/version: "25"
+        ivory-operator.ivorysql.org/cluster: pg5
+        ivory-operator.ivorysql.org/ivyupgrade: pgu2
+        ivory-operator.ivorysql.org/role: ivyupgrade
+        ivory-operator.ivorysql.org/version: "25"
     spec:
       containers:
       - command:
@@ -208,13 +208,13 @@ kind: Job
 metadata:
   creationTimestamp: null
   labels:
-    ivory-operator.highgo.com/cluster: pg5
-    ivory-operator.highgo.com/ivyupgrade: pgu2
-    ivory-operator.highgo.com/role: removedata
+    ivory-operator.ivorysql.org/cluster: pg5
+    ivory-operator.ivorysql.org/ivyupgrade: pgu2
+    ivory-operator.ivorysql.org/role: removedata
   name: pgu2-sts
   namespace: ns1
   ownerReferences:
-  - apiVersion: ivory-operator.highgo.com/v1beta1
+  - apiVersion: ivory-operator.ivorysql.org/v1beta1
     blockOwnerDeletion: true
     controller: true
     kind: IvyUpgrade
@@ -226,9 +226,9 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        ivory-operator.highgo.com/cluster: pg5
-        ivory-operator.highgo.com/ivyupgrade: pgu2
-        ivory-operator.highgo.com/role: removedata
+        ivory-operator.ivorysql.org/cluster: pg5
+        ivory-operator.ivorysql.org/ivyupgrade: pgu2
+        ivory-operator.ivorysql.org/role: removedata
     spec:
       containers:
       - command:

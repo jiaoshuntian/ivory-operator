@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	labelPrefix = "ivory-operator.highgo.com/"
+	labelPrefix = "ivory-operator.ivorysql.org/"
 
 	// LabelCluster et al. provides the fundamental labels for Ivory instances
 	LabelCluster     = labelPrefix + "cluster"

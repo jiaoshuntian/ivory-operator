@@ -21,7 +21,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // This function looks for a valid huge_pages resource request. If it finds one,

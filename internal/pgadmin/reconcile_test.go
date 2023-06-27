@@ -23,7 +23,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestConfigMap(t *testing.T) {

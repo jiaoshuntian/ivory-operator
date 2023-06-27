@@ -15,7 +15,7 @@
 package ivyupgrade
 
 import (
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (
@@ -27,7 +27,7 @@ const (
 	// status of a Ivory major upgrade.
 	ConditionIvyUpgradeSucceeded = "Succeeded"
 
-	labelPrefix           = "ivory-operator.highgo.com/"
+	labelPrefix           = "ivory-operator.ivorysql.org/"
 	LabelIvyUpgrade       = labelPrefix + "ivyupgrade"
 	LabelCluster          = labelPrefix + "cluster"
 	LabelRole             = labelPrefix + "role"

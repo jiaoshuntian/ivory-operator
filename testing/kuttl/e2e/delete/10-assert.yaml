@@ -1,5 +1,5 @@
 ---
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: delete-with-replica
@@ -16,21 +16,21 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: delete-with-replica
-    ivory-operator.highgo.com/role: master
+    ivory-operator.ivorysql.org/cluster: delete-with-replica
+    ivory-operator.ivorysql.org/role: master
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: delete-with-replica
-    ivory-operator.highgo.com/role: replica
+    ivory-operator.ivorysql.org/cluster: delete-with-replica
+    ivory-operator.ivorysql.org/role: replica
 ---
 apiVersion: batch/v1
 kind: Job
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: delete-with-replica
-    ivory-operator.highgo.com/pgbackrest-backup: replica-create
+    ivory-operator.ivorysql.org/cluster: delete-with-replica
+    ivory-operator.ivorysql.org/pgbackrest-backup: replica-create
 status:
   succeeded: 1

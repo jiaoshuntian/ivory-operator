@@ -49,7 +49,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/pgbouncer"
 	"github.com/ivorysql/ivory-operator/internal/pgmonitor"
 	"github.com/ivorysql/ivory-operator/internal/pki"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (
@@ -72,8 +72,8 @@ type Reconciler struct {
 }
 
 // +kubebuilder:rbac:groups="",resources="events",verbs={create,patch}
-// +kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters",verbs={get,list,watch}
-// +kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters/status",verbs={patch}
+// +kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters",verbs={get,list,watch}
+// +kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters/status",verbs={patch}
 
 // Reconcile reconciles a ConfigMap in a namespace managed by the IvorySQL Operator
 func (r *Reconciler) Reconcile(
@@ -387,7 +387,7 @@ func (r *Reconciler) patch(
 // creator of such a reference have either "delete" permission on the owner or
 // "update" permission on the owner's "finalizers" subresource.
 // - https://docs.k8s.io/reference/access-authn-authz/admission-controllers/
-// +kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters/finalizers",verbs={update}
+// +kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters/finalizers",verbs={update}
 
 // setControllerReference sets owner as a Controller OwnerReference on controlled.
 // Only one OwnerReference can be a controller, so it returns an error if another

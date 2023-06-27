@@ -31,7 +31,7 @@ import (
 	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestClusterYAML(t *testing.T) {
@@ -64,10 +64,10 @@ ctl:
   keyfile: null
 kubernetes:
   labels:
-    ivory-operator.highgo.com/cluster: cluster-name
+    ivory-operator.ivorysql.org/cluster: cluster-name
   namespace: some-namespace
-  role_label: ivory-operator.highgo.com/role
-  scope_label: ivory-operator.highgo.com/patroni
+  role_label: ivory-operator.ivorysql.org/role
+  scope_label: ivory-operator.ivorysql.org/patroni
   use_endpoints: true
 postgresql:
   authentication:
@@ -123,10 +123,10 @@ ctl:
   keyfile: null
 kubernetes:
   labels:
-    ivory-operator.highgo.com/cluster: cluster-name
+    ivory-operator.ivorysql.org/cluster: cluster-name
   namespace: some-namespace
-  role_label: ivory-operator.highgo.com/role
-  scope_label: ivory-operator.highgo.com/patroni
+  role_label: ivory-operator.ivorysql.org/role
+  scope_label: ivory-operator.ivorysql.org/patroni
   use_endpoints: true
 postgresql:
   authentication:

@@ -2,38 +2,38 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- generated/ivory-operator.highgo.com_ivoryclusters.yaml
+- generated/ivory-operator.ivorysql.org_ivoryclusters.yaml
 
 patchesJson6902:
 - target:
     group: apiextensions.k8s.io
     version: v1
     kind: CustomResourceDefinition
-    name: ivoryclusters.ivory-operator.highgo.com
+    name: ivoryclusters.ivory-operator.ivorysql.org
   path: condition.yaml
 - target:
     group: apiextensions.k8s.io
     version: v1
     kind: CustomResourceDefinition
-    name: ivoryclusters.ivory-operator.highgo.com
+    name: ivoryclusters.ivory-operator.ivorysql.org
   path: status.yaml
 - target:
     group: apiextensions.k8s.io
     version: v1
     kind: CustomResourceDefinition
-    name: ivoryclusters.ivory-operator.highgo.com
+    name: ivoryclusters.ivory-operator.ivorysql.org
   path: todos.yaml
 - target:
     group: apiextensions.k8s.io
     version: v1
     kind: CustomResourceDefinition
-    name: ivoryclusters.ivory-operator.highgo.com
+    name: ivoryclusters.ivory-operator.ivorysql.org
   path: validation.yaml
 - target:
     group: apiextensions.k8s.io
     version: v1
     kind: CustomResourceDefinition
-    name: ivoryclusters.ivory-operator.highgo.com
+    name: ivoryclusters.ivory-operator.ivorysql.org
   patch: |-
     - op: add
       path: "/metadata/labels"

@@ -40,7 +40,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 	"github.com/ivorysql/ivory-operator/internal/testing/events"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestHandlePersistentVolumeClaimError(t *testing.T) {

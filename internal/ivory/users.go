@@ -21,7 +21,7 @@ import (
 	"encoding/json"
 
 	"github.com/ivorysql/ivory-operator/internal/logging"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // WriteUsersInIvorySQL calls exec to create users that do not exist in

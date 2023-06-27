@@ -16,7 +16,7 @@
 package pgmonitor
 
 import (
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // ExporterEnabled returns true if the monitoring exporter is enabled

@@ -35,7 +35,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestGeneratePGBouncerService(t *testing.T) {
@@ -84,12 +84,12 @@ kind: Service
 		assert.Assert(t, marshalMatches(service.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: pg7
-  ivory-operator.highgo.com/role: pgbouncer
+  ivory-operator.ivorysql.org/cluster: pg7
+  ivory-operator.ivorysql.org/role: pgbouncer
 name: pg7-pgbouncer
 namespace: ns5
 ownerReferences:
-- apiVersion: ivory-operator.highgo.com/v1beta1
+- apiVersion: ivory-operator.ivorysql.org/v1beta1
   blockOwnerDeletion: true
   controller: true
   kind: IvoryCluster
@@ -100,8 +100,8 @@ ownerReferences:
 		// Always gets a ClusterIP (never None).
 		assert.Equal(t, service.Spec.ClusterIP, "")
 		assert.DeepEqual(t, service.Spec.Selector, map[string]string{
-			"ivory-operator.highgo.com/cluster": "pg7",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"ivory-operator.ivorysql.org/cluster": "pg7",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 	}
 
@@ -123,15 +123,15 @@ ownerReferences:
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, service.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"ivory-operator.highgo.com/cluster": "pg7",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"b":                                   "v2",
+			"ivory-operator.ivorysql.org/cluster": "pg7",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 
 		// Labels not in the selector.
 		assert.DeepEqual(t, service.Spec.Selector, map[string]string{
-			"ivory-operator.highgo.com/cluster": "pg7",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"ivory-operator.ivorysql.org/cluster": "pg7",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 
 		// Add metadata to individual service
@@ -139,7 +139,7 @@ ownerReferences:
 			Metadata: &v1beta1.Metadata{
 				Annotations: map[string]string{"c": "v3"},
 				Labels: map[string]string{"d": "v4",
-					"ivory-operator.highgo.com/cluster": "wrongName"},
+					"ivory-operator.ivorysql.org/cluster": "wrongName"},
 			},
 		}
 
@@ -155,16 +155,16 @@ ownerReferences:
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, service.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"d":                                 "v4",
-			"ivory-operator.highgo.com/cluster": "pg7",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"b":                                   "v2",
+			"d":                                   "v4",
+			"ivory-operator.ivorysql.org/cluster": "pg7",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 
 		// Labels not in the selector.
 		assert.DeepEqual(t, service.Spec.Selector, map[string]string{
-			"ivory-operator.highgo.com/cluster": "pg7",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"ivory-operator.ivorysql.org/cluster": "pg7",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 	})
 
@@ -437,17 +437,17 @@ namespace: ns3
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, deploy.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"ivory-operator.highgo.com/cluster": "test-cluster",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"b":                                   "v2",
+			"ivory-operator.ivorysql.org/cluster": "test-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 
 		// Labels not in the pod selector.
 		assert.DeepEqual(t, deploy.Spec.Selector,
 			&metav1.LabelSelector{
 				MatchLabels: map[string]string{
-					"ivory-operator.highgo.com/cluster": "test-cluster",
-					"ivory-operator.highgo.com/role":    "pgbouncer",
+					"ivory-operator.ivorysql.org/cluster": "test-cluster",
+					"ivory-operator.ivorysql.org/role":    "pgbouncer",
 				},
 			})
 
@@ -458,9 +458,9 @@ namespace: ns3
 
 		// Labels present in the pod template.
 		assert.DeepEqual(t, deploy.Spec.Template.Labels, map[string]string{
-			"b":                                 "v2",
-			"ivory-operator.highgo.com/cluster": "test-cluster",
-			"ivory-operator.highgo.com/role":    "pgbouncer",
+			"b":                                   "v2",
+			"ivory-operator.ivorysql.org/cluster": "test-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgbouncer",
 		})
 	})
 
@@ -493,15 +493,15 @@ shareProcessNamespace: true
 topologySpreadConstraints:
 - labelSelector:
     matchLabels:
-      ivory-operator.highgo.com/cluster: test-cluster
-      ivory-operator.highgo.com/role: pgbouncer
+      ivory-operator.ivorysql.org/cluster: test-cluster
+      ivory-operator.ivorysql.org/role: pgbouncer
   maxSkew: 1
   topologyKey: kubernetes.io/hostname
   whenUnsatisfiable: ScheduleAnyway
 - labelSelector:
     matchLabels:
-      ivory-operator.highgo.com/cluster: test-cluster
-      ivory-operator.highgo.com/role: pgbouncer
+      ivory-operator.ivorysql.org/cluster: test-cluster
+      ivory-operator.ivorysql.org/role: pgbouncer
   maxSkew: 1
   topologyKey: topology.kubernetes.io/zone
   whenUnsatisfiable: ScheduleAnyway

@@ -37,15 +37,15 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/controller/runtime"
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 var (
 	//TODO(tjmoore4): With the new RELATED_IMAGES defaulting behavior, tests could be refactored
 	// to reference those environment variables instead of hard coded image values
-	IvoryHAImage       = "registry.developers.highgo.com/highgo/highgo-ivory:ubi8-13.6-1"
-	IvoryBackRestImage = "registry.developers.highgo.com/highgo/highgo-pgbackrest:ubi8-2.38-0"
-	IvoryBouncerImage  = "registry.developers.highgo.com/highgo/highgo-pgbouncer:ubi8-1.16-2"
+	IvoryHAImage       = "registry.developers.ivorysql.org/highgo/highgo-ivory:ubi8-13.6-1"
+	IvoryBackRestImage = "registry.developers.ivorysql.org/highgo/highgo-pgbackrest:ubi8-2.38-0"
+	IvoryBouncerImage  = "registry.developers.ivorysql.org/highgo/highgo-pgbouncer:ubi8-1.16-2"
 )
 
 // Scale extends d according to IVYO_TEST_TIMEOUT_SCALE.

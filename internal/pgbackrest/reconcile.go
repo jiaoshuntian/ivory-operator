@@ -29,7 +29,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/pki"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // AddRepoVolumesToPod adds pgBackRest repository volumes to the provided Pod template spec, while
