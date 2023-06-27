@@ -32,7 +32,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestConfigDirectory(t *testing.T) {

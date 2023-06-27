@@ -26,7 +26,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestDataVolumeMount(t *testing.T) {
@@ -136,11 +136,11 @@ containers:
   - name: PGDATA
     value: /pgdata/pg11
   - name: PGHOST
-    value: /tmp/ivory
+    value: /tmp/postgres
   - name: PGPORT
     value: "5432"
   - name: KRB5_CONFIG
-    value: /etc/ivory/krb5.conf
+    value: /etc/postgres/krb5.conf
   - name: KRB5RCACHEDIR
     value: /tmp
   imagePullPolicy: Always
@@ -268,11 +268,11 @@ initContainers:
   - name: PGDATA
     value: /pgdata/pg11
   - name: PGHOST
-    value: /tmp/ivory
+    value: /tmp/postgres
   - name: PGPORT
     value: "5432"
   - name: KRB5_CONFIG
-    value: /etc/ivory/krb5.conf
+    value: /etc/postgres/krb5.conf
   - name: KRB5RCACHEDIR
     value: /tmp
   imagePullPolicy: Always
@@ -480,7 +480,7 @@ volumes:
 - mountPath: /etc/database-containerinfo
   name: database-containerinfo
   readOnly: true
-- mountPath: /etc/ivory
+- mountPath: /etc/postgres
   name: ivory-config
   readOnly: true`), "expected WAL and downwardAPI mounts in %q container", pod.Containers[0].Name)
 
@@ -538,11 +538,11 @@ volumes:
 
 		tablespaceVolume1 := new(corev1.PersistentVolumeClaim)
 		tablespaceVolume1.Labels = map[string]string{
-			"ivory-operator.highgo.com/data": "castle",
+			"ivory-operator.ivorysql.org/data": "castle",
 		}
 		tablespaceVolume2 := new(corev1.PersistentVolumeClaim)
 		tablespaceVolume2.Labels = map[string]string{
-			"ivory-operator.highgo.com/data": "trial",
+			"ivory-operator.ivorysql.org/data": "trial",
 		}
 		tablespaceVolumes := []*corev1.PersistentVolumeClaim{tablespaceVolume1, tablespaceVolume2}
 

@@ -3,8 +3,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: init-pgbackrest
-    ivory-operator.highgo.com/pgbackrest-backup: manual
-    ivory-operator.highgo.com/pgbackrest-repo: repo2
+    ivory-operator.ivorysql.org/cluster: init-pgbackrest
+    ivory-operator.ivorysql.org/pgbackrest-backup: manual
+    ivory-operator.ivorysql.org/pgbackrest-repo: repo2
 status:
   succeeded: 1

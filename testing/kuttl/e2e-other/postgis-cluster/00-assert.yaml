@@ -1,4 +1,4 @@
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: postgis
@@ -13,8 +13,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: postgis
-    ivory-operator.highgo.com/pgbackrest-backup: replica-create
+    ivory-operator.ivorysql.org/cluster: postgis
+    ivory-operator.ivorysql.org/pgbackrest-backup: replica-create
 status:
   succeeded: 1
 ---

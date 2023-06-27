@@ -26,7 +26,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/config"
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/naming"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // startupScript is the script for the configuration and startup of the pgAdmin service.

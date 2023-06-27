@@ -89,7 +89,7 @@ rules:
   - patch
   - watch
 - apiGroups:
-  - ivory-operator.highgo.com
+  - ivory-operator.ivorysql.org
   resources:
   - ivoryclusters
   verbs:
@@ -98,21 +98,21 @@ rules:
   - patch
   - watch
 - apiGroups:
-  - ivory-operator.highgo.com
+  - ivory-operator.ivorysql.org
   resources:
   - ivoryclusters/finalizers
   - ivyupgrades/finalizers
   verbs:
   - update
 - apiGroups:
-  - ivory-operator.highgo.com
+  - ivory-operator.ivorysql.org
   resources:
   - ivoryclusters/status
   - ivyupgrades/status
   verbs:
   - patch
 - apiGroups:
-  - ivory-operator.highgo.com
+  - ivory-operator.ivorysql.org
   resources:
   - ivyupgrades
   verbs:

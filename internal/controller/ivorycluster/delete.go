@@ -24,10 +24,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
 	"github.com/ivorysql/ivory-operator/internal/naming"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
-// +kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters",verbs={patch}
+// +kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters",verbs={patch}
 
 // handleDelete sets a finalizer on cluster and performs the finalization of
 // cluster when it is being deleted. It returns (nil, nil) when cluster is

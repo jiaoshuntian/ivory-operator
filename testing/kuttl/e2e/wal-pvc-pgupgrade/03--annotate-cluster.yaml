@@ -1,8 +1,8 @@
 ---
 # Annotate the cluster for an upgrade.
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: wal-pvc-ivyupgrade
   annotations:
-    ivory-operator.highgo.com/allow-upgrade: wal-pvc-ivyupgrade-do-it
+    ivory-operator.ivorysql.org/allow-upgrade: wal-pvc-ivyupgrade-do-it

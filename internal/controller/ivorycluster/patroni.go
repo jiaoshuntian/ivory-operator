@@ -34,7 +34,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/patroni"
 	"github.com/ivorysql/ivory-operator/internal/pki"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // +kubebuilder:rbac:groups="",resources="endpoints",verbs={deletecollection}

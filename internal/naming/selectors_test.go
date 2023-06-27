@@ -21,14 +21,14 @@ import (
 
 	"gotest.tools/v3/assert"
 
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestAnyCluster(t *testing.T) {
 	s, err := AsSelector(AnyCluster())
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster",
+		"ivory-operator.ivorysql.org/cluster",
 	}, ","))
 }
 
@@ -36,7 +36,7 @@ func TestCluster(t *testing.T) {
 	s, err := AsSelector(Cluster("something"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
+		"ivory-operator.ivorysql.org/cluster=something",
 	}, ","))
 
 	_, err = AsSelector(Cluster("--whoa/yikes"))
@@ -47,8 +47,8 @@ func TestClusterDataForIvoryAndPGBackRest(t *testing.T) {
 	s, err := AsSelector(ClusterDataForIvoryAndPGBackRest("something"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/data in (ivory,pgbackrest)",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/data in (ivory,pgbackrest)",
 	}, ","))
 
 	_, err = AsSelector(ClusterDataForIvoryAndPGBackRest("--whoa/yikes"))
@@ -59,8 +59,8 @@ func TestClusterInstance(t *testing.T) {
 	s, err := AsSelector(ClusterInstance("daisy", "dog"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=daisy",
-		"ivory-operator.highgo.com/instance=dog",
+		"ivory-operator.ivorysql.org/cluster=daisy",
+		"ivory-operator.ivorysql.org/instance=dog",
 	}, ","))
 
 	_, err = AsSelector(ClusterInstance("--whoa/son", "--whoa/yikes"))
@@ -71,8 +71,8 @@ func TestClusterInstances(t *testing.T) {
 	s, err := AsSelector(ClusterInstances("something"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/instance",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/instance",
 	}, ","))
 
 	_, err = AsSelector(ClusterInstances("--whoa/yikes"))
@@ -83,8 +83,8 @@ func TestClusterInstanceSet(t *testing.T) {
 	s, err := AsSelector(ClusterInstanceSet("something", "also"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/instance-set=also",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/instance-set=also",
 	}, ","))
 
 	_, err = AsSelector(ClusterInstanceSet("--whoa/yikes", "ok"))
@@ -95,8 +95,8 @@ func TestClusterInstanceSets(t *testing.T) {
 	s, err := AsSelector(ClusterInstanceSets("something"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/instance-set",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/instance-set",
 	}, ","))
 
 	_, err = AsSelector(ClusterInstanceSets("--whoa/yikes"))
@@ -110,8 +110,8 @@ func TestClusterPatronis(t *testing.T) {
 	s, err := AsSelector(ClusterPatronis(cluster))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/patroni=something-ha",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/patroni=something-ha",
 	}, ","))
 
 	cluster.Name = "--nope--"
@@ -126,8 +126,8 @@ func TestClusterPGBouncerSelector(t *testing.T) {
 	s, err := AsSelector(ClusterPGBouncerSelector(cluster))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/role=pgbouncer",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/role=pgbouncer",
 	}, ","))
 
 	cluster.Name = "--bad--dog"
@@ -139,8 +139,8 @@ func TestClusterIvoryUsers(t *testing.T) {
 	s, err := AsSelector(ClusterIvoryUsers("something"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/pguser",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/pguser",
 	}, ","))
 
 	_, err = AsSelector(ClusterIvoryUsers("--nope--"))
@@ -151,8 +151,8 @@ func TestClusterPrimary(t *testing.T) {
 	s, err := AsSelector(ClusterPrimary("something"))
 	assert.NilError(t, err)
 	assert.DeepEqual(t, s.String(), strings.Join([]string{
-		"ivory-operator.highgo.com/cluster=something",
-		"ivory-operator.highgo.com/instance",
-		"ivory-operator.highgo.com/role=master",
+		"ivory-operator.ivorysql.org/cluster=something",
+		"ivory-operator.ivorysql.org/instance",
+		"ivory-operator.ivorysql.org/role=master",
 	}, ","))
 }

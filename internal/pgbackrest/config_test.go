@@ -32,7 +32,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestCreatePGBackRestConfigMapIntent(t *testing.T) {
@@ -89,9 +89,9 @@ func TestCreatePGBackRestConfigMapIntent(t *testing.T) {
 
 		assert.DeepEqual(t, configmap.Annotations, map[string]string{})
 		assert.DeepEqual(t, configmap.Labels, map[string]string{
-			"ivory-operator.highgo.com/cluster":           "hippo-dance",
-			"ivory-operator.highgo.com/pgbackrest":        "",
-			"ivory-operator.highgo.com/pgbackrest-config": "",
+			"ivory-operator.ivorysql.org/cluster":           "hippo-dance",
+			"ivory-operator.ivorysql.org/pgbackrest":        "",
+			"ivory-operator.ivorysql.org/pgbackrest-config": "",
 		})
 
 		assert.Equal(t, configmap.Data["config-hash"], "abcde12345")
@@ -123,7 +123,7 @@ pg1-host-key-file = /etc/pgbackrest/conf.d/~ivory-operator/client-tls.key
 pg1-host-type = tls
 pg1-path = /pgdata/pg12
 pg1-port = 2345
-pg1-socket-path = /tmp/ivory
+pg1-socket-path = /tmp/postgres
 		`, "\t\n")+"\n")
 
 		assert.Equal(t, configmap.Data["pgbackrest_instance.conf"], strings.Trim(`
@@ -155,7 +155,7 @@ repo4-type = s3
 [db]
 pg1-path = /pgdata/pg12
 pg1-port = 2345
-pg1-socket-path = /tmp/ivory
+pg1-socket-path = /tmp/postgres
 		`, "\t\n")+"\n")
 	})
 
@@ -170,7 +170,7 @@ pg1-socket-path = /tmp/ivory
 				"lk1": "cluster-lv1",
 				"lk2": "cluster-lv2",
 
-				"ivory-operator.highgo.com/cluster": "cluster-ignored",
+				"ivory-operator.ivorysql.org/cluster": "cluster-ignored",
 			},
 		}
 		cluster.Spec.Backups.PGBackRest.Metadata = &v1beta1.Metadata{
@@ -182,7 +182,7 @@ pg1-socket-path = /tmp/ivory
 				"lk2": "backups-lv2",
 				"lk3": "backups-lv3",
 
-				"ivory-operator.highgo.com/cluster": "backups-ignored",
+				"ivory-operator.ivorysql.org/cluster": "backups-ignored",
 			},
 		}
 
@@ -199,9 +199,9 @@ pg1-socket-path = /tmp/ivory
 			"lk2": "backups-lv2",
 			"lk3": "backups-lv3",
 
-			"ivory-operator.highgo.com/cluster":           "hippo-dance",
-			"ivory-operator.highgo.com/pgbackrest":        "",
-			"ivory-operator.highgo.com/pgbackrest-config": "",
+			"ivory-operator.ivorysql.org/cluster":           "hippo-dance",
+			"ivory-operator.ivorysql.org/pgbackrest":        "",
+			"ivory-operator.ivorysql.org/pgbackrest-config": "",
 		})
 	})
 }

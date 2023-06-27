@@ -38,7 +38,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestGenerateIvoryUserSecret(t *testing.T) {
@@ -62,9 +62,9 @@ func TestGenerateIvoryUserSecret(t *testing.T) {
 			assert.Equal(t, secret.Namespace, cluster.Namespace)
 			assert.Assert(t, metav1.IsControlledBy(secret, cluster))
 			assert.DeepEqual(t, secret.Labels, map[string]string{
-				"ivory-operator.highgo.com/cluster": "hippo2",
-				"ivory-operator.highgo.com/role":    "pguser",
-				"ivory-operator.highgo.com/pguser":  "some-user-name",
+				"ivory-operator.ivorysql.org/cluster": "hippo2",
+				"ivory-operator.ivorysql.org/role":    "pguser",
+				"ivory-operator.ivorysql.org/pguser":  "some-user-name",
 			})
 		}
 	})
@@ -177,7 +177,7 @@ func TestGenerateIvoryUserSecret(t *testing.T) {
 		if assert.Check(t, secret != nil) {
 			assert.Equal(t, string(secret.Data["dbname"]), "db1")
 			assert.Assert(t, cmp.Regexp(
-				`^ivorysql://some-user-name:[^@]+@hippo2-primary.ns1.svc:9999/db1$`,
+				`^postgresql://some-user-name:[^@]+@hippo2-primary.ns1.svc:9999/db1$`,
 				string(secret.Data["uri"])))
 			assert.Assert(t, cmp.Regexp(
 				`^jdbc:postgresql://hippo2-primary.ns1.svc:9999/db1`+
@@ -194,7 +194,7 @@ func TestGenerateIvoryUserSecret(t *testing.T) {
 		if assert.Check(t, secret != nil) {
 			assert.Equal(t, string(secret.Data["dbname"]), "first")
 			assert.Assert(t, cmp.Regexp(
-				`^ivorysql://some-user-name:[^@]+@hippo2-primary.ns1.svc:9999/first$`,
+				`^postgresql://some-user-name:[^@]+@hippo2-primary.ns1.svc:9999/first$`,
 				string(secret.Data["uri"])))
 			assert.Assert(t, cmp.Regexp(
 				`^jdbc:postgresql://hippo2-primary.ns1.svc:9999/first[?].+$`,
@@ -227,7 +227,7 @@ func TestGenerateIvoryUserSecret(t *testing.T) {
 
 		if assert.Check(t, secret != nil) {
 			assert.Assert(t, cmp.Regexp(
-				`^ivorysql://some-user-name:[^@]+@hippo2-pgbouncer.ns1.svc:10220/yes$`,
+				`^postgresql://some-user-name:[^@]+@hippo2-pgbouncer.ns1.svc:10220/yes$`,
 				string(secret.Data["pgbouncer-uri"])))
 			assert.Assert(t, cmp.Regexp(
 				`^jdbc:postgresql://hippo2-pgbouncer.ns1.svc:10220/yes`+

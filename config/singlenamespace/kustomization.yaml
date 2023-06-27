@@ -1,7 +1,7 @@
 namespace: ivory-operator
 
 commonLabels:
-  ivory-operator.highgo.com/control-plane: ivory-operator
+  ivory-operator.ivorysql.org/control-plane: ivory-operator
 
 bases:
 - ../crd
@@ -12,6 +12,6 @@ patches:
 - path: manager-target.yaml
 
 images:
-- name: postgres-operator
+- name: ivory-operator
   newName: docker.io/balinor2017/ivory-operator
   newTag: v0.1

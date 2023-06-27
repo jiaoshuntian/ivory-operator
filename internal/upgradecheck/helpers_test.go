@@ -35,7 +35,7 @@ import (
 
 	"github.com/ivorysql/ivory-operator/internal/controller/runtime"
 	"github.com/ivorysql/ivory-operator/internal/logging"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 type fakeClientWithError struct {

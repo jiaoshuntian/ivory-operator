@@ -6,14 +6,14 @@ commands:
   # because switchover does not recreate any pods.
   - script: |
       kubectl label --namespace="${NAMESPACE}" pods \
-        --selector='ivory-operator.highgo.com/role=master' \
+        --selector='ivory-operator.ivorysql.org/role=master' \
         'testing/role-before=master'
   - script: |
       kubectl label --namespace="${NAMESPACE}" pods \
-        --selector='ivory-operator.highgo.com/role=replica' \
+        --selector='ivory-operator.ivorysql.org/role=replica' \
         'testing/role-before=replica'
 
   # Annotate the cluster to trigger a switchover.
   - script: |
       kubectl annotate --namespace="${NAMESPACE}" ivorycluster/switchover \
-        "ivory-operator.highgo.com/trigger-switchover=$(date)"
+        "ivory-operator.ivorysql.org/trigger-switchover=$(date)"

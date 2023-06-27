@@ -40,7 +40,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/postgis"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // generateIvoryUserSecret returns a Secret containing a password and
@@ -110,7 +110,7 @@ func (r *Reconciler) generateIvoryUserSecret(
 
 		intent.Data["dbname"] = []byte(database)
 		intent.Data["uri"] = []byte((&url.URL{
-			Scheme: "ivorysql",
+			Scheme: "postgresql",
 			User:   url.UserPassword(username, string(intent.Data["password"])),
 			Host:   net.JoinHostPort(hostname, port),
 			Path:   database,
@@ -142,7 +142,7 @@ func (r *Reconciler) generateIvoryUserSecret(
 			database := string(spec.Databases[0])
 
 			intent.Data["pgbouncer-uri"] = []byte((&url.URL{
-				Scheme: "ivorysql",
+				Scheme: "postgresql",
 				User:   url.UserPassword(username, string(intent.Data["password"])),
 				Host:   net.JoinHostPort(hostname, port),
 				Path:   database,

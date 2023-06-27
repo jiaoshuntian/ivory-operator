@@ -46,14 +46,14 @@ func TestWatchPodsUpdate(t *testing.T) {
 		ObjectOld: &corev1.Pod{
 			ObjectMeta: metav1.ObjectMeta{
 				Labels: map[string]string{
-					"ivory-operator.highgo.com/cluster": "starfish",
+					"ivory-operator.ivorysql.org/cluster": "starfish",
 				},
 			},
 		},
 		ObjectNew: &corev1.Pod{
 			ObjectMeta: metav1.ObjectMeta{
 				Labels: map[string]string{
-					"ivory-operator.highgo.com/cluster": "starfish",
+					"ivory-operator.ivorysql.org/cluster": "starfish",
 				},
 			},
 		},
@@ -68,7 +68,7 @@ func TestWatchPodsUpdate(t *testing.T) {
 					"status": `{"role":"standby_leader"}`,
 				},
 				Labels: map[string]string{
-					"ivory-operator.highgo.com/cluster": "starfish",
+					"ivory-operator.ivorysql.org/cluster": "starfish",
 				},
 			},
 		},
@@ -76,8 +76,8 @@ func TestWatchPodsUpdate(t *testing.T) {
 			ObjectMeta: metav1.ObjectMeta{
 				Namespace: "some-ns",
 				Labels: map[string]string{
-					"ivory-operator.highgo.com/cluster": "starfish",
-					"ivory-operator.highgo.com/role":    "master",
+					"ivory-operator.ivorysql.org/cluster": "starfish",
+					"ivory-operator.ivorysql.org/role":    "master",
 				},
 			},
 		},
@@ -99,7 +99,7 @@ func TestWatchPodsUpdate(t *testing.T) {
 		base := &corev1.Pod{}
 		base.Namespace = "some-ns"
 		base.Labels = map[string]string{
-			"ivory-operator.highgo.com/cluster": "starfish",
+			"ivory-operator.ivorysql.org/cluster": "starfish",
 		}
 
 		pending := base.DeepCopy()

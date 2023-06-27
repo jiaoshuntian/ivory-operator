@@ -25,7 +25,7 @@ import (
 
 	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
 	"github.com/ivorysql/ivory-operator/internal/naming"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (

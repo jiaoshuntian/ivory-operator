@@ -35,7 +35,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/pgbouncer"
 	"github.com/ivorysql/ivory-operator/internal/pki"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // reconcilePGBouncer writes the objects necessary to run a PgBouncer Pod.

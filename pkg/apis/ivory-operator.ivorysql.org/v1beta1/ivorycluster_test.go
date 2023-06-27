@@ -45,7 +45,7 @@ func TestIvoryClusterDefault(t *testing.T) {
 		b, err := yaml.Marshal(cluster)
 		assert.NilError(t, err)
 		assert.DeepEqual(t, string(b), strings.TrimSpace(`
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   creationTimestamp: null
@@ -78,7 +78,7 @@ status:
 		b, err := yaml.Marshal(cluster)
 		assert.NilError(t, err)
 		assert.DeepEqual(t, string(b), strings.TrimSpace(`
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   creationTimestamp: null

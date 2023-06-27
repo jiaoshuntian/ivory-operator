@@ -1,4 +1,4 @@
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: resize-volume-up
@@ -13,8 +13,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: resize-volume-up
-    ivory-operator.highgo.com/pgbackrest-backup: replica-create
+    ivory-operator.ivorysql.org/cluster: resize-volume-up
+    ivory-operator.ivorysql.org/pgbackrest-backup: replica-create
 status:
   succeeded: 1
 ---
@@ -27,8 +27,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: resize-volume-up
-    ivory-operator.highgo.com/instance-set: instance1
+    ivory-operator.ivorysql.org/cluster: resize-volume-up
+    ivory-operator.ivorysql.org/instance-set: instance1
 spec:
   resources:
     requests:
@@ -44,9 +44,9 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: resize-volume-up
-    ivory-operator.highgo.com/data: pgbackrest
-    ivory-operator.highgo.com/pgbackrest-repo: repo1
+    ivory-operator.ivorysql.org/cluster: resize-volume-up
+    ivory-operator.ivorysql.org/data: pgbackrest
+    ivory-operator.ivorysql.org/pgbackrest-repo: repo1
 spec:
   resources:
     requests:
