@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -32,15 +32,15 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/pgmonitor"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (
 	exporterPort = int32(9187)
 
-	// TODO: With the current implementation of the highgo-ivory-exporter
+	// TODO: With the current implementation of the ivorysql-ivory-exporter
 	// it makes sense to hard-code the database. When moving away from the
-	// highgo-ivory-exporter start.sh script we should re-evaluate always
+	// ivorysql-ivory-exporter start.sh script we should re-evaluate always
 	// setting the exporter database to `ivory`.
 	exporterDB = "ivory"
 

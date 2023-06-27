@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -40,7 +40,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/postgis"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // generateIvoryUserSecret returns a Secret containing a password and
@@ -110,7 +110,7 @@ func (r *Reconciler) generateIvoryUserSecret(
 
 		intent.Data["dbname"] = []byte(database)
 		intent.Data["uri"] = []byte((&url.URL{
-			Scheme: "ivorysql",
+			Scheme: "postgresql",
 			User:   url.UserPassword(username, string(intent.Data["password"])),
 			Host:   net.JoinHostPort(hostname, port),
 			Path:   database,
@@ -142,7 +142,7 @@ func (r *Reconciler) generateIvoryUserSecret(
 			database := string(spec.Databases[0])
 
 			intent.Data["pgbouncer-uri"] = []byte((&url.URL{
-				Scheme: "ivorysql",
+				Scheme: "postgresql",
 				User:   url.UserPassword(username, string(intent.Data["password"])),
 				Host:   net.JoinHostPort(hostname, port),
 				Path:   database,

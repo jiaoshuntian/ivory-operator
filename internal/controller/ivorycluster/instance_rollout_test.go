@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -36,7 +36,7 @@ import (
 
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestReconcilerRolloutInstance(t *testing.T) {
@@ -52,8 +52,8 @@ func TestReconcilerRolloutInstance(t *testing.T) {
 						Namespace: "ns1",
 						Name:      "one-pod-bruh",
 						Labels: map[string]string{
-							"controller-revision-hash":       "gamma",
-							"ivory-operator.highgo.com/role": "master",
+							"controller-revision-hash":         "gamma",
+							"ivory-operator.ivorysql.org/role": "master",
 						},
 					},
 					Status: corev1.PodStatus{
@@ -114,8 +114,8 @@ func TestReconcilerRolloutInstance(t *testing.T) {
 						Namespace: "ns1",
 						Name:      "the-pod",
 						Labels: map[string]string{
-							"controller-revision-hash":       "gamma",
-							"ivory-operator.highgo.com/role": "master",
+							"controller-revision-hash":         "gamma",
+							"ivory-operator.ivorysql.org/role": "master",
 						},
 					},
 				}},
@@ -224,8 +224,8 @@ func TestReconcilerRolloutInstances(t *testing.T) {
 				Pods: []*corev1.Pod{{
 					ObjectMeta: metav1.ObjectMeta{
 						Labels: map[string]string{
-							"controller-revision-hash":       "gamma",
-							"ivory-operator.highgo.com/role": "master",
+							"controller-revision-hash":         "gamma",
+							"ivory-operator.ivorysql.org/role": "master",
 						},
 					},
 					Status: corev1.PodStatus{
@@ -269,8 +269,8 @@ func TestReconcilerRolloutInstances(t *testing.T) {
 				Pods: []*corev1.Pod{{
 					ObjectMeta: metav1.ObjectMeta{
 						Labels: map[string]string{
-							"controller-revision-hash":       "beta",
-							"ivory-operator.highgo.com/role": "master",
+							"controller-revision-hash":         "beta",
+							"ivory-operator.ivorysql.org/role": "master",
 						},
 					},
 					Status: corev1.PodStatus{
@@ -384,8 +384,8 @@ func TestReconcilerRolloutInstances(t *testing.T) {
 				Pods: []*corev1.Pod{{
 					ObjectMeta: metav1.ObjectMeta{
 						Labels: map[string]string{
-							"controller-revision-hash":       "beta",
-							"ivory-operator.highgo.com/role": "master",
+							"controller-revision-hash":         "beta",
+							"ivory-operator.ivorysql.org/role": "master",
 						},
 					},
 					Status: corev1.PodStatus{

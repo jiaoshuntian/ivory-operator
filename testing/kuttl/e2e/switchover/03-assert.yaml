@@ -4,10 +4,10 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: switchover
-    ivory-operator.highgo.com/data: postgres
+    ivory-operator.ivorysql.org/cluster: switchover
+    ivory-operator.ivorysql.org/data: ivory
 
-    ivory-operator.highgo.com/role: master
+    ivory-operator.ivorysql.org/role: master
     testing/role-before: replica
 
 ---
@@ -16,15 +16,15 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: switchover
-    ivory-operator.highgo.com/data: postgres
+    ivory-operator.ivorysql.org/cluster: switchover
+    ivory-operator.ivorysql.org/data: ivory
 
-    ivory-operator.highgo.com/role: replica
+    ivory-operator.ivorysql.org/role: replica
     testing/role-before: master
 
 ---
 # All instances should be healthy.
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: switchover

@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -30,7 +30,7 @@ func TestNewParameters(t *testing.T) {
 		"ssl_cert_file": "/pgconf/tls/tls.crt",
 		"ssl_key_file":  "/pgconf/tls/tls.key",
 
-		"unix_socket_directories": "/tmp/ivory",
+		"unix_socket_directories": "/tmp/postgres",
 
 		"wal_level": "logical",
 	})

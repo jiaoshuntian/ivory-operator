@@ -1,4 +1,4 @@
-// Copyright 2021 - 2023 Highgo Solutions, Inc.
+// Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,11 +31,11 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/source"
 
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (
-	AnnotationAllowUpgrade = "ivory-operator.highgo.com/allow-upgrade"
+	AnnotationAllowUpgrade = "ivory-operator.ivorysql.org/allow-upgrade"
 )
 
 // IvyUpgradeReconciler reconciles a IvyUpgrade object
@@ -51,8 +51,8 @@ type IvyUpgradeReconciler struct {
 }
 
 //+kubebuilder:rbac:groups="batch",resources="jobs",verbs={list,watch}
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivyupgrades",verbs={list,watch}
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters",verbs={list,watch}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivyupgrades",verbs={list,watch}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters",verbs={list,watch}
 
 // SetupWithManager sets up the controller with the Manager.
 func (r *IvyUpgradeReconciler) SetupWithManager(mgr ctrl.Manager) error {
@@ -66,7 +66,7 @@ func (r *IvyUpgradeReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Complete(r)
 }
 
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivyupgrades",verbs={list}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivyupgrades",verbs={list}
 
 // findUpgradesForIvoryCluster returns IvyUpgrades that target cluster.
 func (r *IvyUpgradeReconciler) findUpgradesForIvoryCluster(
@@ -117,11 +117,11 @@ func (r *IvyUpgradeReconciler) watchIvoryClusters() handler.Funcs {
 	}
 }
 
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivyupgrades",verbs={get}
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivyupgrades/status",verbs={patch}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivyupgrades",verbs={get}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivyupgrades/status",verbs={patch}
 //+kubebuilder:rbac:groups="batch",resources="jobs",verbs={delete}
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters",verbs={get}
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters/status",verbs={patch}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters",verbs={get}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters/status",verbs={patch}
 //+kubebuilder:rbac:groups="batch",resources="jobs",verbs={create,patch}
 //+kubebuilder:rbac:groups="batch",resources="jobs",verbs={list}
 //+kubebuilder:rbac:groups="",resources="endpoints",verbs={get}

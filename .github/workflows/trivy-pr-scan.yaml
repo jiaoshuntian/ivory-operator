@@ -12,7 +12,7 @@ on:
 
 jobs:
   scan:
-    if: ${{ github.repository == 'CrunchyData/postgres-operator' }}
+    if: ${{ github.repository == 'IvorySQL/ivory-operator' }}
 
     permissions:
       # for github/codeql-action/upload-sarif to upload SARIF results

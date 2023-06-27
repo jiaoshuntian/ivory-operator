@@ -2,7 +2,7 @@
 // +build envtest
 
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -39,7 +39,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestGeneratePGAdminConfigMap(t *testing.T) {
@@ -86,12 +86,12 @@ kind: ConfigMap
 		assert.Assert(t, cmp.MarshalMatches(configmap.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: pg1
-  ivory-operator.highgo.com/role: pgadmin
+  ivory-operator.ivorysql.org/cluster: pg1
+  ivory-operator.ivorysql.org/role: pgadmin
 name: pg1-pgadmin
 namespace: some-ns
 ownerReferences:
-- apiVersion: ivory-operator.highgo.com/v1beta1
+- apiVersion: ivory-operator.ivorysql.org/v1beta1
   blockOwnerDeletion: true
   controller: true
   kind: IvoryCluster
@@ -125,8 +125,8 @@ ownerReferences:
 		// Labels present in the metadata.
 		assert.DeepEqual(t, configmap.ObjectMeta.Labels, map[string]string{
 			"c": "v7", "d": "v4", "f": "v8",
-			"ivory-operator.highgo.com/cluster": "pg1",
-			"ivory-operator.highgo.com/role":    "pgadmin",
+			"ivory-operator.ivorysql.org/cluster": "pg1",
+			"ivory-operator.ivorysql.org/role":    "pgadmin",
 		})
 	})
 }
@@ -175,12 +175,12 @@ kind: Service
 		assert.Assert(t, marshalMatches(service.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: my-cluster
-  ivory-operator.highgo.com/role: pgadmin
+  ivory-operator.ivorysql.org/cluster: my-cluster
+  ivory-operator.ivorysql.org/role: pgadmin
 name: my-cluster-pgadmin
 namespace: my-ns
 ownerReferences:
-- apiVersion: ivory-operator.highgo.com/v1beta1
+- apiVersion: ivory-operator.ivorysql.org/v1beta1
   blockOwnerDeletion: true
   controller: true
   kind: IvoryCluster
@@ -191,8 +191,8 @@ ownerReferences:
 		// Always gets a ClusterIP (never None).
 		assert.Equal(t, service.Spec.ClusterIP, "")
 		assert.DeepEqual(t, service.Spec.Selector, map[string]string{
-			"ivory-operator.highgo.com/cluster": "my-cluster",
-			"ivory-operator.highgo.com/role":    "pgadmin",
+			"ivory-operator.ivorysql.org/cluster": "my-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgadmin",
 		})
 	}
 
@@ -214,15 +214,15 @@ ownerReferences:
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, service.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"ivory-operator.highgo.com/cluster": "my-cluster",
-			"ivory-operator.highgo.com/role":    "pgadmin",
+			"b":                                   "v2",
+			"ivory-operator.ivorysql.org/cluster": "my-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgadmin",
 		})
 
 		// Labels not in the selector.
 		assert.DeepEqual(t, service.Spec.Selector, map[string]string{
-			"ivory-operator.highgo.com/cluster": "my-cluster",
-			"ivory-operator.highgo.com/role":    "pgadmin",
+			"ivory-operator.ivorysql.org/cluster": "my-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgadmin",
 		})
 
 		// Add metadata to individual service
@@ -230,7 +230,7 @@ ownerReferences:
 			Metadata: &v1beta1.Metadata{
 				Annotations: map[string]string{"c": "v3"},
 				Labels: map[string]string{"d": "v4",
-					"ivory-operator.highgo.com/cluster": "wrongName"},
+					"ivory-operator.ivorysql.org/cluster": "wrongName"},
 			},
 		}
 
@@ -246,16 +246,16 @@ ownerReferences:
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, service.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"d":                                 "v4",
-			"ivory-operator.highgo.com/cluster": "my-cluster",
-			"ivory-operator.highgo.com/role":    "pgadmin",
+			"b":                                   "v2",
+			"d":                                   "v4",
+			"ivory-operator.ivorysql.org/cluster": "my-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgadmin",
 		})
 
 		// Labels not in the selector.
 		assert.DeepEqual(t, service.Spec.Selector, map[string]string{
-			"ivory-operator.highgo.com/cluster": "my-cluster",
-			"ivory-operator.highgo.com/role":    "pgadmin",
+			"ivory-operator.ivorysql.org/cluster": "my-cluster",
+			"ivory-operator.ivorysql.org/role":    "pgadmin",
 		})
 	})
 
@@ -516,9 +516,9 @@ func TestReconcilePGAdminStatefulSet(t *testing.T) {
 		assert.Assert(t, cmp.MarshalMatches(template.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: test-cluster
-  ivory-operator.highgo.com/data: pgadmin
-  ivory-operator.highgo.com/role: pgadmin
+  ivory-operator.ivorysql.org/cluster: test-cluster
+  ivory-operator.ivorysql.org/data: pgadmin
+  ivory-operator.ivorysql.org/role: pgadmin
 		`))
 
 		compare := `
@@ -629,9 +629,9 @@ annotations:
   annotation1: annotationvalue
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: custom-cluster
-  ivory-operator.highgo.com/data: pgadmin
-  ivory-operator.highgo.com/role: pgadmin
+  ivory-operator.ivorysql.org/cluster: custom-cluster
+  ivory-operator.ivorysql.org/data: pgadmin
+  ivory-operator.ivorysql.org/role: pgadmin
   label1: labelvalue
 		`))
 
@@ -660,11 +660,11 @@ tolerations:
 topologySpreadConstraints:
 - labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/cluster
+    - key: ivory-operator.ivorysql.org/cluster
       operator: In
       values:
       - somename
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: Exists
   maxSkew: 1
   topologyKey: fakekey

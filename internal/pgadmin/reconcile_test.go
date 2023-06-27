@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -23,7 +23,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 
 	"github.com/ivorysql/ivory-operator/internal/testing/cmp"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestConfigMap(t *testing.T) {
@@ -108,7 +108,7 @@ containers:
   - bash
   - -c
   - |-
-    HIGHGO_DIR=${HIGHGO_DIR:-'/opt/highgo'}
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/ivorysql'}
     PGADMIN_DIR=/usr/lib/python3.6/site-packages/pgadmin4-web
     APACHE_PIDFILE='/tmp/httpd.pid'
     export PATH=$PATH:/usr/pgsql-*/bin
@@ -117,7 +117,7 @@ containers:
     GREEN="\033[0;32m"
     RESET="\033[0m"
 
-    HIGHGO_DIR=${HIGHGO_DIR:-'/opt/highgo'}
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/ivorysql'}
 
     function enable_debugging() {
         if [[ ${HIGHGO_DEBUG:-false} == "true" ]]
@@ -177,13 +177,13 @@ containers:
             echo_err "ENABLE_TLS true but /certs/server.key or /certs/server.crt not found, aborting"
             exit 1
         fi
-        cp "${HIGHGO_DIR}/conf/pgadmin-https.conf" /var/lib/pgadmin/pgadmin.conf
+        cp "${IVORYSQL_DIR}/conf/pgadmin-https.conf" /var/lib/pgadmin/pgadmin.conf
     else
         echo_info "TLS disabled. Applying http configuration.."
-        cp "${HIGHGO_DIR}/conf/pgadmin-http.conf" /var/lib/pgadmin/pgadmin.conf
+        cp "${IVORYSQL_DIR}/conf/pgadmin-http.conf" /var/lib/pgadmin/pgadmin.conf
     fi
 
-    cp "${HIGHGO_DIR}/conf/config_local.py" /var/lib/pgadmin/config_local.py
+    cp "${IVORYSQL_DIR}/conf/config_local.py" /var/lib/pgadmin/config_local.py
 
     if [[ -z "${SERVER_PATH}" ]]
     then
@@ -342,7 +342,7 @@ containers:
   - bash
   - -c
   - |-
-    HIGHGO_DIR=${HIGHGO_DIR:-'/opt/highgo'}
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/ivorysql'}
     PGADMIN_DIR=/usr/lib/python3.6/site-packages/pgadmin4-web
     APACHE_PIDFILE='/tmp/httpd.pid'
     export PATH=$PATH:/usr/pgsql-*/bin
@@ -351,7 +351,7 @@ containers:
     GREEN="\033[0;32m"
     RESET="\033[0m"
 
-    HIGHGO_DIR=${HIGHGO_DIR:-'/opt/highgo'}
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/ivorysql'}
 
     function enable_debugging() {
         if [[ ${HIGHGO_DEBUG:-false} == "true" ]]
@@ -411,13 +411,13 @@ containers:
             echo_err "ENABLE_TLS true but /certs/server.key or /certs/server.crt not found, aborting"
             exit 1
         fi
-        cp "${HIGHGO_DIR}/conf/pgadmin-https.conf" /var/lib/pgadmin/pgadmin.conf
+        cp "${IVORYSQL_DIR}/conf/pgadmin-https.conf" /var/lib/pgadmin/pgadmin.conf
     else
         echo_info "TLS disabled. Applying http configuration.."
-        cp "${HIGHGO_DIR}/conf/pgadmin-http.conf" /var/lib/pgadmin/pgadmin.conf
+        cp "${IVORYSQL_DIR}/conf/pgadmin-http.conf" /var/lib/pgadmin/pgadmin.conf
     fi
 
-    cp "${HIGHGO_DIR}/conf/config_local.py" /var/lib/pgadmin/config_local.py
+    cp "${IVORYSQL_DIR}/conf/config_local.py" /var/lib/pgadmin/config_local.py
 
     if [[ -z "${SERVER_PATH}" ]]
     then

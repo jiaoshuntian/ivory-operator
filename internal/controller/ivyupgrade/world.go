@@ -1,4 +1,4 @@
-// Copyright 2021 - 2023 Highgo Solutions, Inc.
+// Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,14 +25,14 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // The client used by the controller sets up a cache and an informer for any GVK
 // that it GETs. That informer needs the "watch" permission.
 // - https://github.com/kubernetes-sigs/controller-runtime/issues/1249
 // - https://github.com/kubernetes-sigs/controller-runtime/issues/1454
-//+kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivoryclusters",verbs={get,watch}
+//+kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivoryclusters",verbs={get,watch}
 //+kubebuilder:rbac:groups="",resources="endpoints",verbs={list,watch}
 //+kubebuilder:rbac:groups="batch",resources="jobs",verbs={list,watch}
 //+kubebuilder:rbac:groups="apps",resources="statefulsets",verbs={list,watch}

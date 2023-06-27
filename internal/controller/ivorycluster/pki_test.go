@@ -2,7 +2,7 @@
 // +build envtest
 
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -37,7 +37,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/pki"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // TestReconcileCerts tests the proper reconciliation of the root ca certificate
@@ -103,7 +103,7 @@ func TestReconcileCerts(t *testing.T) {
 			assert.Check(t, len(rootSecret.ObjectMeta.OwnerReferences) == 1, "first owner reference not set")
 
 			expectedOR := metav1.OwnerReference{
-				APIVersion: "ivory-operator.highgo.com/v1beta1",
+				APIVersion: "ivory-operator.ivorysql.org/v1beta1",
 				Kind:       "IvoryCluster",
 				Name:       "hippocluster1",
 				UID:        cluster1.UID,
@@ -128,7 +128,7 @@ func TestReconcileCerts(t *testing.T) {
 			assert.Check(t, len(rootSecret.ObjectMeta.OwnerReferences) == 2, "second owner reference not set")
 
 			expectedOR := metav1.OwnerReference{
-				APIVersion: "ivory-operator.highgo.com/v1beta1",
+				APIVersion: "ivory-operator.ivorysql.org/v1beta1",
 				Kind:       "IvoryCluster",
 				Name:       "hippocluster2",
 				UID:        cluster2.UID,

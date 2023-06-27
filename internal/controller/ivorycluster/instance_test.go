@@ -2,7 +2,7 @@
 // +build envtest
 
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -50,7 +50,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestInstanceIsRunning(t *testing.T) {
@@ -166,8 +166,8 @@ func TestNewObservedInstances(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name: "some-pod-name",
 						Labels: map[string]string{
-							"ivory-operator.highgo.com/instance-set": "missing",
-							"ivory-operator.highgo.com/instance":     "the-name",
+							"ivory-operator.ivorysql.org/instance-set": "missing",
+							"ivory-operator.ivorysql.org/instance":     "the-name",
 						},
 					},
 				},
@@ -199,7 +199,7 @@ func TestNewObservedInstances(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name: "the-name",
 						Labels: map[string]string{
-							"ivory-operator.highgo.com/instance-set": "missing",
+							"ivory-operator.ivorysql.org/instance-set": "missing",
 						},
 					},
 				},
@@ -234,7 +234,7 @@ func TestNewObservedInstances(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name: "the-name",
 						Labels: map[string]string{
-							"ivory-operator.highgo.com/instance-set": "00",
+							"ivory-operator.ivorysql.org/instance-set": "00",
 						},
 					},
 				},
@@ -244,8 +244,8 @@ func TestNewObservedInstances(t *testing.T) {
 					ObjectMeta: metav1.ObjectMeta{
 						Name: "some-pod-name",
 						Labels: map[string]string{
-							"ivory-operator.highgo.com/instance-set": "00",
-							"ivory-operator.highgo.com/instance":     "the-name",
+							"ivory-operator.ivorysql.org/instance-set": "00",
+							"ivory-operator.ivorysql.org/instance":     "the-name",
 						},
 					},
 				},
@@ -1354,25 +1354,25 @@ func TestGenerateInstanceStatefulSetIntent(t *testing.T) {
 			assert.Assert(t, marshalMatches(ss.Spec.Template.Spec.TopologySpreadConstraints, `
 - labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: In
       values:
       - ivory
       - pgbackrest
     matchLabels:
-      ivory-operator.highgo.com/cluster: hippo
+      ivory-operator.ivorysql.org/cluster: hippo
   maxSkew: 1
   topologyKey: kubernetes.io/hostname
   whenUnsatisfiable: ScheduleAnyway
 - labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: In
       values:
       - ivory
       - pgbackrest
     matchLabels:
-      ivory-operator.highgo.com/cluster: hippo
+      ivory-operator.ivorysql.org/cluster: hippo
   maxSkew: 1
   topologyKey: topology.kubernetes.io/zone
   whenUnsatisfiable: ScheduleAnyway
@@ -1401,36 +1401,36 @@ func TestGenerateInstanceStatefulSetIntent(t *testing.T) {
 			assert.Assert(t, marshalMatches(ss.Spec.Template.Spec.TopologySpreadConstraints, `
 - labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/cluster
+    - key: ivory-operator.ivorysql.org/cluster
       operator: In
       values:
       - somename
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: Exists
   maxSkew: 1
   topologyKey: kubernetes.io/hostname
   whenUnsatisfiable: ScheduleAnyway
 - labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: In
       values:
       - ivory
       - pgbackrest
     matchLabels:
-      ivory-operator.highgo.com/cluster: hippo
+      ivory-operator.ivorysql.org/cluster: hippo
   maxSkew: 1
   topologyKey: kubernetes.io/hostname
   whenUnsatisfiable: ScheduleAnyway
 - labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: In
       values:
       - ivory
       - pgbackrest
     matchLabels:
-      ivory-operator.highgo.com/cluster: hippo
+      ivory-operator.ivorysql.org/cluster: hippo
   maxSkew: 1
   topologyKey: topology.kubernetes.io/zone
   whenUnsatisfiable: ScheduleAnyway
@@ -1484,11 +1484,11 @@ func TestGenerateInstanceStatefulSetIntent(t *testing.T) {
 			assert.Assert(t, marshalMatches(ss.Spec.Template.Spec.TopologySpreadConstraints,
 				`- labelSelector:
     matchExpressions:
-    - key: ivory-operator.highgo.com/cluster
+    - key: ivory-operator.ivorysql.org/cluster
       operator: In
       values:
       - somename
-    - key: ivory-operator.highgo.com/data
+    - key: ivory-operator.ivorysql.org/data
       operator: Exists
   maxSkew: 1
   topologyKey: kubernetes.io/hostname

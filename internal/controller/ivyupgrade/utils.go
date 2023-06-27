@@ -1,4 +1,4 @@
-// Copyright 2021 - 2023 Highgo Solutions, Inc.
+// Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
 	"github.com/ivorysql/ivory-operator/internal/initialize"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // The owner reference created by controllerutil.SetControllerReference blocks
@@ -31,7 +31,7 @@ import (
 // creator of such a reference have either "delete" permission on the owner or
 // "update" permission on the owner's "finalizers" subresource.
 // - https://docs.k8s.io/reference/access-authn-authz/admission-controllers/
-// +kubebuilder:rbac:groups="ivory-operator.highgo.com",resources="ivyupgrades/finalizers",verbs={update}
+// +kubebuilder:rbac:groups="ivory-operator.ivorysql.org",resources="ivyupgrades/finalizers",verbs={update}
 
 // setControllerReference sets owner as a Controller OwnerReference on controlled.
 // It panics if another controller is already set.

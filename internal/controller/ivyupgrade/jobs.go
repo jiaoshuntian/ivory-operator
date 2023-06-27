@@ -1,4 +1,4 @@
-// Copyright 2021 - 2023 Highgo Solutions, Inc.
+// Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 
 	"github.com/ivorysql/ivory-operator/internal/initialize"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 // Upgrade job

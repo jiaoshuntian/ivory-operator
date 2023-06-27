@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -23,7 +23,7 @@ import (
 
 	ivory "github.com/ivorysql/ivory-operator/internal/ivory"
 	"github.com/ivorysql/ivory-operator/internal/logging"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (
@@ -48,7 +48,7 @@ func IvorySQLHBAs(inCluster *v1beta1.IvoryCluster, outHBAs *ivory.HBAs) {
 func IvorySQLParameters(inCluster *v1beta1.IvoryCluster, outParameters *ivory.Parameters) {
 	if ExporterEnabled(inCluster) {
 		// Exporter expects that shared_preload_libraries are installed
-		// pg_stat_statements: https://access.highgo.com/documentation/pgmonitor/latest/exporter/
+		// pg_stat_statements: https://access.ivorysql.org/documentation/pgmonitor/latest/exporter/
 		// pgnodemx: https://github.com/ivorysql/pgnodemx
 		libraries := []string{"pg_stat_statements", "pgnodemx"}
 
@@ -98,7 +98,7 @@ func EnableExporterInIvorySQL(ctx context.Context, exec ivory.Executor,
 			`SET client_min_messages = WARNING;`,
 
 			// Exporter expects that extension(s) to be installed in all databases
-			// pg_stat_statements: https://access.highgo.com/documentation/pgmonitor/latest/exporter/
+			// pg_stat_statements: https://access.ivorysql.org/documentation/pgmonitor/latest/exporter/
 			"CREATE EXTENSION IF NOT EXISTS pg_stat_statements;",
 
 			// Run idempotent update

@@ -1,4 +1,4 @@
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: init-pgbackrest
@@ -27,8 +27,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: init-pgbackrest
-    ivory-operator.highgo.com/pgbackrest-backup: replica-create
-    ivory-operator.highgo.com/pgbackrest-repo: repo1
+    ivory-operator.ivorysql.org/cluster: init-pgbackrest
+    ivory-operator.ivorysql.org/pgbackrest-backup: replica-create
+    ivory-operator.ivorysql.org/pgbackrest-repo: repo1
 status:
   succeeded: 1

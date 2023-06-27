@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -23,7 +23,7 @@ import (
 
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/util"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 const (
@@ -73,14 +73,14 @@ safelink() (
 	downwardAPIPath = "/etc/database-containerinfo"
 
 	// SocketDirectory is where to bind and connect to UNIX sockets.
-	SocketDirectory = "/tmp/ivory"
+	SocketDirectory = "/tmp/postgres"
 
 	// ReplicationUser is the IvorySQL role that will be created by Patroni
 	// for streaming replication and for `pg_rewind`.
 	ReplicationUser = "_highgorepl"
 
 	// configMountPath is where to mount additional config files
-	configMountPath = "/etc/ivory"
+	configMountPath = "/etc/postgres"
 )
 
 // ConfigDirectory returns the absolute path to $IVYDATA for cluster.
@@ -360,7 +360,7 @@ func startupCommand(
 		`safelink "${pgwal_directory}" "${postgres_data_directory}/pg_wal"`,
 		`results 'wal directory' "$(realpath "${postgres_data_directory}/pg_wal")"`,
 
-		// Early versions of PGO create replicas with a recovery signal file.
+		// Early versions of IVYO create replicas with a recovery signal file.
 		// Patroni also creates a standby signal file before starting Postgres,
 		// causing Postgres to remove only one, the standby. Remove the extra
 		// signal file now, if it exists, and let Patroni manage the standby

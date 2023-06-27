@@ -4,7 +4,7 @@
 package ivorycluster
 
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -42,7 +42,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 func TestGeneratePatroniLeaderLeaseService(t *testing.T) {
@@ -67,12 +67,12 @@ kind: Service
 		assert.Assert(t, marshalMatches(service.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: pg2
-  ivory-operator.highgo.com/patroni: pg2-ha
+  ivory-operator.ivorysql.org/cluster: pg2
+  ivory-operator.ivorysql.org/patroni: pg2-ha
 name: pg2-ha
 namespace: ns1
 ownerReferences:
-- apiVersion: ivory-operator.highgo.com/v1beta1
+- apiVersion: ivory-operator.ivorysql.org/v1beta1
   blockOwnerDeletion: true
   controller: true
   kind: IvoryCluster
@@ -117,9 +117,9 @@ ownerReferences:
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, service.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"ivory-operator.highgo.com/cluster": "pg2",
-			"ivory-operator.highgo.com/patroni": "pg2-ha",
+			"b":                                   "v2",
+			"ivory-operator.ivorysql.org/cluster": "pg2",
+			"ivory-operator.ivorysql.org/patroni": "pg2-ha",
 		})
 
 		// Labels not in the selector.
@@ -131,7 +131,7 @@ ownerReferences:
 			Metadata: &v1beta1.Metadata{
 				Annotations: map[string]string{"c": "v3"},
 				Labels: map[string]string{"d": "v4",
-					"ivory-operator.highgo.com/cluster": "wrongName"},
+					"ivory-operator.ivorysql.org/cluster": "wrongName"},
 			},
 		}
 
@@ -146,10 +146,10 @@ ownerReferences:
 
 		// Labels present in the metadata.
 		assert.DeepEqual(t, service.ObjectMeta.Labels, map[string]string{
-			"b":                                 "v2",
-			"d":                                 "v4",
-			"ivory-operator.highgo.com/cluster": "pg2",
-			"ivory-operator.highgo.com/patroni": "pg2-ha",
+			"b":                                   "v2",
+			"d":                                   "v4",
+			"ivory-operator.ivorysql.org/cluster": "pg2",
+			"ivory-operator.ivorysql.org/patroni": "pg2-ha",
 		})
 
 		// Labels not in the selector.

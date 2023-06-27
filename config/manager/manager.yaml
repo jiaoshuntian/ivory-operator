@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pgo
+  name: ivyo
 spec:
   replicas: 1
   strategy: { type: Recreate }
@@ -10,39 +10,31 @@ spec:
     spec:
       containers:
       - name: operator
-        image: postgres-operator
+        image: ivory-operator
         env:
         - name: IVYO_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: CRUNCHY_DEBUG
+        - name: IVORY_DEBUG
           value: "true"
-        - name: RELATED_IMAGE_IVORY_14
-          value: "docker.io/balinor2017/highgo-ivory:0.1"
-        - name: RELATED_IMAGE_IVORY_14_GIS_3.1
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-14.7-3.1-0"
-        - name: RELATED_IMAGE_IVORY_14_GIS_3.2
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-14.7-3.2-0"
-        - name: RELATED_IMAGE_IVORY_14_GIS_3.3
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-14.7-3.3-0"
         - name: RELATED_IMAGE_IVORY_15
           value: "docker.io/balinor2017/highgo-ivory:0.1"
-        - name: RELATED_IMAGE_IVORY_15_GIS_3.3
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-15.2-3.3-0"
         - name: RELATED_IMAGE_PGADMIN
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-pgadmin4:ubi8-4.30-10"
+          value: "docker.io/dpage/pgadmin4:7.3"
         - name: RELATED_IMAGE_PGBACKREST
           value: "docker.io/balinor2017/highgo-pgbackrest:0.1"
         - name: RELATED_IMAGE_PGBOUNCER
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.18-0"
+          value: "docker.io/bitnami/pgbouncer:1.19.1"
         - name: RELATED_IMAGE_PGEXPORTER
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-5.3.1-0"
+          value: "docker.io/bitnami/postgres-exporter:0.13.0"
         - name: RELATED_IMAGE_PGUPGRADE
-          value: "registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0"        
+          value: "registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0"  
+        - name: RELATED_IMAGE_POSTGRES_15_GIS_3.3
+          value: "registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-15.2-3.3-0"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities: { drop: [ALL] }
           readOnlyRootFilesystem: true
           runAsNonRoot: true
-      serviceAccountName: pgo
+      serviceAccountName: ivyo

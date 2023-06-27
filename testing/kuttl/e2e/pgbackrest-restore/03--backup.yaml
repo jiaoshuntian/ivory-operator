@@ -5,4 +5,4 @@ commands:
   # Annotate the cluster to trigger a backup.
   - script: |
       kubectl annotate --namespace="${NAMESPACE}" ivorycluster/original \
-        'ivory-operator.highgo.com/pgbackrest-backup=one'
+        'ivory-operator.ivorysql.org/pgbackrest-backup=one'

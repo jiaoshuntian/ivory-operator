@@ -9,13 +9,13 @@ commands:
   - script: |
       PRIMARY=$(
         kubectl get pods --namespace="${NAMESPACE}" \
-          --selector='ivory-operator.highgo.com/role=master' \
+          --selector='ivory-operator.ivorysql.org/role=master' \
           --output=jsonpath={.items..metadata.name}
       )
 
       REPLICA=$(
         kubectl get pods --namespace="${NAMESPACE}" \
-          --selector='ivory-operator.highgo.com/role=replica' \
+          --selector='ivory-operator.ivorysql.org/role=replica' \
           --output=jsonpath={.items..metadata.name}
       )
 

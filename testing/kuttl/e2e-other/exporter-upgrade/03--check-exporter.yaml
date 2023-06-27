@@ -7,8 +7,8 @@ commands:
       PRIMARY=$(
         kubectl get pod --namespace "${NAMESPACE}" \
           --output name --selector '
-            ivory-operator.highgo.com/cluster=exporter,
-            ivory-operator.highgo.com/role=master'
+            ivory-operator.ivorysql.org/cluster=exporter,
+            ivory-operator.ivorysql.org/role=master'
       )
 
       # Get errors from the exporter

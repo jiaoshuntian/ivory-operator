@@ -1,5 +1,5 @@
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -95,12 +95,6 @@ func TestTicker(t *testing.T) {
 		assert.NilError(t, ticker.Start(ctx, th, tq))
 		<-ctx.Done()
 
-		if len(called) != 3 {
-			assert.Equal(t, called[0], expected, "expected at 0ms")
-			assert.Equal(t, called[1], expected, "expected at 100ms")
-			assert.Equal(t, called[2], expected, "expected at 200ms")
-			assert.Equal(t, called[3], expected, "test")
-		}
 		assert.Equal(t, len(called), 3)
 		assert.Equal(t, called[0], expected, "expected at 0ms")
 		assert.Equal(t, called[1], expected, "expected at 100ms")

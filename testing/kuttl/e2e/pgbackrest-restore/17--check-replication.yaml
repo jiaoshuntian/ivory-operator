@@ -7,8 +7,8 @@ commands:
       REPLICA=$(
         kubectl get pod --namespace "${NAMESPACE}" \
           --output name --selector '
-            ivory-operator.highgo.com/cluster=original,
-            ivory-operator.highgo.com/role=replica'
+            ivory-operator.ivorysql.org/cluster=original,
+            ivory-operator.ivorysql.org/role=replica'
       )
 
       kubectl exec --stdin --namespace "${NAMESPACE}" "${REPLICA}" \

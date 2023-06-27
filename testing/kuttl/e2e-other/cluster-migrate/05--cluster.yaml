@@ -1,4 +1,4 @@
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: cluster-migrate
@@ -6,7 +6,7 @@ spec:
   dataSource:
     volumes:
       pgDataVolume:
-        pvcName: data-non-crunchy-cluster-0
+        pvcName: data-non-ivorysql-cluster-0
         directory: data
   postgresVersion: ${KUTTL_PG_VERSION}
   instances:

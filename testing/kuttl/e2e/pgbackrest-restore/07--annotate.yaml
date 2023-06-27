@@ -7,8 +7,8 @@ commands:
       PRIMARY=$(
         kubectl get pod --namespace "${NAMESPACE}" \
           --output name --selector '
-            ivory-operator.highgo.com/cluster=original,
-            ivory-operator.highgo.com/role=master'
+            ivory-operator.ivorysql.org/cluster=original,
+            ivory-operator.ivorysql.org/role=master'
       )
       START=$(
         kubectl exec --namespace "${NAMESPACE}" "${PRIMARY}" \

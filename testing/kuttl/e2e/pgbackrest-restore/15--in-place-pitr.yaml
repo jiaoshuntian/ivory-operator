@@ -19,7 +19,7 @@ commands:
 
       # Annotate the cluster to trigger the restore.
       kubectl annotate --namespace="${NAMESPACE}" ivorycluster/original \
-        'ivory-operator.highgo.com/pgbackrest-restore=one'
+        'ivory-operator.ivorysql.org/pgbackrest-restore=one'
 
       # TODO(benjaminjb): remove this when PG10 is no longer being supported
       # For PG10, we need to run a patronictl reinit for the replica when that is running
@@ -28,9 +28,9 @@ commands:
         # Find replica
         REPLICA=$(kubectl get pods --namespace "${NAMESPACE}" \
           --selector='
-            ivory-operator.highgo.com/cluster=original,
-            ivory-operator.highgo.com/data=postgres,
-            ivory-operator.highgo.com/role!=master' \
+            ivory-operator.ivorysql.org/cluster=original,
+            ivory-operator.ivorysql.org/data=ivory,
+            ivory-operator.ivorysql.org/role!=master' \
           --output=jsonpath={.items..metadata.name})
 
         # Wait for replica to be deleted

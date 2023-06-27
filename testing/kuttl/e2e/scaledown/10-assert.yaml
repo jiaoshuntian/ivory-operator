@@ -1,4 +1,4 @@
-apiVersion: ivory-operator.highgo.com/v1beta1
+apiVersion: ivory-operator.ivorysql.org/v1beta1
 kind: IvoryCluster
 metadata:
   name: scaledown1
@@ -13,9 +13,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: scaledown1
-    ivory-operator.highgo.com/instance-set: instance1
-    ivory-operator.highgo.com/role: master
+    ivory-operator.ivorysql.org/cluster: scaledown1
+    ivory-operator.ivorysql.org/instance-set: instance1
+    ivory-operator.ivorysql.org/role: master
 status:
   phase: Running
 ---
@@ -23,8 +23,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    ivory-operator.highgo.com/cluster: scaledown1
-    ivory-operator.highgo.com/instance-set: instance1
-    ivory-operator.highgo.com/role: replica
+    ivory-operator.ivorysql.org/cluster: scaledown1
+    ivory-operator.ivorysql.org/instance-set: instance1
+    ivory-operator.ivorysql.org/role: replica
 status:
   phase: Running

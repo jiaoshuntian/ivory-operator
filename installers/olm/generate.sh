@@ -26,13 +26,13 @@ file_name='postgresoperator'
 case "${DISTRIBUTION}" in
 	# https://redhat-connect.gitbook.io/certified-operator-guide/appendix/what-if-ive-already-published-a-community-operator
 	'redhat') 
-		file_name='crunchy-postgres-operator'
-		package_name='crunchy-postgres-operator'
+		file_name='ivorysql-ivory-operator'
+		package_name='ivorysql-ivory-operator'
 		;;
 	# https://github.com/redhat-openshift-ecosystem/certification-releases/blob/main/4.9/ga/ci-pipeline.md#bundle-structure
 	'marketplace') 
-		file_name='crunchy-postgres-operator-rhmp'
-		package_name='crunchy-postgres-operator-rhmp'
+		file_name='ivorysql-ivory-operator-rhmp'
+		package_name='ivorysql-ivory-operator-rhmp'
 		;;
 esac
 
@@ -86,9 +86,9 @@ yq --yaml-roundtrip < bundle.annotations.yaml > "${bundle_directory}/metadata/an
 	--arg package "${package_name}" \
 '
 	.annotations["operators.operatorframework.io.bundle.package.v1"] = $package |
-	.annotations["org.opencontainers.image.authors"] = "info@crunchydata.com" |
-	.annotations["org.opencontainers.image.url"] = "https://crunchydata.com" |
-	.annotations["org.opencontainers.image.vendor"] = "Crunchy Data" |
+	.annotations["org.opencontainers.image.authors"] = "info@ivorysql.org" |
+	.annotations["org.opencontainers.image.url"] = "https://ivorysql.org" |
+	.annotations["org.opencontainers.image.vendor"] = "IvorySQL" |
 .'
 else
 yq --yaml-roundtrip < bundle.annotations.yaml > "${bundle_directory}/metadata/annotations.yaml" \
@@ -144,7 +144,7 @@ yq --yaml-roundtrip < bundle.csv.yaml > "${bundle_directory}/manifests/${file_na
 	--argjson rules "$(yq <<< "${operator_roles}" 'first | .rules')" \
 	--argjson crds "${crd_descriptions}" \
 	--arg examples "${crd_examples}" \
-	--arg version "${PGO_VERSION}" \
+	--arg version "${IVYO_VERSION}" \
 	--arg replaces "${REPLACES_VERSION}" \
 	--arg description "$(< description.md)" \
 	--arg icon "$(base64 ../seal.svg | tr -d '\n')" \
@@ -171,8 +171,8 @@ case "${DISTRIBUTION}" in
 		yq --in-place --yaml-roundtrip \
 		'
 			.metadata.annotations.certified = "true" |
-			.metadata.annotations["containerImage"] = "registry.connect.redhat.com/crunchydata/postgres-operator@sha256:<update_operator_SHA_value>" |
-			.metadata.annotations["containerImage"] = "registry.connect.redhat.com/crunchydata/postgres-operator@sha256:<update_operator_SHA_value>" |
+			.metadata.annotations["containerImage"] = "registry.connect.redhat.com/ivorysql/ivory-operator@sha256:<update_operator_SHA_value>" |
+			.metadata.annotations["containerImage"] = "registry.connect.redhat.com/ivorysql/ivory-operator@sha256:<update_operator_SHA_value>" |
 		.' \
 			"${bundle_directory}/manifests/${file_name}.clusterserviceversion.yaml"
 
@@ -186,7 +186,7 @@ case "${DISTRIBUTION}" in
 		yq --in-place --yaml-roundtrip \
 				--arg package_url "https://marketplace.redhat.com/en-us/operators/${file_name}" \
 		'
-				.metadata.annotations["containerImage"] = "registry.connect.redhat.com/crunchydata/postgres-operator@sha256:<update_operator_SHA_value>" |
+				.metadata.annotations["containerImage"] = "registry.connect.redhat.com/ivorysql/ivory-operator@sha256:<update_operator_SHA_value>" |
 				.metadata.annotations["marketplace.openshift.io/remote-workflow"] =
 						"\($package_url)/pricing?utm_source=openshift_console" |
 				.metadata.annotations["marketplace.openshift.io/support-workflow"] =

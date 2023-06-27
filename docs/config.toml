@@ -15,7 +15,7 @@ defaultContentLanguageInSubdir= false
 enableMissingTranslationPlaceholders = false
 
 [params]
-editURL = "https://github.com/gaoxueyu/ivory-operator/tree/master/docs/content"
+editURL = "https://github.com/ivorysql/ivory-operator/tree/master/docs/content"
 showVisitedLinks = false # default is false
 themeStyle = "flex" # "original" or "flex" # default "flex"
 themeVariant = "" # choose theme variant "green", "gold" , "gray", "blue" (default)
@@ -26,33 +26,6 @@ disableNavChevron = false # set true to hide next/prev chevron, default is false
 highlightClientSide = false # set true to use highlight.pack.js instead of the default hugo chroma highlighter
 menushortcutsnewtab = true # set true to open shortcuts links to a new tab/window
 enableGitInfo = true
-operatorVersion = "5.3.1"
-operatorVersionLatestRel5_0 = "5.0.8"
-imageCrunchyPostgres   = "registry.developers.ivorysql.org/crunchydata/crunchy-postgres:ubi8-15.2-0"
-imageCrunchyPostgresPrivate       = "registry.ivorysql.org/crunchydata/crunchy-postgres:ubi8-15.2-0"
-imageCrunchyPGBackrest = "registry.developers.ivorysql.org/crunchydata/crunchy-pgbackrest:ubi8-2.41-4"
-imageCrunchyPGBackrestPrivate     = "registry.ivorysql.org/crunchydata/crunchy-pgbackrest:ubi8-2.41-4"
-imageCrunchyPGBouncer  = "registry.developers.ivorysql.org/crunchydata/crunchy-pgbouncer:ubi8-1.18-0"
-imageCrunchyExporter   = "registry.developers.ivorysql.org/crunchydata/crunchy-postgres-exporter:ubi8-5.3.1-0"
-imageCrunchyPGAdmin    = "registry.developers.ivorysql.org/crunchydata/crunchy-pgadmin4:ubi8-4.30-10"
-imageCrunchyPGUpgrade  = "registry.developers.ivorysql.org/crunchydata/crunchy-upgrade:ubi8-5.3.1-0"
-operatorRepository     = "registry.developers.ivorysql.org/crunchydata/postgres-operator"
-operatorRepositoryPrivate         = "registry.ivorysql.org/crunchydata/postgres-operator"
-postgresOperatorTag = "ubi8-5.3.1-0"
-PGBouncerComponentTagUbi8 = "ubi8-1.18-0"
-PGBouncerTagUbi8 = "ubi8-5.3.1-0"
-postgres14GIS32ComponentTagUbi8 = "ubi8-14.7-3.2-0"
-postgres14GIS32TagUbi8 = "ubi8-14.7-3.2-5.3.1-0"
-postgres14GIS31ComponentTagUbi8 = "ubi8-14.7-3.1-0"
-postgres14GIS31TagUbi8 = "ubi8-14.7-3.1-5.3.1-0"
-fromIvoryVersion = "14"
-postgresVersion = "15"
-postgresVersion15 = "15.2"
-postgresVersion14 = "14.7"
-postgresVersion13 = "13.10"
-postgresVersion12 = "12.14"
-postgresVersion11 = "11.19"
-operatorHelmRepository = "oci://registry.developers.ivorysql.org/crunchydata/pgo"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
@@ -64,7 +37,7 @@ weight = 1
 
 [[menu.shortcuts]]
 name = "<i class='fab fa-github'></i> <label>Source</label>"
-url = "https://github.com/CrunchyData/postgres-operator"
+url = "https://github.com/IvorySQL/ivory-operator"
 weight = 10
 
 [[menu.shortcuts]]
@@ -75,7 +48,7 @@ weight = 20
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-file-contract'></i> <label>License</label>"
-url = "https://github.com/CrunchyData/postgres-operator/blob/master/LICENSE.md"
+url = "https://github.com/IvorySQL/ivory-operator/blob/master/LICENSE.md"
 weight = 30
 
 [[menu.downloads]]

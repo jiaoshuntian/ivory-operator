@@ -4,7 +4,7 @@
 package ivorycluster
 
 /*
- Copyright 2021 - 2023 Highgo Solutions, Inc.
+ Copyright 2021 - 2023 Crunchy Data Solutions, Inc.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -40,7 +40,7 @@ import (
 	"github.com/ivorysql/ivory-operator/internal/initialize"
 	"github.com/ivorysql/ivory-operator/internal/naming"
 	"github.com/ivorysql/ivory-operator/internal/testing/require"
-	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.highgo.com/v1beta1"
+	"github.com/ivorysql/ivory-operator/pkg/apis/ivory-operator.ivorysql.org/v1beta1"
 )
 
 var gvks = []schema.GroupVersionKind{{
@@ -621,12 +621,12 @@ kind: Service
 		assert.Assert(t, marshalMatches(service.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: pg5
-  ivory-operator.highgo.com/role: primary
+  ivory-operator.ivorysql.org/cluster: pg5
+  ivory-operator.ivorysql.org/role: primary
 name: pg5-primary
 namespace: ns2
 ownerReferences:
-- apiVersion: ivory-operator.highgo.com/v1beta1
+- apiVersion: ivory-operator.ivorysql.org/v1beta1
   blockOwnerDeletion: true
   controller: true
   kind: IvoryCluster
@@ -650,12 +650,12 @@ kind: Endpoints
 metadata:
   creationTimestamp: null
   labels:
-    ivory-operator.highgo.com/cluster: pg5
-    ivory-operator.highgo.com/role: primary
+    ivory-operator.ivorysql.org/cluster: pg5
+    ivory-operator.ivorysql.org/role: primary
   name: pg5-primary
   namespace: ns2
   ownerReferences:
-  - apiVersion: ivory-operator.highgo.com/v1beta1
+  - apiVersion: ivory-operator.ivorysql.org/v1beta1
     blockOwnerDeletion: true
     controller: true
     kind: IvoryCluster
@@ -739,12 +739,12 @@ kind: Service
 	assert.Assert(t, marshalMatches(service.ObjectMeta, `
 creationTimestamp: null
 labels:
-  ivory-operator.highgo.com/cluster: pg2
-  ivory-operator.highgo.com/role: replica
+  ivory-operator.ivorysql.org/cluster: pg2
+  ivory-operator.ivorysql.org/role: replica
 name: pg2-replicas
 namespace: ns1
 ownerReferences:
-- apiVersion: ivory-operator.highgo.com/v1beta1
+- apiVersion: ivory-operator.ivorysql.org/v1beta1
   blockOwnerDeletion: true
   controller: true
   kind: IvoryCluster
@@ -758,8 +758,8 @@ ports:
   protocol: TCP
   targetPort: ivory
 selector:
-  ivory-operator.highgo.com/cluster: pg2
-  ivory-operator.highgo.com/role: replica
+  ivory-operator.ivorysql.org/cluster: pg2
+  ivory-operator.ivorysql.org/role: replica
 type: ClusterIP
 	`))
 
@@ -781,14 +781,14 @@ some: note
 		// Labels present in the metadata.
 		assert.Assert(t, marshalMatches(service.ObjectMeta.Labels, `
 happy: label
-ivory-operator.highgo.com/cluster: pg2
-ivory-operator.highgo.com/role: replica
+ivory-operator.ivorysql.org/cluster: pg2
+ivory-operator.ivorysql.org/role: replica
 		`))
 
 		// Labels not in the selector.
 		assert.Assert(t, marshalMatches(service.Spec.Selector, `
-ivory-operator.highgo.com/cluster: pg2
-ivory-operator.highgo.com/role: replica
+ivory-operator.ivorysql.org/cluster: pg2
+ivory-operator.ivorysql.org/role: replica
 		`))
 	})
 }
