@@ -17,9 +17,9 @@
 ## Feature Gates
 
 Feature gates allow users to enable or disable
-certain features by setting the "PGO_FEATURE_GATES" environment
+certain features by setting the "IVYO_FEATURE_GATES" environment
 variable to a list similar to "feature1=true,feature2=false,..."
-in the PGO Deployment.
+in the IVYO Deployment.
 
 This capability leverages the relevant Kubernetes packages. Documentation and
 code implementation examples are given below.
@@ -42,20 +42,20 @@ code implementation examples are given below.
 - Setting the feature gates
   - https://releases.k8s.io/v1.20.0/staging/src/k8s.io/component-base/featuregate/feature_gate.go#L105-L107
 
-## Developing with Feature Gates in PGO
+## Developing with Feature Gates in IVYO
 
 To add a new feature gate, a few steps are required. First, in
 `internal/util/features.go`, you will add a feature gate key name. As an example,
 for a new feature called 'FeatureName', you would add a new constant and comment
 describing what the feature gate controls at the top of the file, similar to
 ```
-// Enables FeatureName in PGO
+// Enables FeatureName in IVYO
 FeatureName featuregate.Feature = "FeatureName"
 ```
 
-Next, add a new entry to the `pgoFeatures` map
+Next, add a new entry to the `ivyoFeatures` map
 ```
-var pgoFeatures = map[featuregate.Feature]featuregate.FeatureSpec{
+var ivyoFeatures = map[featuregate.Feature]featuregate.FeatureSpec{
     FeatureName: {Default: false, PreRelease: featuregate.Alpha},
 }
 ```
@@ -89,26 +89,26 @@ code base to control feature behavior using something like
 if util.DefaultMutableFeatureGate.Enabled(util.FeatureName)
 ```
 
-To test the feature gate, set the `PGO_FEATURE_GATES` environment variable to
+To test the feature gate, set the `IVYO_FEATURE_GATES` environment variable to
 enable the new feature as follows
 ```
-PGO_FEATURE_GATES="FeatureName=true"
+IVYO_FEATURE_GATES="FeatureName=true"
 ```
 Note that for more than one feature, this variable accepts a comma delimited
 list, e.g.
 ```
-PGO_FEATURE_GATES="FeatureName=true,FeatureName2=true,FeatureName3=true"
+IVYO_FEATURE_GATES="FeatureName=true,FeatureName2=true,FeatureName3=true"
 ```
 
-While `PGO_FEATURE_GATES` does not have to be set, please note that the features
-must be defined before use, otherwise PGO deployment will fail with the
+While `IVYO_FEATURE_GATES` does not have to be set, please note that the features
+must be defined before use, otherwise IVYO deployment will fail with the
 following message
 `panic: unable to parse and store configured feature gates. unrecognized feature gate`
 
 Also, the features must have boolean values, otherwise you will see
 `panic: unable to parse and store configured feature gates. invalid value`
 
-When dealing with tests that do not invoke `cmd/postgres-operator/main.go`, keep
+When dealing with tests that do not invoke `cmd/ivory-operator/main.go`, keep
 in mind that you will need to ensure that you invoke the `AddAndSetFeatureGates`
 function. Otherwise, any test that references the undefined feature gate will fail
 with a panic message similar to
