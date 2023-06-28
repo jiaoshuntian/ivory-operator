@@ -1,15 +1,11 @@
 ---
 name: Support
-about: "Learn how to interact with the PGO community"
+about: "Learn how to interact with the IVYO community"
 ---
 
-If you believe you have found have found a bug, please open up [Bug Report](https://github.com/CrunchyData/postgres-operator/issues/new?template=bug_report.md)
+If you believe you have found have found a bug, please open up [Bug Report](https://github.com/IvorySQL/ivory-operator/issues/new?template=bug_report.md)
 
-If you have a feature request, please open up a [Feature Request](https://github.com/CrunchyData/postgres-operator/issues/new?template=feature_request.md)
-
-You can find information about general PGO [support](https://access.crunchydata.com/documentation/postgres-operator/latest/support/) at:
-
-[https://access.crunchydata.com/documentation/postgres-operator/latest/support/](https://access.crunchydata.com/documentation/postgres-operator/latest/support/)
+If you have a feature request, please open up a [Feature Request](https://github.com/IvorySQL/ivory-operator/issues/new?template=feature_request.md)
 
 ## Questions
 
@@ -22,14 +18,12 @@ For questions that are neither bugs nor feature requests, please be sure to
 
 Besides Pod logs, logs may also be found in the `/pgdata/pg<MAJOR_VERSION>/log` directory on your Postgres instance.
 
-If you are looking for [general support](https://access.crunchydata.com/documentation/postgres-operator/latest/support/), please view the [support](https://access.crunchydata.com/documentation/postgres-operator/latest/support/) page for where you can ask questions.
-
 ### Environment
 
 Please provide the following details:
 
 - Platform: (`Kubernetes`, `OpenShift`, `Rancher`, `GKE`, `EKS`, `AKS` etc.)
 - Platform Version: (e.g. `1.20.3`, `4.7.0`)
-- PGO Image Tag: (e.g. `ubi8-5.1.0-0`)
-- Postgres Version (e.g. `15`)
+- IVYO Image Tag: (e.g. `1.0`)
+- Ivory Version (e.g. `2.3`)
 - Storage: (e.g. `hostpath`, `nfs`, or the name of your storage class)

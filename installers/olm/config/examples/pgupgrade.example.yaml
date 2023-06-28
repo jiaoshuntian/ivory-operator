@@ -1,8 +1,0 @@
-apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: IvyUpgrade
-metadata:
-  name: example-upgrade
-spec:
-  ivoryClusterName: example
-  fromIvoryVersion: 14
-  toIvoryVersion: 15
