@@ -542,4 +542,4 @@ kubectl get pods -n ivory-operator -o wide --selector=ivory-operator.ivorysql.or
 
 ## Next Steps
 
-We've now seen how IVYO helps your application stay "always on" with your Ivory database. Now let's explore how IVYO can minimize or eliminate downtime for operations that would normally cause that, such as [resizing your Ivory cluster]({{< relref "./resize-cluster.md" >}}).
+We've now seen how IVYO helps your application stay "always on" with your Ivory database. Now let's explore how IVYO can minimize or eliminate downtime for operations that would normally cause that, such as [resizing your Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/resize-cluster.md).

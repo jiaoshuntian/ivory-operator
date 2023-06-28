@@ -124,4 +124,4 @@ kubectl annotate -n ivory-operator ivorycluster hippo --overwrite \
 
 ## Next Steps
 
-We've covered the fundamental tasks with managing backups. What about [restores]({{< relref "./disaster-recovery.md" >}})? Or [cloning data into new Ivory clusters]({{< relref "./disaster-recovery.md" >}})? Let's explore!
+We've covered the fundamental tasks with managing backups. What about [restores](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md)? Or [cloning data into new Ivory clusters](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md)? Let's explore!

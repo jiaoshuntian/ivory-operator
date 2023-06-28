@@ -333,4 +333,4 @@ You can see this in the [Ivory configuration documentation](https://www.postgres
 
 ## Next Steps
 
-You've now seen how you can further customize your Ivory cluster, but what about [managing users and databases]({{< relref "./user-management.md" >}})? That's a great question that is answered in the [next section]({{< relref "./user-management.md" >}}).
+You've now seen how you can further customize your Ivory cluster, but what about [managing users and databases]({{< relref "./user-management.md" >}})? That's a great question that is answered in the [next section](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md).
