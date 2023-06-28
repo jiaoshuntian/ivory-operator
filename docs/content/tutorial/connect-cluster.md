@@ -194,4 +194,4 @@ Using this method, you can tie application directly into your GitOps pipeline th
 
 ## Next Steps
 
-Now that we have seen how to connect an application to a cluster, let's learn how to create a [high availability Ivory]({{< relref "./high-availability.md" >}}) cluster!
+Now that we have seen how to connect an application to a cluster, let's learn how to create a [high availability Ivory](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md) cluster!

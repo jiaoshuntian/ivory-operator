@@ -19,11 +19,11 @@ spec:
         - name: IVORY_DEBUG
           value: "true"
         - name: RELATED_IMAGE_IVORY_15
-          value: "docker.io/balinor2017/highgo-ivory:0.1"
+          value: "docker.io/ivorysql/ivorysql:0.1"
         - name: RELATED_IMAGE_PGADMIN
           value: "docker.io/dpage/pgadmin4:7.3"
         - name: RELATED_IMAGE_PGBACKREST
-          value: "docker.io/balinor2017/highgo-pgbackrest:0.1"
+          value: "docker.io/ivorysql/pgbackrest:0.1"
         - name: RELATED_IMAGE_PGBOUNCER
           value: "docker.io/bitnami/pgbouncer:1.19.1"
         - name: RELATED_IMAGE_PGEXPORTER

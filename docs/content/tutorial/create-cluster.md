@@ -83,4 +83,4 @@ If you are on OpenShift, you may need to set `spec.openshift` to `true`.
 
 ## Next Steps
 
-We're up and running -- now let's [connect to our Ivory cluster]({{< relref "./connect-cluster.md" >}})!
+We're up and running -- now let's [connect to our Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/connect-cluster.md)!

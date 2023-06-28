@@ -346,4 +346,4 @@ If the storage class does not support PVC resizing, you can use the technique de
 
 ## Next Steps
 
-You've now resized your Ivory cluster, but how can you configure Ivory to take advantage of the new resources? Let's look at how we can [customize the Ivory cluster configuration]({{< relref "./customize-cluster.md" >}}).
+You've now resized your Ivory cluster, but how can you configure Ivory to take advantage of the new resources? Let's look at how we can [customize the Ivory cluster configuration](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md).

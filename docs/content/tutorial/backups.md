@@ -215,4 +215,4 @@ metadata:
 
 ## Next Steps
 
-We've now seen how to use IVYO to get our backups and archives set up and safely stored. Now let's take a look at [backup management]({{< relref "./backup-management.md" >}}) and how we can do things such as set backup frequency, set retention policies, and even take one-off backups!
+We've now seen how to use IVYO to get our backups and archives set up and safely stored. Now let's take a look at [backup management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backup-management.md) and how we can do things such as set backup frequency, set retention policies, and even take one-off backups!
