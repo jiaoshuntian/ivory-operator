@@ -602,3 +602,7 @@ spec:
                 storage: 1Gi
 
 ```
+
+## Next Steps
+
+Let’s explore some [administrative tasks](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md) such as manually restarting IvorySQL using IVYO. How do we do that?

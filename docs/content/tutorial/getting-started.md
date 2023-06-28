@@ -21,4 +21,4 @@ we would say `spec.hippos.appetite`.
 
 `kubectl explain` is your friend. You can use `kubectl explain ivorycluster` to introspect the `ivorycluster.ivory-operator.ivorysql.org` custom resource definition.
 
-With IVYO, the Ivory Operator installed, let's go and [create a Ivory cluster]({{< relref "./create-cluster.md" >}})!
+With IVYO, the Ivory Operator installed, let's go and [create a Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/create-cluster.md)!
