@@ -148,6 +148,32 @@ This list only includes the platforms that the Ivory Operator is specifically
 tested on as part of the release process: IVYO works on other Kubernetes
 distributions as well.
 
+# Documentation
+For additional information regarding the design, configuration, and operation of the
+IvorySQL Operator, please follow this catalog:
+
+### Toturial
+- [Get Start](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/getting-started.md)
+- [Create Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/create-cluster.md)
+- [Content Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/connect-cluster.md)
+- [High Availability](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md)
+- [Resize Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/resize-cluster.md)
+- [Customize Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md)
+- [User Management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md)
+- [Backups](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md)
+- [Backup Management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backup-management.md)
+- [Disaster Recovery and Cloning](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md)
+- [Administrative Tasks](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md)
+- [Delete a Ivory Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md)
+
+### Architecture
+- [Overview](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/overview.md)
+- [High Availability](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md)
+- [Backups](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/backups.md)
+- [Scheduling](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/scheduling.md)
+- [User Management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/user-management.md)
+- [Disaster Recovery](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md)
+
 # Contributing to the Project
 
 Want to contribute to the IvorySQL Operator project? Great! We've put together
