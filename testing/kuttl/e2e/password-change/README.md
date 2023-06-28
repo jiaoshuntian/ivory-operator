@@ -5,7 +5,7 @@ This Kuttl routine runs through the following steps:
 #### Create cluster and test connection
 
 - 00: Creates the cluster and verifies that it exists and is ready for connection
-- 01: Connects to the cluster with the PGO-generated password (both with env vars and with the URI)
+- 01: Connects to the cluster with the IVYO-generated password (both with env vars and with the URI)
 
 #### Default user connection tests
 
@@ -17,7 +17,7 @@ This Kuttl routine runs through the following steps:
 #### Create custom user and test connection
 
 - 06: Updates the postgrescluster spec with a custom user and password
-- 07: Connects to the cluster with the PGO-generated password (both with env vars and with the URI) for the custom user
+- 07: Connects to the cluster with the IVYO-generated password (both with env vars and with the URI) for the custom user
 
 #### Custom user connection tests
 

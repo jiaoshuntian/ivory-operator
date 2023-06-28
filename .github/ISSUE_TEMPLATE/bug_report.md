@@ -15,8 +15,6 @@ Note that some logs needed to troubleshoot may be found in the `/pgdata/<CLUSTER
 
 An incomplete bug report can lead to delays in resolving the issue or the closing of a ticket, so please be as detailed as possible.
 
-If you are looking for [general support](https://access.crunchydata.com/documentation/postgres-operator/latest/support/), please view the [support](https://access.crunchydata.com/documentation/postgres-operator/latest/support/) page for where you can ask questions.
-
 Thanks for reporting the issue, we're looking forward to helping you!
 
 ## Overview
@@ -29,8 +27,8 @@ Please provide the following details:
 
 - Platform: (`Kubernetes`, `OpenShift`, `Rancher`, `GKE`, `EKS`, `AKS` etc.)
 - Platform Version: (e.g. `1.20.3`, `4.7.0`)
-- PGO Image Tag: (e.g. `ubi8-5.3.1-0`)
-- Postgres Version (e.g. `15`)
+- IVYO Image Tag: (e.g. `1.0`)
+- Ivory Version (e.g. `2.3`)
 - Storage: (e.g. `hostpath`, `nfs`, or the name of your storage class)
 
 ## Steps to Reproduce
