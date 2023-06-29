@@ -48,9 +48,9 @@ topologySpreadConstraints:
     whenUnsatisfiable: ScheduleAnyway
     labelSelector:
       matchLabels:
-        ivory-operator.highgo.com/cluster: hippo
+        ivory-operator.ivorysql.org/cluster: hippo
       matchExpressions:
-      - key: ivory-operator.highgo.com/data
+      - key: ivory-operator.ivorysql.org/data
         operator: In
         values:
         - ivory
@@ -60,9 +60,9 @@ topologySpreadConstraints:
     whenUnsatisfiable: ScheduleAnyway
     labelSelector:
       matchLabels:
-        ivory-operator.highgo.com/cluster: hippo
+        ivory-operator.ivorysql.org/cluster: hippo
       matchExpressions:
-      - key: ivory-operator.highgo.com/data
+      - key: ivory-operator.ivorysql.org/data
         operator: In
         values:
         - ivory
@@ -78,15 +78,15 @@ topologySpreadConstraints:
     whenUnsatisfiable: ScheduleAnyway
     labelSelector:
       matchLabels:
-        ivory-operator.highgo.com/cluster: hippo
-        ivory-operator.highgo.com/role: pgbouncer
+        ivory-operator.ivorysql.org/cluster: hippo
+        ivory-operator.ivorysql.org/role: pgbouncer
   - maxSkew: 1
     topologyKey: topology.kubernetes.io/zone
     whenUnsatisfiable: ScheduleAnyway
     labelSelector:
       matchLabels:
-        ivory-operator.highgo.com/cluster: hippo
-        ivory-operator.highgo.com/role: pgbouncer
+        ivory-operator.ivorysql.org/cluster: hippo
+        ivory-operator.ivorysql.org/role: pgbouncer
 ```
 
 Which, as described in the [API documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods),

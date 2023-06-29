@@ -22,7 +22,7 @@ to create several
 [custom resource definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions)
 that allow for the management of IvorySQL clusters.
 
-The main custom resource definition is ivoryclusters.ivory-operator.highgo.com. This allows you to control all the information about a Ivory cluster, including:
+The main custom resource definition is ivoryclusters.ivory-operator.ivorysql.org. This allows you to control all the information about a Ivory cluster, including:
 
 - General information
 - Resource allocation
