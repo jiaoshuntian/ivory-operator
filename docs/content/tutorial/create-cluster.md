@@ -7,10 +7,10 @@ weight: 20
 
 ## Create a Ivory Cluster
 
-Creating a Ivory cluster is pretty simple. Using the example in the `kustomize/ivory` directory, all we have to do is run:
+Creating a Ivory cluster is pretty simple. Using the example in the `examples/kustomize/ivory` directory, all we have to do is run:
 
 ```
-kubectl apply -k kustomize/ivory
+kubectl apply -k examples/kustomize/ivory
 ```
 
 and IVYO will create a simple Ivory cluster named `hippo` in the `ivory-operator` namespace. You can track the status of your Ivory cluster using `kubectl describe` on the `ivoryclusters.ivory-operator.ivorysql.org` custom resource:
@@ -28,7 +28,7 @@ kubectl -n ivory-operator get pods \
 
 ### What Just Happened?
 
-IVYO created a Ivory cluster based on the information provided to it in the Kustomize manifests located in the `kustomize/ivory` directory. Let's better understand what happened by inspecting the `kustomize/ivory/ivory.yaml` file:
+IVYO created a Ivory cluster based on the information provided to it in the Kustomize manifests located in the `examples/kustomize/ivory` directory. Let's better understand what happened by inspecting the `examples/kustomize/ivory/ivory.yaml` file:
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1

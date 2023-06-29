@@ -74,7 +74,7 @@ patroni:
 Apply these updates to your Ivory cluster with the following command:
 
 ```
-kubectl apply -k kustomize/ivory
+kubectl apply -k examples/kustomize/ivory
 ```
 
 IVYO will go and apply these settings, restarting each Ivory instance when necessary. You can verify that the changes are present using the Ivory `SHOW` command, e.g.
@@ -250,7 +250,7 @@ spec:
 The ConfigMap must exist in the same namespace as your Ivory cluster.
 {{% /notice %}}
 
-After you add the ConfigMap reference to your spec, apply the change with `kubectl apply -k kustomize/ivory`. IVYO will create your `hippo` cluster and run your initialization SQL once the cluster has started. You can verify that your SQL has been run by checking the `databaseInitSQL` status on your Ivory cluster. While the status is set, your init SQL will not be run again. You can check cluster status with the `kubectl describe` command:
+After you add the ConfigMap reference to your spec, apply the change with `kubectl apply -k examples/kustomize/ivory`. IVYO will create your `hippo` cluster and run your initialization SQL once the cluster has started. You can verify that your SQL has been run by checking the `databaseInitSQL` status on your Ivory cluster. While the status is set, your init SQL will not be run again. You can check cluster status with the `kubectl describe` command:
 
 ```
 kubectl -n ivory-operator describe ivoryclusters.ivory-operator.ivorysql.org hippo
@@ -313,7 +313,7 @@ kubectl create configmap hippo-init-sql --from-file=init.sql=/path/to/init.sql -
 ```
 
 {{% notice tip %}}
-If you edit your ConfigMap and your changes aren't showing up, you may be waiting for IVYO to reconcile your cluster. After some time, IVYO will automatically reconcile the cluster or you can trigger reconciliation by applying any change to your cluster (e.g. with `kubectl apply -k kustomize/ivory`).
+If you edit your ConfigMap and your changes aren't showing up, you may be waiting for IVYO to reconcile your cluster. After some time, IVYO will automatically reconcile the cluster or you can trigger reconciliation by applying any change to your cluster (e.g. with `kubectl apply -k examples/kustomize/ivory`).
 {{% /notice %}}
 
 To ensure that `psql` returns a failure exit code when your SQL commands fail, set the `ON_ERROR_STOP` [variable](https://www.postgresql.org/docs/current/app-psql.html#APP-PSQL-VARIABLES) as part of your SQL file:

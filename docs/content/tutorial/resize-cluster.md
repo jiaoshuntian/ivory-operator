@@ -82,7 +82,7 @@ resources:
 Apply these updates to your Ivory cluster with the following command:
 
 ```
-kubectl apply -k kustomize/ivory
+kubectl apply -k examples/kustomize/ivory
 ```
 
 Now, let's watch how the rollout happens:
@@ -172,7 +172,7 @@ volumeClaimSpec:
 Apply these updates to your Ivory cluster with the following command:
 
 ```
-kubectl apply -k kustomize/ivory
+kubectl apply -k examples/kustomize/ivory
 ```
 
 ### Resize PVCs With StorageClass That Does Not Allow Expansion
