@@ -3,7 +3,7 @@ namespace: ivory-operator
 commonLabels:
   app.kubernetes.io/name: ivyo
   # The version below should match the version on the IvoryCluster CRD
-  app.kubernetes.io/version: 0.1
+  app.kubernetes.io/version: v0.1
 
 bases:
 - ../crd
