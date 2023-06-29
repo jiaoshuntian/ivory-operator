@@ -61,7 +61,7 @@ spec:
 Apply these updates to your Ivory cluster with the following command:
 
 ```
-kubectl apply -k kustomize/ivory
+kubectl apply -k examples/kustomize/ivory
 ```
 
 Within moment, you should see a new Ivory instance initializing! You can see all of your Ivory Pods for the `hippo` cluster by running the following command:
