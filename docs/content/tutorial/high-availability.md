@@ -136,7 +136,7 @@ What happens if we remove the StatefulSet that is pointed to the Pod that repres
 ```
 PRIMARY_POD=$(kubectl -n ivory-operator get pods \
   --selector=ivory-operator.ivorysql.org/role=master \
-  -o jsonpath='{.items[*].metadata.labels.ivory-operator\.ivorysql\.com/instance}')
+  -o jsonpath='{.items[*].metadata.labels.ivory-operator\.ivorysql\.org/instance}')
 ```
 
 Inspect the environmental variable to see which Pod is the current primary:
