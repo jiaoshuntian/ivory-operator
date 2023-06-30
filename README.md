@@ -164,7 +164,7 @@ IvorySQL Operator, please follow this catalog:
 - [Backup Management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backup-management.md)
 - [Disaster Recovery and Cloning](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md)
 - [Administrative Tasks](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md)
-- [Delete a Ivory Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md)
+- [Delete a Ivory Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/delete-cluster.md)
 
 ### Architecture
 - [Overview](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/overview.md)

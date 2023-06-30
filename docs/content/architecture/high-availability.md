@@ -143,7 +143,7 @@ There is a tradeoff with these two types of pod anti-affinity: while "required" 
 
 By understanding these tradeoffs, the makeup of your Kubernetes cluster, and your requirements, you can choose the method that makes the most sense for your Ivory deployment. We'll show examples of both methods below!
 
-For an example for how pod anti-affinity works with IVYO, please see the [high availability tutorial]({{< relref "tutorial/high-availability.md" >}}#pod-anti-affinity).
+For an example for how pod anti-affinity works with IVYO, please see the [high availability tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md#pod-anti-affinity).
 
 ## Synchronous Replication: Guarding Against Transactions Loss
 
@@ -172,7 +172,7 @@ specific hardware (e.g. for geospatial applications) or if you want to have a
 replica instance deployed to a specific region within your Kubernetes cluster
 for high availability purposes.
 
-For an example for how node affinity works with IVYO, please see the [high availability tutorial]({{< relref "tutorial/high-availability.md" >}}##node-affinity).
+For an example for how node affinity works with IVYO, please see the [high availability tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md##node-affinity).
 
 ## Tolerations
 
@@ -195,14 +195,14 @@ regions, zones, nodes, and other user-defined topology domains, you can achieve
 high availability as well as efficient resource utilization.
 
 For an example of how pod topology spread constraints work with IVYO, please see
-the [high availability tutorial]({{< relref "tutorial/high-availability.md" >}}#pod-topology-spread-constraints).
+the [high availability tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md#pod-topology-spread-constraints).
 
 ## Rolling Updates
 
 During the lifecycle of a IvorySQL cluster, there are certain events that may
 require a planned restart, such as an update to a "restart required" PostgreSQL
 configuration setting (e.g. [`shared_buffers`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS))
-or a change to a Kubernetes Pod template (e.g. [changing the memory request]({{< relref "tutorial/resize-cluster.md">}}#customize-cpu-memory)).
+or a change to a Kubernetes Pod template (e.g. [changing the memory request](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/resize-cluster.md#customize-cpu-memory)).
 Restarts can be disruptive in a high availability deployment, which is
 why many setups employ a ["rolling update" strategy](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/)
 (aka a "rolling restart") to minimize or eliminate downtime during a planned

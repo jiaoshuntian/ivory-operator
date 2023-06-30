@@ -29,4 +29,4 @@ You will also see:
 - How IVYO sets up disaster recovery
 - How to manage working with IVYO in a single namespace or in a cluster-wide installation of IVYO.
 
-[Let's get started]({{< relref "./getting-started.md" >}})!
+[Let's get started](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/getting-started.md)!
