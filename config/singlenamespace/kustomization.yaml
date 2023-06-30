@@ -13,5 +13,5 @@ patches:
 
 images:
 - name: ivory-operator
-  newName: docker.io/balinor2017/ivory-operator
+  newName: docker.io/ivorysql/ivory-operator
   newTag: v0.1
