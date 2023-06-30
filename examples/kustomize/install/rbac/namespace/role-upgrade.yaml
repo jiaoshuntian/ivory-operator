@@ -58,7 +58,7 @@ rules:
 - apiGroups:
   - ivory-operator.ivorysql.org
   resources:
-  - ivorysclusters
+  - ivoryclusters
   verbs:
   - get
   - list
@@ -66,6 +66,6 @@ rules:
 - apiGroups:
   - ivory-operator.ivorysql.org
   resources:
-  - ivorysclusters/status
+  - ivoryclusters/status
   verbs:
   - patch
