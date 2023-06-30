@@ -132,7 +132,7 @@ Finally, create the manifest for the Ivory cluster in a file named `ivory.yaml` 
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -206,7 +206,7 @@ If you are running your cluster in an IPv6-only environment, you will need to ad
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
   annotations:

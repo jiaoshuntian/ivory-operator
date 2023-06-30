@@ -17,7 +17,7 @@ For example, in our previous step we added CPU and memory limits of `2.0` and `4
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:

@@ -37,7 +37,7 @@ For example, using the `spec.instances.resources` section, let's say we want to 
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -116,7 +116,7 @@ For example, let's say we want to update our `hippo` Ivory cluster so that each 
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -183,7 +183,7 @@ Let's go back to the previous example:
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -220,7 +220,7 @@ First, create a new instance that has the larger volume size. Call this instance
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -288,7 +288,7 @@ Once this new instance set is available and they are caught to the primary, you 
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:

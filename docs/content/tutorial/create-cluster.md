@@ -32,7 +32,7 @@ IVYO created a Ivory cluster based on the information provided to it in the Kust
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:

@@ -29,7 +29,7 @@ For the purposes of this tutorial, we will go with the first method and set `spe
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -266,7 +266,7 @@ We can set up our HA Ivory cluster with preferred Pod anti-affinity like so:
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -334,7 +334,7 @@ Using the previous example, let's indicate to Kubernetes that we want to use req
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -388,7 +388,7 @@ Let's see an example with required Node affinity. Let's say we have a set of Nod
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -488,7 +488,7 @@ Now that each of our Pods has our desired Topology Spread Constraints defined, l
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:

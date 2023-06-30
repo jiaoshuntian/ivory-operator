@@ -46,12 +46,12 @@ Let's call our new cluster `elephant`. We can create a clone of the `hippo` clus
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: elephant
 spec:
   dataSource:
-    ivorycluster:
+    ivoryCluster:
       clusterName: hippo
       repoName: repo1
   image: {{< param imageIvorySQL >}}
@@ -82,7 +82,7 @@ Note this section of the spec:
 ```
 spec:
   dataSource:
-    ivorycluster:
+    ivoryCluster:
       clusterName: hippo
       repoName: repo1
 ```
@@ -117,12 +117,12 @@ With that in mind, let's use the `elephant` example above. Let's say we want to 
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: elephant
 spec:
   dataSource:
-    ivorycluster:
+    ivoryCluster:
       clusterName: hippo
       repoName: repo1
       options:
@@ -156,7 +156,7 @@ The section to pay attention to is this:
 ```
 spec:
   dataSource:
-    ivorycluster:
+    ivoryCluster:
       clusterName: hippo
       repoName: repo1
       options:
@@ -288,7 +288,7 @@ configured to point to the `s3` repo configured in the primary:
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo-standby
 spec:
@@ -321,7 +321,7 @@ For this type of standby, you must use [custom TLS](https://github.com/IvorySQL/
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo-standby
 spec:
@@ -354,7 +354,7 @@ examples:
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo-standby
 spec:
@@ -415,7 +415,7 @@ has its backups stored in S3 that looks similar to this:
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: hippo
 spec:
@@ -468,7 +468,7 @@ Now, let's clone the data from the `hippo` backup into a new cluster called `ele
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: elephant
 spec:
@@ -561,7 +561,7 @@ original `hippo` ivorycluster, the manifest would look like this:
 
 ```yaml
 apiVersion: ivory-operator.ivorysql.org/v1beta1
-kind: ivorycluster
+kind: IvoryCluster
 metadata:
   name: rhino
 spec:
