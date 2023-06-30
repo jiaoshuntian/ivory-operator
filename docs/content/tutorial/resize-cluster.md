@@ -7,14 +7,14 @@ weight: 50
 
 You did it -- the application is a success! Traffic is booming, so much so that you need to add more resources to your Ivory cluster. However, you're worried that any resize operation may cause downtime and create a poor experience for your end users.
 
-This is where IVYO comes in: IVYO will help orchestrate rolling out any potentially disruptive changes to your cluster to minimize or eliminate and downtime for your application. To do so, we will assume that you have [deployed a high availability Ivory cluster]({{< relref "./high-availability.md" >}}) as described in the [previous section]({{< relref "./high-availability.md" >}}).
+This is where IVYO comes in: IVYO will help orchestrate rolling out any potentially disruptive changes to your cluster to minimize or eliminate and downtime for your application. To do so, we will assume that you have [deployed a high availability Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md) as described in the [previous section](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md).
 
 Let's dive in.
 
 ## Resize Memory and CPU
 
 Memory and CPU resources are an important component for vertically scaling your Ivory cluster.
-Coupled with [tweaks to your Ivory configuration file]({{< relref "./customize-cluster.md" >}}),
+Coupled with [tweaks to your Ivory configuration file](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md),
 allocating more memory and CPU to your cluster can help it to perform better under load.
 
 It's important for instances in the same high availability set to have the same resources.
@@ -29,7 +29,7 @@ IVYO lets you adjust CPU and memory within the `resources` sections of the `ivor
 - `spec.backups.pgbackrest.sidecars.pgbackrestConfig.resources` section, which sets the resources for the `pgbackrest-config` sidecar container.
 - `spec.backups.pgbackrest.jobs.resources` section, which sets the resources for any pgBackRest backup job.
 - `spec.backups.pgbackrest.restore.resources` section, which sets the resources for manual pgBackRest restore jobs.
-- `spec.dataSource.ivorycluster.resources` section, which sets the resources for pgBackRest restore jobs created during the [cloning]({{< relref "./disaster-recovery.md" >}}) process.
+- `spec.dataSource.ivorycluster.resources` section, which sets the resources for pgBackRest restore jobs created during the [cloning]() process.
 
 The layout of these `resources` sections should be familiar: they follow the same pattern as the standard Kubernetes structure for setting [container resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). Note that these settings also allow for the configuration of [QoS classes](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/).
 

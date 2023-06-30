@@ -5,7 +5,7 @@ draft: false
 weight: 30
 ---
 
-It's one thing to [create a Ivory cluster]({{< relref "./create-cluster.md" >}}); it's another thing to connect to it. Let's explore how IVYO makes it possible to connect to a Ivory cluster!
+It's one thing to [create a Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/create-cluster.md); it's another thing to connect to it. Let's explore how IVYO makes it possible to connect to a Ivory cluster!
 
 ## Background: Services, Secrets, and TLS
 
@@ -41,7 +41,7 @@ When your Ivory cluster is initialized, IVYO will bootstrap a database and Ivory
 - `jdbc-uri`: A [PostgresSQL JDBC connection URI](https://jdbc.postgresql.org/documentation/use/) that provides
   all the information for logging into the Ivory database via the JDBC driver.
 
-All connections are over TLS. IVYO provides its own certificate authority (CA) to allow you to securely connect your applications to your Ivory clusters. This allows you to use the [`verify-full` "SSL mode"](https://www.postgresql.org/docs/current/libpq-ssl.html#LIBPQ-SSL-SSLMODE-STATEMENTS) of Ivory, which provides eavesdropping protection and prevents MITM attacks. You can also choose to bring your own CA, which is described later in this tutorial in the [Customize Cluster]({{< relref "./customize-cluster.md" >}}) section.
+All connections are over TLS. IVYO provides its own certificate authority (CA) to allow you to securely connect your applications to your Ivory clusters. This allows you to use the [`verify-full` "SSL mode"](https://www.postgresql.org/docs/current/libpq-ssl.html#LIBPQ-SSL-SSLMODE-STATEMENTS) of Ivory, which provides eavesdropping protection and prevents MITM attacks. You can also choose to bring your own CA, which is described later in this tutorial in the [Customize Cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md) section.
 
 ### Modifying Service Type, NodePort Value and Metadata
 
@@ -110,7 +110,7 @@ and not otherwise in use or the operation will fail. Additionally, be aware that
 will win in case of conflicts with any annotations or labels a user configures elsewhere.
 
 Finally, if you are exposing your Services externally and are relying on TLS
-verification, you will need to use the [custom TLS]({{< relref "tutorial/customize-cluster.md" >}}#customize-tls)
+verification, you will need to use the [custom TLS](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls)
 features of IVYO).
 
 ## Connect an Application

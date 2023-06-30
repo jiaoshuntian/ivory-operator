@@ -40,7 +40,7 @@ Let's walk through some examples for how we can clone and restore our databases.
 
 ## Clone a Ivory Cluster
 
-Let's create a clone of our [`hippo`]({{< relref "./create-cluster.md" >}}) cluster that we created previously. We know that our cluster is named `hippo` (based on its `metadata.name`) and that we only have a single backup repository called `repo1`.
+Let's create a clone of our [`hippo`](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/create-cluster.md) cluster that we created previously. We know that our cluster is named `hippo` (based on its `metadata.name`) and that we only have a single backup repository called `repo1`.
 
 Let's call our new cluster `elephant`. We can create a clone of the `hippo` cluster using a manifest like this:
 
@@ -267,7 +267,7 @@ where `--db-include=hippo` would restore only the contents of the `hippo` databa
 Advanced high-availability and disaster recovery strategies involve spreading your database clusters
 across data centers to help maximize uptime. IVYO provides ways to deploy ivoryclusters that can
 span multiple Kubernetes clusters using an external storage system or IvorySQL streaming replication.
-The [disaster recovery architecture]({{< relref "architecture/disaster-recovery.md" >}}) documentation
+The [disaster recovery architecture](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/disaster-recovery.md) documentation
 provides a high-level overview of standby clusters with IVYO can be found in the [disaster recovery
 architecture] documentation.
 
@@ -282,7 +282,7 @@ and IVYO instances with the correct storage and networking configurations.
 #### Repo-based Standby
 
 A repo-based standby will recover from WAL files a pgBackRest repo stored in external storage. The
-primary cluster should be created with a cloud-based [backup configuration]({{< relref "tutorial/backups.md" >}}).
+primary cluster should be created with a cloud-based [backup configuration](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md).
 The following manifest defines a ivorycluster with `standby.enabled` set to true and `repoName`
 configured to point to the `s3` repo configured in the primary:
 
@@ -317,7 +317,7 @@ cluster should be accessible via the network and allow TLS authentication (TLS i
 In the following manifest, we have `standby.enabled` set to `true` and have provided both the `host`
 and `port` that point to the primary cluster. We have also defined `customTLSSecret` and
 `customReplicationTLSSecret` to provide certs that allow the standby to authenticate to the primary.
-For this type of standby, you must use [custom TLS]({{< relref "tutorial/customize-cluster.md" >}}#customize-tls):
+For this type of standby, you must use [custom TLS](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls):
 
 ```
 apiVersion: ivory-operator.ivorysql.org/v1beta1
@@ -388,7 +388,7 @@ At some point, you will want to promote the standby to start accepting both read
 This has the net effect of pushing WAL (transaction archives) to the pgBackRest repository, so we
 need to ensure we don't accidentally create a split-brain scenario. Split-brain can happen if two
 primary instances attempt to write to the same repository. If the primary cluster is still active,
-make sure you [shutdown]({{< relref "tutorial/administrative-tasks.md" >}}#shutdown) the primary
+make sure you [shutdown](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md#shutdown) the primary
 before trying to promote the standby cluster.
 
 Once the primary is inactive, we can promote the standby cluster by removing or disabling its
@@ -449,8 +449,8 @@ spec:
 ```
 
 Ensure that the credentials in `ivyo-s3-creds` match your S3 credentials. For more details on
-[deploying a Ivory cluster using S3 for backups]({{< relref "./backups.md" >}}#using-s3),
-please see the [Backups]({{< relref "./backups.md" >}}#using-s3) section of the tutorial.
+[deploying a Ivory cluster using S3 for backups](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md#using-s3),
+please see the [Backups](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md#using-s3) section of the tutorial.
 
 For optimal performance when creating a new cluster from an active cluster, ensure that you take a
 recent full backup of the previous cluster. The above manifest is set up to take a full backup.
@@ -605,4 +605,4 @@ spec:
 
 ## Next Steps
 
-Let’s explore some [administrative tasks](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md) such as manually restarting IvorySQL using IVYO. How do we do that?
+Let’s explore some [administrative tasks](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md) such as manually restarting IvorySQL using IVYO. How do we do that?

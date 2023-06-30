@@ -8,7 +8,7 @@ weight: 125
 IVYO manages IvorySQL users that you define in IvoryCluster.spec.users.
 There, you can list their [role attributes](https://www.postgresql.org/docs/current/role-attributes.html) and which databases they can access.
 
-Below is some information on how the user and database management systems work. To try out some examples, please see the [user and database management]({{< relref "tutorial/user-management.md" >}}) section of the [tutorial]({{< relref "tutorial/_index.md" >}}).
+Below is some information on how the user and database management systems work. To try out some examples, please see the [user and database management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md) section of the tutorial.
 
 ## Understanding Default User Management
 
@@ -28,7 +28,7 @@ When you create a Ivory cluster with IVYO and do not specify any additional user
   - `jdbc-uri`: A [IvorySQL JDBC connection URI](https://jdbc.postgresql.org/documentation/use/)
     that provides all the information for logging into the Ivory database via the JDBC driver.
 
-You can see this default behavior in the [connect to a cluster]({{< relref "tutorial/connect-cluster.md" >}}) portion of the tutorial.
+You can see this default behavior in the [connect to a cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/connect-cluster.md) portion of the tutorial.
 
 As an example, using our `hippo` Ivory cluster, we would see the following created:
 
@@ -56,7 +56,7 @@ Users and databases can be customized in the spec.users section of the custom re
 - Role attributes are not automatically dropped if you remove them. You will have to set the inverse attribute to drop them (e.g. `NOSUPERUSER`).
 - The special `ivorysql` user can be added as one of the custom users; however, the privileges of the users cannot be adjusted.
 
-For specific examples for how to manage users, please see the [user and database management]({{< relref "tutorial/user-management.md" >}}) section of the [tutorial]({{< relref "tutorial/_index.md" >}}).
+For specific examples for how to manage users, please see the [user and database management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md) section of the tutorial.
 
 ## Generated Passwords
 

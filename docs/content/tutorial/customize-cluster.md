@@ -5,7 +5,7 @@ draft: false
 weight: 60
 ---
 
-Ivory is known for its ease of customization; IVYO helps you to roll out changes efficiently and without disruption. After [resizing the resources]({{< relref "./resize-cluster.md" >}}) for our Ivory cluster in the previous step of this tutorial, lets see how we can tweak our Ivory configuration to optimize its usage of them.
+Ivory is known for its ease of customization; IVYO helps you to roll out changes efficiently and without disruption. After [resizing the resources](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/resize-cluster.md) for our Ivory cluster in the previous step of this tutorial, lets see how we can tweak our Ivory configuration to optimize its usage of them.
 
 ## Custom Ivory Configuration
 
@@ -95,16 +95,12 @@ should yield something similar to:
 
 All connections in IVYO use TLS to encrypt communication between components. IVYO sets up a PKI and certificate authority (CA) that allow you create verifiable endpoints. However, you may want to bring a different TLS infrastructure based upon your organizational requirements. The good news: IVYO lets you do this!
 
-If you want to use the TLS infrastructure that IVYO provides, you can skip the rest of this section and move on to learning how to [apply software updates]({{< relref "./update-cluster.md" >}}).
-
 ### How to Customize TLS
 
 There are a few different TLS endpoints that can be customized for IVYO, including those of the Ivory cluster and controlling how Ivory instances authenticate with each other. Let's look at how we can customize TLS by defining
 
 * a `spec.customTLSSecret`, used to both identify the cluster and encrypt communications; and
 * a `spec.customReplicationTLSSecret`, used for replication authentication.
-
-(For more information on the `spec.customTLSSecret` and `spec.customReplicationTLSSecret` fields, see the [`ivorycluster CRD`]({{< relref "references/crd.md" >}}).)
 
 To customize the TLS for a Ivory cluster, you will need to create two Secrets in the Namespace of your Ivory cluster. One of these Secrets will be the `customTLSSecret` and the other will be the `customReplicationTLSSecret`. Both secrets contain a TLS key (`tls.key`), TLS certificate (`tls.crt`) and CA certificate (`ca.crt`) to use.
 
@@ -271,7 +267,7 @@ SQL statements are executed as superuser in the default maintenance database. Th
 
 #### Integration with User and Database Management
 
-If you are creating users or databases, please see the [User/Database Management]({{< relref "tutorial/user-management.md" >}}) documentation. Databases created through the user management section of the spec can be referenced in your initialization sql. For example, if a database `zoo` is defined:
+If you are creating users or databases, please see the [User/Database Management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md) documentation. Databases created through the user management section of the spec can be referenced in your initialization sql. For example, if a database `zoo` is defined:
 
 ```
 spec:
@@ -333,4 +329,4 @@ You can see this in the [Ivory configuration documentation](https://www.postgres
 
 ## Next Steps
 
-You've now seen how you can further customize your Ivory cluster, but what about [managing users and databases]({{< relref "./user-management.md" >}})? That's a great question that is answered in the [next section](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md).
+You've now seen how you can further customize your Ivory cluster, but what about [managing users and databases](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md)? That's a great question that is answered in the [next section](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md).

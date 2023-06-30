@@ -7,7 +7,7 @@ weight: 105
 
 ## Manually Restarting IvorySQL
 
-There are times when you might need to manually restart IvorySQL. This can be done by adding or updating a custom annotation to the cluster's `spec.metadata.annotations` section. IVYO will notice the change and perform a [rolling restart]({{< relref "/architecture/high-availability.md" >}}#rolling-update).
+There are times when you might need to manually restart IvorySQL. This can be done by adding or updating a custom annotation to the cluster's `spec.metadata.annotations` section. IVYO will notice the change and perform a [rolling restart](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/high-availability.md#rolling-update).
 
 For example, if you have a cluster named `hippo` in the namespace `ivory-operator`, all you need to do is patch the hippo ivorycluster with the following:
 
@@ -31,7 +31,7 @@ The effect of this is that all the Kubernetes workloads for this cluster are
 scaled to 0. You can verify this with the following command:
 
 ```
-kubectl get deploy,sts,cronjob --selector=ivory-operator.ivorysql.org/cluster=hippo
+kubectl get deploy,sts,cronjob --selector=ivory-operator.ivorysql.org/cluster=hippo -n ivory-operator
 
 NAME                             READY   AGE
 statefulset.apps/hippo-00-lwgx   0/0     1h
@@ -99,11 +99,11 @@ and replication Secrets without downtime. You or your certificate manager need
 only replace the values in the Secret referenced by `spec.customTLSSecret`.
 
 If instead you change `spec.customTLSSecret` to refer to a new Secret or new fields,
-IVYO will perform a [rolling restart]({{< relref "/architecture/high-availability.md" >}}#rolling-update).
+IVYO will perform a [rolling restart](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/high-availability.md#rolling-update).
 
 {{% notice info %}}
 When changing the IvorySQL certificate authority, make sure to update
-[`customReplicationTLSSecret`]({{< relref "/tutorial/customize-cluster.md" >}}#customize-tls) as well.
+[`customReplicationTLSSecret`](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls) as well.
 {{% /notice %}}
 
 ## Changing the Primary
@@ -179,7 +179,7 @@ following commands can help you determine who is the current primary and what na
 ```shell-session
 $ kubectl get pods -l ivory-operator.ivorysql.org/cluster=hippo \
     -L ivory-operator.ivorysql.org/instance \
-    -L ivory-operator.ivorysql.org/role
+    -L ivory-operator.ivorysql.org/role -n ivory-operator
 
 NAME                      READY   STATUS      RESTARTS   AGE     INSTANCE               ROLE
 hippo-instance1-jdb5-0    3/3     Running     0          2m47s   hippo-instance1-jdb5   master

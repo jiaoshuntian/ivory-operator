@@ -56,7 +56,7 @@ cluster high-availability, and as such delegates the management of each
 cluster's availability to the clusters themselves. This removes the IvorySQL
 Operator from being a single-point-of-failure, and has benefits such as faster
 recovery times for each IvorySQL cluster. For a detailed discussion on
-high-availability, please see the [High-Availability]({{< relref "architecture/high-availability.md" >}})
+high-availability, please see the [High-Availability](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/high-availability.md)
 section.
 
 ## Kubernetes StatefulSets: The IVYO Deployment Model

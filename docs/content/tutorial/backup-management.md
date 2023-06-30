@@ -5,7 +5,7 @@ draft: false
 weight: 82
 ---
 
-In the [previous section]({{< relref "./backups.md" >}}), we looked at a brief overview of the full disaster recovery feature set that IVYO provides and explored how to [configure backups for our Ivory cluster]({{< relref "./backups.md" >}}).
+In the [previous section](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md), we looked at a brief overview of the full disaster recovery feature set that IVYO provides and explored how to [configure backups for our Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md).
 
 Now that we have backups set up, lets look at some of the various backup management tasks we can perform. These include:
 
@@ -18,7 +18,7 @@ Now that we have backups set up, lets look at some of the various backup managem
 IVYO sets up your Ivory clusters so that they are continuously archiving the [write-ahead log](https://www.postgresql.org/docs/current/wal-intro.html):
 your data is constantly being stored in your backup repository. Effectively, this is a backup!
 
-However, in a [disaster recovery]({{< relref "./disaster-recovery.md" >}}) scenario, you likely want to get your Ivory cluster back up and running as quickly as possible (e.g. a short "[recovery time objective (RTO)](https://en.wikipedia.org/wiki/Disaster_recovery#Recovery_Time_Objective)"). What helps accomplish this is to take periodic backups. This makes it faster to restore!
+However, in a [disaster recovery](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md) scenario, you likely want to get your Ivory cluster back up and running as quickly as possible (e.g. a short "[recovery time objective (RTO)](https://en.wikipedia.org/wiki/Disaster_recovery#Recovery_Time_Objective)"). What helps accomplish this is to take periodic backups. This makes it faster to restore!
 
 [pgBackRest](https://pgbackrest.org/), the backup management tool used by IVYO, provides different backup types to help both from a space management and RTO optimization perspective. These backup types include:
 
@@ -47,7 +47,7 @@ spec:
 ```
 
 To manage scheduled backups, IVYO will create several Kubernetes [CronJobs](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
-that will perform backups on the specified periods. The backups will use the [configuration that you specified]({{< relref "./backups.md" >}}).
+that will perform backups on the specified periods. The backups will use the [configuration that you specified](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md).
 
 Ensuring you take regularly scheduled backups is important to maintaining Ivory cluster health.
 However, you don't need to keep all of your backups: this could cause you to run out of space!
