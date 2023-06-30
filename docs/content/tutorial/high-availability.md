@@ -81,7 +81,7 @@ An important part of building a resilient Ivory environment is testing its resil
 
 Let's try removing the primary Service that our application is connected to. This test does not actually require a HA Ivory cluster, but it will demonstrate IVYO's ability to react to environmental changes and heal things to ensure your applications can stay up.
 
-Recall in the [connecting a Ivory cluster]({{< relref "./connect-cluster.md" >}}) that we observed the Services that IVYO creates, e.g.:
+Recall in the [connecting a Ivory cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/connect-cluster.md) that we observed the Services that IVYO creates, e.g.:
 
 ```
 kubectl -n ivory-operator get svc \
@@ -188,7 +188,7 @@ which should yield something similar to:
 hippo-instance1-6kbw
 ```
 
-You can test that the failover successfully occurred in a few ways. You can connect to the example Keycloak application that we [deployed in the previous section]({{< relref "./connect-cluster.md" >}}). Based on Keycloak's connection retry logic, you may need to wait a moment for it to reconnect, but you will see it connected and resume being able to read and write data. You can also connect to the Ivory instance directly and execute the following command:
+You can test that the failover successfully occurred in a few ways. You can connect to the example Keycloak application that we [deployed in the previous section](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/connect-cluster.md). Based on Keycloak's connection retry logic, you may need to wait a moment for it to reconnect, but you will see it connected and resume being able to read and write data. You can also connect to the Ivory instance directly and execute the following command:
 
 ```
 SELECT NOT pg_catalog.pg_is_in_recovery() is_primary;
@@ -200,7 +200,7 @@ What if IVYO was down during the downtime event? Failover would still occur: the
 
 ## Synchronous Replication
 
-IvorySQL supports synchronous replication, which is a replication mode designed to limit the risk of transaction loss. Synchronous replication waits for a transaction to be written to at least one additional server before it considers the transaction to be committed. For more information on synchronous replication, please read about IVYO's [high availability architecture]({{<relref "architecture/high-availability/_index.md" >}}#synchronous-replication-guarding-against-transactions-loss)
+IvorySQL supports synchronous replication, which is a replication mode designed to limit the risk of transaction loss. Synchronous replication waits for a transaction to be written to at least one additional server before it considers the transaction to be committed. For more information on synchronous replication, please read about IVYO's [high availability architecture](https://github.com/CrunchyData/postgres-operator/blob/master/docs/content/architecture/high-availability.md#synchronous-replication-guarding-against-transactions-loss)
 
 To add synchronous replication to your Ivory cluster, you can add the following to your spec:
 

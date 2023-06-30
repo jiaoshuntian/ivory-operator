@@ -11,7 +11,7 @@ backups of your database" is automatically "yes!"
 The IvorySQL Operator uses the open source
 [pgBackRest](https://pgbackrest.org) backup and restore utility that is designed
 for working with databases that are many terabytes in size. As described in the
-[tutorial]({{< relref "/tutorial/backups.md" >}}), pgBackRest is enabled by
+[tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md), pgBackRest is enabled by
 default as it permits the IvorySQL Operator to automate some advanced as well
 as convenient behaviors, including:
 
@@ -54,7 +54,7 @@ backups. IVYO enables this by managing a series of Kubernetes CronJobs to ensure
 
 Note that pgBackRest presently only supports taking one backup at a time. This may change in a future release, but for the time being we suggest that you stagger your backup times.
 
-Please see the [backup management tutorial]({{< relref "/tutorial/backup-management.md" >}}) for how to set up backup schedules
+Please see the [backup management tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backup-management.md) for how to set up backup schedules
 and configure retention policies.
 
 ## Restores
@@ -66,7 +66,7 @@ ways to restore a cluster:
 - Restore to a new cluster
 - Restore in-place
 
-For examples of this, please see the [disaster recovery tutorial]({{< relref "/tutorial/disaster-recovery.md" >}})
+For examples of this, please see the [disaster recovery tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md)
 
 ## Deleting a Backup
 
