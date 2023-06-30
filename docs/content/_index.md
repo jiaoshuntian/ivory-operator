@@ -14,7 +14,7 @@ Latest Release: {{< param operatorVersion >}}
 
 [IVYO](https://github.com/ivorysql/ivory-operator), the [Ivory Operator]((https://github.com/ivorysql/ivory-operator)) from [IvorySQL](https://ivorysql.org), gives you a **declarative Ivory** solution that automatically manages your [IvorySQL](https://www.ivorysql.org) clusters.
 
-Designed for your GitOps workflows, it is [easy to get started]({{< relref "quickstart/_index.md" >}}) with Ivory on Kubernetes with IVYO. Within a few moments, you can have a production grade Ivory cluster complete with high availability, disaster recovery, and monitoring, all over secure TLS communications.Even better, IVYO lets you easily customize your Ivory cluster to tailor it to your workload!
+Designed for your GitOps workflows, it is easy to get started with Ivory on Kubernetes with IVYO. Within a few moments, you can have a production grade Ivory cluster complete with high availability, disaster recovery, and monitoring, all over secure TLS communications.Even better, IVYO lets you easily customize your Ivory cluster to tailor it to your workload!
 
 With conveniences like cloning Ivory clusters to using rolling updates to roll out disruptive changes with minimal downtime, IVYO is ready to support your Ivory data at every stage of your release pipeline. Built for resiliency and uptime, IVYO will keep your desired Ivory in a desired state so you do not need to worry about it.
 

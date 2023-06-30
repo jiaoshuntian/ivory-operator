@@ -12,7 +12,7 @@ default settings to ensure you make the most out of your Kubernetes environment!
 
 ## High Availability By Default
 
-As shown in the [high availability tutorial]({{< relref "tutorial/high-availability.md" >}}#pod-topology-spread-constraints),
+As shown in the [high availability tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md#pod-topology-spread-constraints),
 IVYO supports the use of [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
 to customize your Pod deployment strategy, but useful defaults are already in place
 for you without any additional configuration required!

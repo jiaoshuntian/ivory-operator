@@ -7,7 +7,7 @@ weight: 65
 
 IVYO comes with some out-of-the-box conveniences for managing users and databases in your Ivory cluster. However, you may have requirements where you need to create additional users, adjust user privileges or add additional databases to your cluster.
 
-For detailed information for how user and database management works in IVYO, please see the [User Management]({{< relref "architecture/user-management.md" >}}) section of the architecture guide.
+For detailed information for how user and database management works in IVYO, please see the [User Management](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/user-management.md) section of the architecture guide.
 
 ## Creating a New User
 

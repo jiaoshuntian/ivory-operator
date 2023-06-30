@@ -83,7 +83,7 @@ are pushed to the repo. The cluster will also directly connect to primary and re
 as they are generated. Using a repo while also streaming ensures that your cluster will still be up
 to date with the pgBackRest repo if streaming falls behind.
 
-For creating a standby Ivory cluster with IVYO, please see the [disaster recovery tutorial]({{< relref "tutorial/disaster-recovery.md" >}}#standby-cluster)
+For creating a standby Ivory cluster with IVYO, please see the [disaster recovery tutorial](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md#standby-cluster)
 
 ### Promoting a Standby Cluster
 
@@ -94,7 +94,7 @@ the pgBackRest repository. Before doing this, we need to ensure we don't acciden
 scenario.
 
 If you are promoting the standby while the primary is still running, i.e., if this is not a disaster
-scenario, you will want to [shutdown the active IvorySQL cluster]({{< relref "tutorial/administrative-tasks.md" >}}#shutdown).
+scenario, you will want to [shutdown the active IvorySQL cluster](https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md#shutdown).
 
 The standby can be promoted once the primary is inactive, e.g., is either `shutdown` or failing.
 This process essentially removes the standby configuration from the Kubernetes cluster’s DCS, which
