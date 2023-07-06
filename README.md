@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/ivorysql/ivory-operator)](https://goreportcard.com/report/github.com/ivorysql/ivory-operator)
 
 # Introduction and Special Thanks
-Ivory Operator is developed based on [CrunchyData Postgres Operator](https://github.com/CrunchyData/postgres-operator). A new operator to support IvorySQL is needed for new open source DB [IvorySQL](https://www.ivorysql.org/) was released recently. CrunchyData Postgres Operator does a great job, it has legible docs, clean codes, rigorous testing and active community. Therefore, for compatible with IvorySQL, we did some code changes, modify docs and correct yaml files in our first phase. Thanks for CrunchyData Postgres Operator especially.
+Ivory Operator is developed based on [CrunchyData Postgres Operator](https://github.com/CrunchyData/postgres-operator). A new operator to support [IvorySQL](https://www.ivorysql.org/) is needed. CrunchyData Postgres Operator does a great job, it has legible docs, clean codes, rigorous testing and active community. Therefore, for compatible with IvorySQL, we did some code changes, modify docs and correct yaml files in our first phase. Thanks for CrunchyData Postgres Operator especially.
 
 # Production Ivory Made Easy
 
