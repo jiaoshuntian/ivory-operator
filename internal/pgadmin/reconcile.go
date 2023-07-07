@@ -34,7 +34,7 @@ import (
 // Any required functions from common_lib.sh are added as required.
 // - https://github.com/ivorysql/highgo-containers/blob/master/bin/pgadmin4/start-pgadmin4.sh
 // - https://github.com/ivorysql/highgo-containers/blob/master/bin/common/common_lib.sh
-const startupScript = `IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/ivorysql'}
+const startupScript = `IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/postgresql'}
 PGADMIN_DIR=/usr/lib/python3.6/site-packages/pgadmin4-web
 APACHE_PIDFILE='/tmp/httpd.pid'
 export PATH=$PATH:/usr/pgsql-*/bin
@@ -43,7 +43,7 @@ RED="\033[0;31m"
 GREEN="\033[0;32m"
 RESET="\033[0m"
 
-IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/ivorysql'}
+IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/postgresql'}
 
 function enable_debugging() {
     if [[ ${HIGHGO_DEBUG:-false} == "true" ]]
