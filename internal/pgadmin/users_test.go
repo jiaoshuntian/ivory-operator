@@ -101,7 +101,7 @@ with create_app().app_context():
             continue
 
         data = json.loads(line)
-        address = data['username'] + '@ivyo'
+        address = data['username'] + '@ivyo.com'
         user = (
             db.session.query(User).filter_by(username=address).first() or
             User()

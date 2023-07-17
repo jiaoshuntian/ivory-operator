@@ -114,7 +114,7 @@ with create_app().app_context():`,
 		// a non-blank password are allowed to login.
 		//
 		// The "internal" authentication source requires that username and email
-		// be the same and be an email address. Append "@ivyo" to the username
+		// be the same and be an email address. Append "@ivyo.com" to the username
 		// to pass login validation.
 		// - https://github.com/pgadmin-org/pgadmin4/blob/REL-4_30/web/pgadmin/authenticate/internal.py#L88
 		// - https://github.com/pgadmin-org/pgadmin4/blob/REL-4_30/web/pgadmin/utils/validation_utils.py#L13
@@ -128,7 +128,7 @@ with create_app().app_context():`,
             continue
 
         data = json.loads(line)
-        address = data['username'] + '@ivyo'
+        address = data['username'] + '@ivyo.com'
         user = (
             db.session.query(User).filter_by(username=address).first() or
             User()
