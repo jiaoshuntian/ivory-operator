@@ -200,8 +200,9 @@ with create_app().app_context():`,
         server.port = cluster.port
         server.servergroup_id = group.id
         server.user_id = user.id
-        server.maintenance_db = "ivory"
-        server.ssl_mode = "prefer"`,
+        server.maintenance_db = "postgres"
+        server.ssl_mode = "prefer"
+        server.is_kerberos_conn = True`,
 
 		// Encrypt the Server password with the User's plaintext password.
 		// - https://github.com/pgadmin-org/pgadmin4/blob/REL-4_30/web/pgadmin/__init__.py#L601

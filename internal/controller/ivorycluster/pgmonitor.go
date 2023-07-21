@@ -42,7 +42,7 @@ const (
 	// it makes sense to hard-code the database. When moving away from the
 	// ivorysql-ivory-exporter start.sh script we should re-evaluate always
 	// setting the exporter database to `ivory`.
-	exporterDB = "ivory"
+	exporterDB = "ivorysql"
 
 	// The exporter connects to all databases over loopback using a password.
 	// Kubernetes guarantees localhost resolves to loopback:
@@ -286,7 +286,7 @@ func addPGMonitorExporterToInstancePodSpec(
 		},
 		Env: []corev1.EnvVar{
 			{Name: "CONFIG_DIR", Value: "/opt/cpm/conf"},
-			{Name: "IVORY_EXPORTER_PORT", Value: fmt.Sprint(exporterPort)},
+			{Name: "POSTGRES_EXPORTER_PORT", Value: fmt.Sprint(exporterPort)},
 			{Name: "PGBACKREST_INFO_THROTTLE_MINUTES", Value: "10"},
 			{Name: "PG_STAT_STATEMENTS_LIMIT", Value: "20"},
 			{Name: "PG_STAT_STATEMENTS_THROTTLE_MINUTES", Value: "-1"},

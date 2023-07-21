@@ -103,13 +103,13 @@ func TestAddPGMonitorExporterToInstancePodSpec(t *testing.T) {
 
 		expectedENV := []corev1.EnvVar{
 			{Name: "CONFIG_DIR", Value: "/opt/cpm/conf"},
-			{Name: "IVORY_EXPORTER_PORT", Value: "9187"},
+			{Name: "POSTGRES_EXPORTER_PORT", Value: "9187"},
 			{Name: "PGBACKREST_INFO_THROTTLE_MINUTES", Value: "10"},
 			{Name: "PG_STAT_STATEMENTS_LIMIT", Value: "20"},
 			{Name: "PG_STAT_STATEMENTS_THROTTLE_MINUTES", Value: "-1"},
 			{Name: "EXPORTER_PG_HOST", Value: "localhost"},
 			{Name: "EXPORTER_PG_PORT", Value: fmt.Sprint(*cluster.Spec.Port)},
-			{Name: "EXPORTER_PG_DATABASE", Value: "ivory"},
+			{Name: "EXPORTER_PG_DATABASE", Value: "ivorysql"},
 			{Name: "EXPORTER_PG_USER", Value: pgmonitor.MonitoringUser},
 			{Name: "EXPORTER_PG_PASSWORD", ValueFrom: &corev1.EnvVarSource{
 				SecretKeyRef: &corev1.SecretKeySelector{
