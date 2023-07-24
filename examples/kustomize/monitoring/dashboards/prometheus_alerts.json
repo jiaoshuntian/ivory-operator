@@ -57,7 +57,7 @@
     {
       "icon": "external link",
       "tags": [
-        "vendor=crunchydata"
+        "vendor=ivory"
       ],
       "type": "dashboards"
     }
@@ -932,7 +932,7 @@
   "schemaVersion": 27,
   "style": "dark",
   "tags": [
-    "vendor=crunchydata"
+    "vendor=ivory"
   ],
   "templating": {
     "list": []

@@ -34,7 +34,7 @@ spec:
         - name: GF_SECURITY_ADMIN_PASSWORD__FILE
           value: /conf/admin/password
         - name: PROM_HOST
-          value: crunchy-prometheus
+          value: prometheus
         - name: PROM_PORT
           value: "9090"
         image: grafana/grafana:8.5.10
@@ -77,8 +77,8 @@ spec:
       restartPolicy: Always
       securityContext:
         fsGroup: 26
-         supplementalGroups:
-         - 65534
+        # supplementalGroups:
+        # - 65534
       schedulerName: default-scheduler
       serviceAccount: grafana
       serviceAccountName: grafana

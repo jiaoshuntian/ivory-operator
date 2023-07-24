@@ -66,7 +66,7 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "vendor=crunchydata"
+        "vendor=ivory"
       ],
       "title": "",
       "type": "dashboards"
@@ -2034,7 +2034,7 @@
   "schemaVersion": 27,
   "style": "dark",
   "tags": [
-    "vendor=crunchydata"
+    "vendor=ivory"
   ],
   "templating": {
     "list": [
