@@ -17,6 +17,7 @@ spec:
       containers:
       - image: quay.io/keycloak/keycloak:latest
         name: keycloak
+        args: ["start-dev"]
         env:
         - name: DB_VENDOR
           value: "postgres"
@@ -34,8 +35,8 @@ spec:
           value: "admin"
         - name: KEYCLOAK_PASSWORD
           value: "admin"
-        - name: PROXY_ADDRESS_FORWARDING
-          value: "true"
+        - name: KC_PROXY
+          value: "edge"
         ports:
         - name: http
           containerPort: 8080
@@ -43,6 +44,6 @@ spec:
           containerPort: 8443
         readinessProbe:
           httpGet:
-            path: /auth/realms/master
+            path: /realms/master
             port: 8080
       restartPolicy: Always
