@@ -19,6 +19,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/ivorysql/ivory-operator/internal/pgaudit"
 	"io"
 	"net"
 	"net/url"
@@ -232,15 +233,14 @@ func (r *Reconciler) reconcileIvoryDatabases(
 
 	var pgAuditOK, postgisInstallOK bool
 	create := func(ctx context.Context, exec ivory.Executor) error {
-		//if pgAuditOK = pgaudit.EnableInIvorySQL(ctx, exec) == nil; !pgAuditOK {
-		//	// pgAudit can only be enabled after its shared library is loaded,
-		//	// but early versions of IVO do not load it automatically. Assume
-		//	// that an error here is because the cluster started during one of
-		//	// those versions and has not been restarted.
-		//	r.Recorder.Event(cluster, corev1.EventTypeWarning, "pgAuditDisabled",
-		//		"Unable to install pgAudit")
-		//}
-		pgAuditOK = true
+		if pgAuditOK = pgaudit.EnableInIvorySQL(ctx, exec) == nil; !pgAuditOK {
+			// pgAudit can only be enabled after its shared library is loaded,
+			// but early versions of IVO do not load it automatically. Assume
+			// that an error here is because the cluster started during one of
+			// those versions and has not been restarted.
+			r.Recorder.Event(cluster, corev1.EventTypeWarning, "pgAuditDisabled",
+				"Unable to install pgAudit")
+		}
 		// Enabling PostGIS extensions is a one-way operation
 		// e.g., you can take a IvoryCluster and turn it into a PostGISCluster,
 		// but you cannot reverse the process, as that would potentially remove an extension
