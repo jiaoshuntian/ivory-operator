@@ -42,9 +42,9 @@ func TestNewHBAs(t *testing.T) {
 	hba := NewHBAs()
 	assert.Assert(t, matches(hba.Mandatory, `
 local    all          "ivorysql"      peer
-hostssl  replication  "_highgorepl"  all   cert
-hostssl  "ivorysql"   "_highgorepl"  all   cert
-host     all          "_highgorepl"  all   reject
+hostssl  replication  "_crunchyrepl"  all   cert
+hostssl  "ivorysql"   "_crunchyrepl"  all   cert
+host     all          "_crunchyrepl"  all   reject
 	`))
 	assert.Assert(t, matches(hba.Default, `
 hostssl  all  all  all  md5

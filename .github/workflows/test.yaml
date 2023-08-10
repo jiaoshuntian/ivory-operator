@@ -65,9 +65,9 @@ jobs:
         with:
           k3s-channel: "${{ matrix.kubernetes }}"
           prefetch-images: |
-            docker.io/ivorysql/pgbackrest:0.1
-            docker.io/bitnami/pgbouncer:1.19.1
-            docker.io/ivorysql/ivorysql:0.1
+            docker.io/balinor2017/pgbackrest:0.2
+            docker.io/balinor2017/pgbouncer:0.1
+            docker.io/balinor2017/ivorysql:0.3
 
       - run: make createnamespaces check-envtest-existing
         env:
@@ -83,7 +83,6 @@ jobs:
           retention-days: 1
 
   kuttl-k3d:
-    if: false
     runs-on: ubuntu-20.04
     needs: [go-test]
     strategy:
@@ -100,11 +99,11 @@ jobs:
         with:
           k3s-channel: "${{ matrix.kubernetes }}"
           prefetch-images: |
-            docker.io/dpage/pgadmin4:7.3
-            docker.io/ivorysql/pgbackrest:0.1
-            docker.io/bitnami/pgbouncer:1.19.1
-            docker.io/bitnami/postgres-exporter:0.13.0
-            docker.io/ivorysql/ivorysql:0.1
+            docker.io/balinor2017/pgadmin4:0.2
+            docker.io/balinor2017/pgbackrest:0.2
+            docker.io/balinor2017/pgbouncer:0.1
+            docker.io/balinor2017/postgres-exporter:0.7
+            docker.io/balinor2017/ivorysql:0.3
             registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-15.2-3.3-0
             registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0
       - run: go mod download
@@ -120,12 +119,14 @@ jobs:
           docker run --detach --network host --read-only \
             --volume "$(pwd):/mnt" --workdir '/mnt' --env 'PATH=/mnt/bin' \
             --env 'KUBECONFIG=hack/.kube/ivory-operator/ivyo' \
-            --env 'RELATED_IMAGE_PGADMIN=docker.io/dpage/pgadmin4:7.3' \
-            --env 'RELATED_IMAGE_PGBACKREST=docker.io/ivorysql/pgbackrest:0.1' \
-            --env 'RELATED_IMAGE_PGBOUNCER=docker.io/bitnami/pgbouncer:1.19.1' \
-            --env 'RELATED_IMAGE_PGEXPORTER=docker.io/bitnami/postgres-exporter:0.13.0' \
+            --env 'RELATED_IMAGE_PGADMIN=docker.io/balinor2017/pgadmin4:0.2' \
+            --env 'RELATED_IMAGE_PGBACKREST=docker.io/balinor2017/pgbackrest:0.2' \
+            --env 'RELATED_IMAGE_PGBOUNCER=docker.io/balinor2017/pgbouncer:0.1' \
+            --env 'RELATED_IMAGE_PGEXPORTER=docker.io/balinor2017/postgres-exporter:0.7' \
             --env 'RELATED_IMAGE_PGUPGRADE=registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0' \
-            --env 'RELATED_IMAGE_IVORY_15=docker.io/ivorysql/ivorysql:0.1' \
+            --env 'RELATED_IMAGE_IVORY_14=docker.io/balinor2017/ivorysql:0.3' \
+            --env 'RELATED_IMAGE_IVORY_15=docker.io/balinor2017/ivorysql:0.3' \
+            --env 'RELATED_IMAGE_POSTGRES_14_GIS_3.1=registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-14.8-3.1-2' \
             --env 'RELATED_IMAGE_POSTGRES_15_GIS_3.3=registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-15.2-3.3-0' \
             --env 'IVYO_FEATURE_GATES=TablespaceVolumes=true' \
             --name 'ivory-operator' ubuntu \
@@ -137,11 +138,11 @@ jobs:
 
       - run: make generate-kuttl
         env:
-          KUTTL_PG_UPGRADE_FROM_VERSION: '14'
+          KUTTL_PG_UPGRADE_FROM_VERSION: '15'
           KUTTL_PG_UPGRADE_TO_VERSION: '15'
-          KUTTL_PG_VERSION: '14'
+          KUTTL_PG_VERSION: '15'
           KUTTL_POSTGIS_VERSION: '3.1'
-          KUTTL_PSQL_IMAGE: 'docker.io/ivorysql/ivorysql:0.1'
+          KUTTL_IVORY_IMAGE: 'docker.io/balinor2017/ivorysql:0.3'
       - run: |
           make check-kuttl && exit
           failed=$?

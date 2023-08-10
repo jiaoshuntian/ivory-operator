@@ -9,7 +9,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: psql
-          image: ${KUTTL_PSQL_IMAGE}
+          image: ${KUTTL_IVORY_IMAGE}
           command:
             # https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html#PLPGSQL-STATEMENTS-ASSERT
             # If run on a non-replica, this assertion fails, resulting in the pod erroring
