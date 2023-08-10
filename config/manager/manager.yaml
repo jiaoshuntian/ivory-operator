@@ -19,15 +19,15 @@ spec:
         - name: IVORY_DEBUG
           value: "true"
         - name: RELATED_IMAGE_IVORY_15
-          value: "docker.io/balinor2017/ivorysql:0.3"
+          value: "docker.io/ivorysql/ivorysql:1.1"
         - name: RELATED_IMAGE_PGADMIN
-          value: "docker.io/balinor2017/pgadmin4:0.2"
+          value: "docker.io/ivorysql/pgadmin4:1.1"
         - name: RELATED_IMAGE_PGBACKREST
-          value: "docker.io/balinor2017/pgbackrest:0.2"
+          value: "docker.io/ivorysql/pgbackrest:1.1"
         - name: RELATED_IMAGE_PGBOUNCER
-          value: "docker.io/balinor2017/pgbouncer:0.1"
+          value: "docker.io/ivorysql/pgbouncer:1.1"
         - name: RELATED_IMAGE_PGEXPORTER
-          value: "docker.io/balinor2017/postgres-exporter:0.7"
+          value: "docker.io/ivorysql/postgres-exporter:1.1"
         - name: RELATED_IMAGE_PGUPGRADE
           value: "registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0"  
         - name: RELATED_IMAGE_POSTGRES_15_GIS_3.3
