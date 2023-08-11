@@ -19,12 +19,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/ivorysql/ivory-operator/internal/pgaudit"
 	"io"
 	"net"
 	"net/url"
 	"regexp"
 	"strings"
+
+	"github.com/ivorysql/ivory-operator/internal/pgaudit"
 
 	"github.com/pkg/errors"
 	appsv1 "k8s.io/api/apps/v1"
