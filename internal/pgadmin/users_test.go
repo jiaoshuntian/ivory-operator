@@ -101,7 +101,7 @@ with create_app().app_context():
             continue
 
         data = json.loads(line)
-        address = data['username'] + '@ivyo'
+        address = data['username'] + '@ivyo.com'
         user = (
             db.session.query(User).filter_by(username=address).first() or
             User()
@@ -144,8 +144,9 @@ with create_app().app_context():
         server.port = cluster.port
         server.servergroup_id = group.id
         server.user_id = user.id
-        server.maintenance_db = "ivory"
+        server.maintenance_db = "postgres"
         server.ssl_mode = "prefer"
+        server.is_kerberos_conn = True
 
         server.username = data['username']
         server.password = encrypt(data['password'], data['password'])

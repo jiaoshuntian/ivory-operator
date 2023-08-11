@@ -47,7 +47,7 @@ func EnableInIvorySQL(ctx context.Context, exec ivory.Executor) error {
 
 	stdout, stderr, err := exec.ExecInAllDatabases(ctx,
 		// Quiet the NOTICE from IF EXISTS, and install the pgAudit event triggers.
-		// - https://www.ivorysql.org/docs/current/runtime-config-client.html
+		// - https://www.postgresql.org/docs/current/runtime-config-client.html
 		// - https://github.com/pgaudit/pgaudit#settings
 		`SET client_min_messages = WARNING; CREATE EXTENSION IF NOT EXISTS pgaudit;`,
 		map[string]string{
