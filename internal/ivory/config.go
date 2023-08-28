@@ -77,7 +77,7 @@ safelink() (
 
 	// ReplicationUser is the IvorySQL role that will be created by Patroni
 	// for streaming replication and for `pg_rewind`.
-	ReplicationUser = "_highgorepl"
+	ReplicationUser = "_crunchyrepl"
 
 	// configMountPath is where to mount additional config files
 	configMountPath = "/etc/postgres"
