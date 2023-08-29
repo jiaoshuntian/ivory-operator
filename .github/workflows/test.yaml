@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-go@v3
         with: { go-version: 1.x }
       - run: go mod download
-      - run: ENVTEST_K8S_VERSION="${KUBERNETES#default}" make check-envtest
+      - run: ENVTEST_K8S_VERSION=1.27.1 make check-envtest
         env:
           KUBERNETES: "${{ matrix.kubernetes }}"
           GO_TEST: go test --coverprofile 'envtest.coverage' --coverpkg ./internal/...
@@ -99,7 +99,7 @@ jobs:
         with:
           k3s-channel: "${{ matrix.kubernetes }}"
           prefetch-images: |
-            docker.io/ivorysql/pgadmin4:1.1
+            docker.io/ivorysql/pgadmin:1.2
             docker.io/ivorysql/pgbackrest:1.1
             docker.io/ivorysql/pgbouncer:1.1
             docker.io/ivorysql/postgres-exporter:1.1
@@ -119,7 +119,7 @@ jobs:
           docker run --detach --network host --read-only \
             --volume "$(pwd):/mnt" --workdir '/mnt' --env 'PATH=/mnt/bin' \
             --env 'KUBECONFIG=hack/.kube/ivory-operator/ivyo' \
-            --env 'RELATED_IMAGE_PGADMIN=docker.io/ivorysql/pgadmin4:1.1' \
+            --env 'RELATED_IMAGE_PGADMIN=docker.io/ivorysql/pgadmin:1.2' \
             --env 'RELATED_IMAGE_PGBACKREST=docker.io/ivorysql/pgbackrest:1.1' \
             --env 'RELATED_IMAGE_PGBOUNCER=docker.io/ivorysql/pgbouncer:1.1' \
             --env 'RELATED_IMAGE_PGEXPORTER=docker.io/ivorysql/postgres-exporter:1.1' \
