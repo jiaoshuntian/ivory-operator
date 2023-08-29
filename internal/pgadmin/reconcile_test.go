@@ -109,7 +109,7 @@ containers:
   - -c
   - |-
     IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/crunchy'}
-    PGADMIN_DIR=/usr/local/python3/lib/python3.9/site-packages/pgadmin4-web
+    PGADMIN_DIR=/usr/lib/python3.9/site-packages/pgadmin4-web
     APACHE_PIDFILE='/tmp/httpd.pid'
     export PATH=$PATH:/usr/pgsql-*/bin
 
@@ -343,7 +343,7 @@ containers:
   - -c
   - |-
     IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/crunchy'}
-    PGADMIN_DIR=/usr/local/python3/lib/python3.9/site-packages/pgadmin4-web
+    PGADMIN_DIR=/usr/lib/python3.9/site-packages/pgadmin4-web
     APACHE_PIDFILE='/tmp/httpd.pid'
     export PATH=$PATH:/usr/pgsql-*/bin
 

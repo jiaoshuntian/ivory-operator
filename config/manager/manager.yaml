@@ -21,7 +21,7 @@ spec:
         - name: RELATED_IMAGE_IVORY_15
           value: "docker.io/ivorysql/ivorysql:1.1"
         - name: RELATED_IMAGE_PGADMIN
-          value: "docker.io/ivorysql/pgadmin4:1.1"
+          value: "docker.io/ivorysql/pgadmin:1.2"
         - name: RELATED_IMAGE_PGBACKREST
           value: "docker.io/ivorysql/pgbackrest:1.1"
         - name: RELATED_IMAGE_PGBOUNCER

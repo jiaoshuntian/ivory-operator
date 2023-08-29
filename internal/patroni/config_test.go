@@ -1026,6 +1026,7 @@ func TestProbeTiming(t *testing.T) {
 			FailureThreshold: 1,
 		}},
 	} {
+		tt := tt
 		actual := probeTiming(&v1beta1.PatroniSpec{
 			LeaderLeaseDurationSeconds: &tt.lease,
 			SyncPeriodSeconds:          &tt.sync,
