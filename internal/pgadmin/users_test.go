@@ -146,7 +146,7 @@ with create_app().app_context():
         server.user_id = user.id
         server.maintenance_db = "postgres"
         server.ssl_mode = "prefer"
-        server.is_kerberos_conn = True
+        server.kerberos_conn = True
 
         server.username = data['username']
         server.password = encrypt(data['password'], data['password'])

@@ -154,7 +154,7 @@ func (r *Reconciler) applyRepoHostIntent(ctx context.Context, ivoryCluster *v1be
 // applying the IvoryCluster controller's fully specified intent for the PersistentVolumeClaim
 // representing a repository.
 func (r *Reconciler) applyRepoVolumeIntent(ctx context.Context,
-	ivoryCluster *v1beta1.IvoryCluster, spec *corev1.PersistentVolumeClaimSpec,
+	ivoryCluster *v1beta1.IvoryCluster, spec corev1.PersistentVolumeClaimSpec,
 	repoName string, repoResources *RepoResources) (*corev1.PersistentVolumeClaim, error) {
 
 	repo, err := r.generateRepoVolumeIntent(ivoryCluster, spec, repoName, repoResources)
@@ -616,7 +616,7 @@ func (r *Reconciler) generateRepoHostIntent(ivoryCluster *v1beta1.IvoryCluster,
 }
 
 func (r *Reconciler) generateRepoVolumeIntent(ivoryCluster *v1beta1.IvoryCluster,
-	spec *corev1.PersistentVolumeClaimSpec, repoName string,
+	spec corev1.PersistentVolumeClaimSpec, repoName string,
 	repoResources *RepoResources) (*corev1.PersistentVolumeClaim, error) {
 
 	annotations := naming.Merge(
@@ -649,7 +649,7 @@ func (r *Reconciler) generateRepoVolumeIntent(ivoryCluster *v1beta1.IvoryCluster
 			Kind:       "PersistentVolumeClaim",
 		},
 		ObjectMeta: meta,
-		Spec:       *spec,
+		Spec:       spec,
 	}
 
 	// set ownership references
@@ -2486,7 +2486,7 @@ func (r *Reconciler) reconcileRepos(ctx context.Context,
 		if repo.Volume == nil {
 			continue
 		}
-		repo, err := r.applyRepoVolumeIntent(ctx, ivoryCluster, &repo.Volume.VolumeClaimSpec,
+		repo, err := r.applyRepoVolumeIntent(ctx, ivoryCluster, repo.Volume.VolumeClaimSpec,
 			repo.Name, repoResources)
 		if err != nil {
 			log.Error(err, errMsg)
