@@ -19,7 +19,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/ivorysql/ivory-operator/internal/pgaudit"
 	"io"
 	"net"
 	"net/url"
