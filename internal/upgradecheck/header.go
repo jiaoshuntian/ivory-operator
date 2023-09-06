@@ -34,7 +34,7 @@ import (
 )
 
 const (
-	clientHeader = "X-Highgo-Client-Metadata"
+	clientHeader = "X-Highgo-Client-Metadata" // #nosec G101
 )
 
 var (

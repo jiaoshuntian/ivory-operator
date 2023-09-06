@@ -108,8 +108,8 @@ containers:
   - bash
   - -c
   - |-
-    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/postgresql'}
-    PGADMIN_DIR=/usr/lib/python3.6/site-packages/pgadmin4-web
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/crunchy'}
+    PGADMIN_DIR=/usr/lib/python3.9/site-packages/pgadmin4-web
     APACHE_PIDFILE='/tmp/httpd.pid'
     export PATH=$PATH:/usr/pgsql-*/bin
 
@@ -117,7 +117,7 @@ containers:
     GREEN="\033[0;32m"
     RESET="\033[0m"
 
-    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/postgresql'}
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/crunchy'}
 
     function enable_debugging() {
         if [[ ${HIGHGO_DEBUG:-false} == "true" ]]
@@ -342,8 +342,8 @@ containers:
   - bash
   - -c
   - |-
-    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/postgresql'}
-    PGADMIN_DIR=/usr/lib/python3.6/site-packages/pgadmin4-web
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/crunchy'}
+    PGADMIN_DIR=/usr/lib/python3.9/site-packages/pgadmin4-web
     APACHE_PIDFILE='/tmp/httpd.pid'
     export PATH=$PATH:/usr/pgsql-*/bin
 
@@ -351,7 +351,7 @@ containers:
     GREEN="\033[0;32m"
     RESET="\033[0m"
 
-    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/postgresql'}
+    IVORYSQL_DIR=${IVORYSQL_DIR:-'/opt/crunchy'}
 
     function enable_debugging() {
         if [[ ${HIGHGO_DEBUG:-false} == "true" ]]
