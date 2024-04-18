@@ -1,4 +1,4 @@
-<h1 align="center">IVYO: The Ivory Operator from IvorySQL</h1>
+<h1 align="center">IVYO: The Operator from IvorySQL</h1>
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/ivorysql/ivory-operator)](https://goreportcard.com/report/github.com/ivorysql/ivory-operator)
 
