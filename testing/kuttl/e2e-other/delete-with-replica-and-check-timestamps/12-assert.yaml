@@ -6,7 +6,7 @@ metadata:
   labels:
     ivory-operator.ivorysql.org/cluster: delete-switchover-with-timestamp
     ivory-operator.ivorysql.org/data: ivory
-    ivory-operator.ivorysql.org/role: master
+    ivory-operator.ivorysql.org/role: primary
     testing/role-before: replica
 ---
 # The former primary should now be a replica.

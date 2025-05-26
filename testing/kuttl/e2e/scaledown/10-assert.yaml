@@ -15,7 +15,7 @@ metadata:
   labels:
     ivory-operator.ivorysql.org/cluster: scaledown1
     ivory-operator.ivorysql.org/instance-set: instance1
-    ivory-operator.ivorysql.org/role: master
+    ivory-operator.ivorysql.org/role: primary
 status:
   phase: Running
 ---

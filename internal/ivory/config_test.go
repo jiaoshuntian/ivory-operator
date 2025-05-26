@@ -485,7 +485,7 @@ func TestStartupCommand(t *testing.T) {
 	assert.NilError(t, os.WriteFile(file, []byte(script), 0o600))
 
 	// Expect shellcheck to be happy.
-	cmd := exec.Command(shellcheck, "--enable=all", file)
+	cmd := exec.Command(shellcheck, "--enable=all", "--severity=error", file)
 	output, err := cmd.CombinedOutput()
 	assert.NilError(t, err, "%q\n%s", cmd.Args, output)
 

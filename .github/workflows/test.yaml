@@ -10,12 +10,12 @@ on:
 
 jobs:
   go-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with:
-          go-version: 1.x
+          go-version: 1.19
       - run: make check
       - run: make check-generate
 
@@ -23,15 +23,15 @@ jobs:
         run: go mod tidy && git diff --exit-code -- go.mod
 
   kubernetes-api:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [go-test]
     strategy:
       fail-fast: false
       matrix:
-        kubernetes: ['default']
+        kubernetes: ['1.23.5']
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with: { go-version: 1.x }
       - run: go mod download
       - run: ENVTEST_K8S_VERSION="${KUBERNETES#default}" make check-envtest
@@ -41,23 +41,22 @@ jobs:
 
       # Upload coverage to GitHub
       - run: gzip envtest.coverage
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "kubernetes-api=${{ matrix.kubernetes }}"
           path: envtest.coverage.gz
           retention-days: 1
 
   kubernetes-k3d:
-    if: "${{ github.repository == 'IvorySQL/ivory-operator' }}"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [go-test]
     strategy:
       fail-fast: false
       matrix:
         kubernetes: [v1.28, v1.25]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with: { go-version: 1.x }
 
       - name: Start k3s
@@ -65,9 +64,9 @@ jobs:
         with:
           k3s-channel: "${{ matrix.kubernetes }}"
           prefetch-images: |
-            docker.io/ivorysql/pgbackrest:ubi8-2.47-2.0-1
-            docker.io/ivorysql/pgbouncer:ubi8-1.21-2.0-1
-            docker.io/ivorysql/ivorysql:ubi8-3.0-2.0-1
+            docker.io/ivorysql/pgbackrest:ubi8-2.54.1-4.0-1
+            docker.io/ivorysql/pgbouncer:ubi8-1.23.0-4.0-1
+            docker.io/ivorysql/ivorysql:ubi8-4.5-4.0-1
 
       - run: make createnamespaces check-envtest-existing
         env:
@@ -76,22 +75,22 @@ jobs:
 
       # Upload coverage to GitHub
       - run: gzip envtest-existing.coverage
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "kubernetes-k3d=${{ matrix.kubernetes }}"
           path: envtest-existing.coverage.gz
           retention-days: 1
 
   kuttl-k3d:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [go-test]
     strategy:
       fail-fast: false
       matrix:
         kubernetes: [v1.25, v1.24, v1.23, v1.22, v1.21]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with: { go-version: 1.x }
 
       - name: Start k3s
@@ -99,12 +98,12 @@ jobs:
         with:
           k3s-channel: "${{ matrix.kubernetes }}"
           prefetch-images: |
-            docker.io/ivorysql/pgadmin:ubi8-8.0-2.0-1
-            docker.io/ivorysql/pgbackrest:ubi8-2.47-2.0-1
-            docker.io/ivorysql/pgbouncer:ubi8-1.21-2.0-1
-            docker.io/ivorysql/postgres-exporter:ubi8-0.15.0-2.0-1
-            docker.io/ivorysql/ivorysql:ubi8-3.0-2.0-1
-            docker.io/ivorysql/postgis:ubi8-3.4-2.0-1
+            docker.io/ivorysql/pgadmin:ubi8-8.14.0-4.0-1
+            docker.io/ivorysql/pgbackrest:ubi8-2.54.1-4.0-1
+            docker.io/ivorysql/pgbouncer:ubi8-1.23.0-4.0-1
+            docker.io/ivorysql/postgres-exporter:ubi8-0.17.0-4.0-1
+            docker.io/ivorysql/ivorysql:ubi8-4.5-4.0-1
+            docker.io/ivorysql/postgis:ubi8-3.4-4.0-1
             registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0
       - run: go mod download
       - name: Build executable
@@ -119,13 +118,13 @@ jobs:
           docker run --detach --network host --read-only \
             --volume "$(pwd):/mnt" --workdir '/mnt' --env 'PATH=/mnt/bin' \
             --env 'KUBECONFIG=hack/.kube/ivory-operator/ivyo' \
-            --env 'RELATED_IMAGE_PGADMIN=docker.io/ivorysql/pgadmin:ubi8-8.0-2.0-1' \
-            --env 'RELATED_IMAGE_PGBACKREST=docker.io/ivorysql/pgbackrest:ubi8-2.47-2.0-1' \
-            --env 'RELATED_IMAGE_PGBOUNCER=docker.io/ivorysql/pgbouncer:ubi8-1.21-2.0-1' \
-            --env 'RELATED_IMAGE_PGEXPORTER=docker.io/ivorysql/postgres-exporter:ubi8-0.15.0-2.0-1' \
+            --env 'RELATED_IMAGE_PGADMIN=docker.io/ivorysql/pgadmin:ubi8-8.14.0-4.0-1' \
+            --env 'RELATED_IMAGE_PGBACKREST=docker.io/ivorysql/pgbackrest:ubi8-2.54.1-4.0-1' \
+            --env 'RELATED_IMAGE_PGBOUNCER=docker.io/ivorysql/pgbouncer:ubi8-1.23.0-4.0-1' \
+            --env 'RELATED_IMAGE_PGEXPORTER=docker.io/ivorysql/postgres-exporter:ubi8-0.17.0-4.0-1' \
             --env 'RELATED_IMAGE_PGUPGRADE=registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.3.1-0' \
-            --env 'RELATED_IMAGE_IVORY_16=docker.io/ivorysql/ivorysql:ubi8-3.0-2.0-1' \
-            --env 'RELATED_IMAGE_IVORY_16_GIS_3.4=docker.io/ivorysql/postgis:ubi8-3.4-2.0-1' \
+            --env 'RELATED_IMAGE_IVORY_17=docker.io/ivorysql/ivorysql:ubi8-4.5-4.0-1' \
+            --env 'RELATED_IMAGE_IVORY_17_GIS_3.4=docker.io/ivorysql/postgis:ubi8-3.4-4.0-1' \
             --env 'IVYO_FEATURE_GATES=TablespaceVolumes=true' \
             --name 'ivory-operator' ubuntu \
             ivory-operator
@@ -136,11 +135,11 @@ jobs:
 
       - run: make generate-kuttl
         env:
-          KUTTL_PG_UPGRADE_FROM_VERSION: '16'
-          KUTTL_PG_UPGRADE_TO_VERSION: '16'
-          KUTTL_PG_VERSION: '16'
+          KUTTL_PG_UPGRADE_FROM_VERSION: '17'
+          KUTTL_PG_UPGRADE_TO_VERSION: '17'
+          KUTTL_PG_VERSION: '17'
           KUTTL_POSTGIS_VERSION: '3.4'
-          KUTTL_IVORY_IMAGE: 'docker.io/ivorysql/ivorysql:ubi8-3.0-2.0-1'
+          KUTTL_IVORY_IMAGE: 'docker.io/ivorysql/ivorysql:ubi8-4.5-4.0-1'
       - run: |
           make check-kuttl && exit
           failed=$?
@@ -158,10 +157,10 @@ jobs:
       - kubernetes-api
       - kubernetes-k3d
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with: { go-version: 1.x }
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with: { path: download }
 
       # Combine the coverage profiles by taking the mode line from any one file
@@ -185,7 +184,7 @@ jobs:
 
       # Upload coverage to GitHub
       - run: gzip total-coverage.html
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: total-coverage.html.gz

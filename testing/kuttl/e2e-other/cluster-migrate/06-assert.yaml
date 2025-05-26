@@ -16,6 +16,6 @@ metadata:
     ivory-operator.ivorysql.org/cluster: cluster-migrate
     ivory-operator.ivorysql.org/data: ivory
     ivory-operator.ivorysql.org/instance-set: instance1
-    ivory-operator.ivorysql.org/role: master
+    ivory-operator.ivorysql.org/role: primary
 status:
   phase: Running

@@ -310,7 +310,7 @@ func populatePGInstanceConfigurationMap(
 	stanza.Set("pg1-path", pgdataDir)
 	stanza.Set("pg1-port", fmt.Sprint(pgPort))
 	stanza.Set("pg1-socket-path", ivory.SocketDirectory)
-
+	stanza.Set("pg-version-force", "17")
 	return iniSectionSet{
 		"global":          global,
 		DefaultStanzaName: stanza,

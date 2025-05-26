@@ -69,5 +69,5 @@ func IvorySQLParameters(outParameters *ivory.Parameters) {
 	// - https://www.ivorysql.org/docs/current/runtime-config-client.html
 	shared := outParameters.Mandatory.Value("shared_preload_libraries")
 	outParameters.Mandatory.Add("shared_preload_libraries",
-		strings.TrimPrefix(shared+",pgaudit", ","))
+		strings.TrimPrefix(shared+",pgaudit,liboracle_parser,ivorysql_ora", ","))
 }

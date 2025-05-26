@@ -75,7 +75,7 @@ func (i Instance) IsPrimary() (primary bool, known bool) {
 		return false, false
 	}
 
-	return i.Pods[0].Labels[naming.LabelRole] == naming.RolePatroniLeader, true
+	return i.Pods[0].Labels[naming.LabelRole] == naming.RolePatroniLeader || i.Pods[0].Labels[naming.LabelRole] == naming.RolePrimary, true
 }
 
 // IsReady returns whether or not this instance is ready to receive IvorySQL
@@ -142,7 +142,8 @@ func (i Instance) IsWritable() (writable, known bool) {
 
 	// TODO(cbandy): Update this to consider when Patroni is paused.
 
-	return strings.HasPrefix(member[role:], `"role":"master"`), true
+	return strings.HasPrefix(member[role:], `"role":"master"`) ||
+		strings.HasPrefix(member[role:], `"role":"primary"`), true
 }
 
 // PodMatchesPodTemplate returns whether or not the Pod for this instance

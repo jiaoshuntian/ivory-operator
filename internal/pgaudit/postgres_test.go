@@ -62,7 +62,7 @@ func TestIvorySQLParameters(t *testing.T) {
 
 	assert.Assert(t, parameters.Default == nil)
 	assert.DeepEqual(t, parameters.Mandatory.AsMap(), map[string]string{
-		"shared_preload_libraries": "pgaudit",
+		"shared_preload_libraries": "pgaudit,liboracle_parser,ivorysql_ora",
 	})
 
 	// Appended when not empty.
@@ -71,6 +71,6 @@ func TestIvorySQLParameters(t *testing.T) {
 
 	assert.Assert(t, parameters.Default == nil)
 	assert.DeepEqual(t, parameters.Mandatory.AsMap(), map[string]string{
-		"shared_preload_libraries": "some,existing,pgaudit",
+		"shared_preload_libraries": "some,existing,pgaudit,liboracle_parser,ivorysql_ora",
 	})
 }

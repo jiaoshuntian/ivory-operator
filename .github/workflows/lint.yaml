@@ -52,7 +52,7 @@ jobs:
 
       - uses: golangci/golangci-lint-action@v3
         with:
-          version: latest
+          version: v1.60.1
           args: --timeout=5m
 
       # Count issues reported by disabled linters. The command always

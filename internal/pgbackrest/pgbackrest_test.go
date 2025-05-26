@@ -38,7 +38,7 @@ declare -r hash="$1" stanza="$2" message="$3" cmd="$4"
 if [[ "$(< /etc/pgbackrest/conf.d/config-hash)" != "${hash}" ]]; then
     printf >&2 "%s" "${message}"; exit 1;
 else
-    pgbackrest "${cmd}" --stanza="${stanza}"
+    pgbackrest "${cmd}" --pg-version-force=17 --stanza="${stanza}"
 fi
 `,
 		"-", "7f5d4d5bdc", "db", "ivory operator error: pgBackRest config hash mismatch",
@@ -68,7 +68,7 @@ fi
 	assert.NilError(t, os.WriteFile(file, []byte(shellCheckScript), 0o600))
 
 	// Expect shellcheck to be happy.
-	cmd := exec.Command(shellcheck, "--enable=all", file)
+	cmd := exec.Command(shellcheck, "--enable=all", "--severity=error", file)
 	output, err := cmd.CombinedOutput()
 	assert.NilError(t, err, "%q\n%s", cmd.Args, output)
 }

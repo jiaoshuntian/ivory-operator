@@ -21,6 +21,7 @@ import (
 	"io"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
@@ -675,6 +676,7 @@ func generateBackupJobSpecIntent(ivoryCluster *v1beta1.IvoryCluster,
 	cmdOpts := []string{
 		"--stanza=" + pgbackrest.DefaultStanzaName,
 		"--repo=" + repoIndex,
+		"--pg-version-force=" + strconv.Itoa(ivoryCluster.Spec.PostgresVersion),
 	}
 	cmdOpts = append(cmdOpts, opts...)
 
@@ -1243,7 +1245,6 @@ func (r *Reconciler) reconcilePGBackRest(ctx context.Context,
 
 	// add some additional context about what component is being reconciled
 	log := logging.FromContext(ctx).WithValues("reconciler", "pgBackRest")
-
 	// if nil, create the pgBackRest status that will be updated when reconciling various
 	// pgBackRest resources
 	if ivoryCluster.Status.PGBackRest == nil {
@@ -1323,7 +1324,6 @@ func (r *Reconciler) reconcilePGBackRest(ctx context.Context,
 		result = updateReconcileResult(result, reconcile.Result{Requeue: true})
 		return result, nil
 	}
-
 	// reconcile the pgBackRest stanza for all configuration pgBackRest repos
 	configHashMismatch, err := r.reconcileStanzaCreate(ctx, ivoryCluster, instances, configHash)
 	// If a stanza create error then requeue but don't return the error.  This prevents
@@ -2566,6 +2566,7 @@ func (r *Reconciler) reconcileStanzaCreate(ctx context.Context,
 	var writableInstanceName string
 	for _, instance := range instances.forCluster {
 		writable, known := instance.IsWritable()
+
 		if writable && known {
 			clusterWritable = true
 			writableInstanceName = instance.Name + "-0"
@@ -2599,7 +2600,6 @@ func (r *Reconciler) reconcileStanzaCreate(ctx context.Context,
 		return r.PodExec(ivoryCluster.GetNamespace(), writableInstanceName,
 			naming.ContainerDatabase, stdin, stdout, stderr, command...)
 	}
-
 	// Always attempt to create pgBackRest stanza first
 	configHashMismatch, err := pgbackrest.Executor(exec).StanzaCreateOrUpgrade(ctx, configHash,
 		false)
