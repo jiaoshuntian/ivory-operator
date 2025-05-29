@@ -45,7 +45,7 @@ metadata:
     ivory-operator.ivorysql.org/data: ivory
     ivory-operator.ivorysql.org/instance-set: instance1
     ivory-operator.ivorysql.org/patroni: security-context-ha
-    ivory-operator.ivorysql.org/role: master
+    ivory-operator.ivorysql.org/role: primary
 spec:
   containers:
   - name: database

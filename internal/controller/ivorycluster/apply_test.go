@@ -79,7 +79,17 @@ func TestServerSideApply(t *testing.T) {
 		after := constructor()
 		assert.NilError(t, cc.Patch(ctx, after, client.Apply, reconciler.Owner))
 		assert.Assert(t, after.GetResourceVersion() != "")
-		assert.Assert(t, after.GetResourceVersion() == before.GetResourceVersion())
+		switch {
+		case serverVersion.LessThan(version.MustParseGeneric("1.25.15")):
+		case serverVersion.AtLeast(version.MustParseGeneric("1.26")) && serverVersion.LessThan(version.MustParseGeneric("1.26.10")):
+		case serverVersion.AtLeast(version.MustParseGeneric("1.27")) && serverVersion.LessThan(version.MustParseGeneric("1.27.7")):
+
+			assert.Assert(t, after.GetResourceVersion() != before.GetResourceVersion(),
+				"expected https://issue.k8s.io/116861")
+
+		default:
+			assert.Assert(t, after.GetResourceVersion() == before.GetResourceVersion())
+		}
 
 		// Our apply method generates the correct apply-patch.
 		again := constructor()

@@ -17,7 +17,7 @@ kind: Pod
 metadata:
   labels:
     ivory-operator.ivorysql.org/cluster: switchover
-    ivory-operator.ivorysql.org/role: master
+    ivory-operator.ivorysql.org/role: primary
 ---
 apiVersion: v1
 kind: Pod

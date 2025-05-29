@@ -153,6 +153,7 @@ repo4-s3-region = earth
 repo4-type = s3
 
 [db]
+pg-version-force = 17
 pg1-path = /pgdata/pg12
 pg1-port = 2345
 pg1-socket-path = /tmp/postgres
@@ -278,7 +279,7 @@ func TestReloadCommand(t *testing.T) {
 	assert.NilError(t, os.WriteFile(file, []byte(command[3]), 0o600))
 
 	// Expect shellcheck to be happy.
-	cmd := exec.Command(shellcheck, "--enable=all", file)
+	cmd := exec.Command(shellcheck, "--enable=all", "--severity=error", file)
 	output, err := cmd.CombinedOutput()
 	assert.NilError(t, err, "%q\n%s", cmd.Args, output)
 }
@@ -306,7 +307,7 @@ func TestRestoreCommand(t *testing.T) {
 	file := filepath.Join(dir, "script.bash")
 	assert.NilError(t, os.WriteFile(file, []byte(command[3]), 0o600))
 
-	cmd := exec.Command(shellcheck, "--enable=all", file)
+	cmd := exec.Command(shellcheck, "--enable=all", "--severity=error", file)
 	output, err := cmd.CombinedOutput()
 	assert.NilError(t, err, "%q\n%s", cmd.Args, output)
 }

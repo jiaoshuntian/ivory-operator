@@ -5,7 +5,7 @@ commands:
   # Label instance pods with their current role.
   - script: |
       kubectl label --namespace="${NAMESPACE}" pods \
-        --selector='ivory-operator.ivorysql.org/role=master' \
+        --selector='ivory-operator.ivorysql.org/role=primary' \
         'testing/role-before=master'
   - script: |
       kubectl label --namespace="${NAMESPACE}" pods \

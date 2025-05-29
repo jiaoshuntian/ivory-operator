@@ -11,5 +11,5 @@ bases:
 
 images:
 - name: ivory-operator
-  newName: docker.io/balinor2017/ivory-operator
-  newTag: v0.4
+  newName: docker.io/ivorysql/ivory-operator
+  newTag: v4.0

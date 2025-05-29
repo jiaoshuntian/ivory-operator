@@ -434,7 +434,6 @@ func (r *Reconciler) reconcileIvoryUsersInIvorySQL(
 
 	// Find the IvorySQL instance that can execute SQL that writes system
 	// catalogs. When there is none, return early.
-
 	for _, instance := range instances.forCluster {
 		if terminating, known := instance.IsTerminating(); terminating || !known {
 			continue
@@ -469,7 +468,6 @@ func (r *Reconciler) reconcileIvoryUsersInIvorySQL(
 	write := func(ctx context.Context, exec ivory.Executor) error {
 		return ivory.WriteUsersInIvorySQL(ctx, exec, specUsers, verifiers)
 	}
-
 	revision, err := safeHash32(func(hasher io.Writer) error {
 		// Discard log messages about executing SQL.
 		return write(logging.NewContext(ctx, logging.Discard()), func(

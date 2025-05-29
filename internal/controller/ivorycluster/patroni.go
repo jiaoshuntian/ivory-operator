@@ -106,7 +106,7 @@ func (r *Reconciler) handlePatroniRestarts(
 			return r.PodExec(pod.Namespace, pod.Name, container, stdin, stdout, stderr, command...)
 		})
 
-		return errors.WithStack(exec.RestartPendingMembers(ctx, "master", naming.PatroniScope(cluster)))
+		return errors.WithStack(exec.RestartPendingMembers(ctx, "primary", naming.PatroniScope(cluster)))
 	}
 
 	// When the primary does not need to restart but a replica does, restart all
